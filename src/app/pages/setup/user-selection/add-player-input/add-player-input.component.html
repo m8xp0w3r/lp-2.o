@@ -1,0 +1,22 @@
+<form>
+	<ion-grid>
+		<ion-row>
+			<ion-col size="10">
+				<ion-input
+						[(ngModel)]="newPlayer"
+						[clearInput]="true"
+						(keyup.enter)="addPossiblePlayer()"
+						name="newPlayer"
+						label="Spieler hinzufügen"
+						label-placement="floating"
+						placeholder="Namen eingeben"></ion-input>
+			</ion-col>
+
+			<ion-col size="2">
+				<ion-button (click)="addPossiblePlayer()" color="success" fill="clear" [disabled]="newPlayer === ''">
+					<ion-icon slot="icon-only" name="person-add-outline"></ion-icon>
+				</ion-button>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+</form>
