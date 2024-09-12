@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, inject, Signal } from '@angular/cor
 import { UserSelectionService } from "src/app/pages/setup/user-selection/user-selection.service";
 import { PossiblePlayer } from "src/app/models/possible-player.model";
 import { AlertController, CheckboxCustomEvent, IonItemSliding, IonicModule } from "@ionic/angular";
-import { PlayerService } from "src/app/services/player.service";
+import { PlayerService } from "../../../../shared/services/player.service";
 import { NgFor } from '@angular/common';
 
 @Component({

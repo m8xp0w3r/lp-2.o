@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject, Signal } from '@angular/core';
-import { LatschiPanschService } from "src/app/services/latschi-pansch.service";
+import { LatschiPanschService } from "../../../../shared/services/latschi-pansch.service";
 import { PossiblePlayer } from "src/app/models/possible-player.model";
-import { PlayerService } from "src/app/services/player.service";
+import { PlayerService } from "../../../../shared/services/player.service";
 import { LatschiPansch } from "@models/latschi-pansch.interface";
 import { firstValueFrom } from "rxjs";
 import { IonicModule } from '@ionic/angular';

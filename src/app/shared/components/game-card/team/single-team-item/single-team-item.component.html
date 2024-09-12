@@ -1,3 +1,6 @@
-<p>
-  single-team-item works!
-</p>
+<ng-container *ngIf="team">
+    <ion-item lines="none">
+        <ion-label>{{team.player1.name}}</ion-label>
+        <ion-note slot="end">{{team.score ?? "+"}}</ion-note>
+    </ion-item>
+</ng-container>

@@ -1,3 +1,6 @@
-<p>
-  team works!
-</p>
+<ng-container *ngIf="team">
+    <lp-double-team-item *ngIf="team.player2; else singlePlayerTeam" [team]="team"></lp-double-team-item>
+    <ng-template #singlePlayerTeam>
+        <lp-single-team-item [team]="team">></lp-single-team-item>
+    </ng-template>
+</ng-container>

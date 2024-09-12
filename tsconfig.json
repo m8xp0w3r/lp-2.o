@@ -19,7 +19,18 @@
     "target": "es2022",
     "module": "es2020",
     "lib": ["es2018", "dom"],
-    "useDefineForClassFields": false
+    "useDefineForClassFields": false,
+    "paths": {
+      "@interfaces": ["src/app/shared/data/interfaces/index.ts"],
+      "@types": ["src/app/shared/data/types/index.ts"],
+      "@enums": ["src/app/shared/data/enums/index.ts"],
+      "@services": ["src/app/shared/services/index.ts"],
+      "@components": ["src/app/shared/components/index.ts"],
+      "@guards/*": ["src/app/shared/guards/*"],
+      "@util/*": ["src/app/shared/util/*"],
+      "@environments/*": ["src/environments/*"],
+      "@pages/*": ["src/app/pages/*"]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
