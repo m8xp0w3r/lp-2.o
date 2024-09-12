@@ -1,3 +1,23 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+    <ion-split-pane contentId="main-content">
+        <ion-menu contentId="main-content" type="overlay">
+            <ion-content>
+                <ion-list id="inbox-list">
+                    <ion-list-header>Latschi Pansch</ion-list-header>
+                    <ion-note *ngIf="latschiPansch(); else selectPansch">Vol. {{latschiPansch()?.edition}}</ion-note>
+                    <ng-template #selectPansch>
+                        <ion-note>Bitte Pansch auswählen</ion-note>
+                    </ng-template>
+                    <ion-menu-toggle auto-hide="false" *ngFor="let page of appPages$ | async; let i = index">
+                        <ion-item routerDirection="root" [routerLink]="[page.url]" lines="none" detail="false"
+                                  routerLinkActive="selected">
+                            <ion-icon aria-hidden="true" slot="start" [name]="page.icon + '-outline'"></ion-icon>
+                            <ion-label>{{ page.title }}</ion-label>
+                        </ion-item>
+                    </ion-menu-toggle>
+                </ion-list>
+            </ion-content>
+        </ion-menu>
+        <ion-router-outlet class="outlet" id="main-content"></ion-router-outlet>
+    </ion-split-pane>
 </ion-app>
