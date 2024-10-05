@@ -5,10 +5,10 @@ import { LatschiPansch } from "@interfaces";
 import { IonIcon, IonLabel, IonTabBar, IonTabButton, IonTabs } from "@ionic/angular/standalone";
 
 @Component({
-    selector: 'lp-kicker',
-    templateUrl: './kicker.page.html',
-    styleUrls: ['./kicker.page.scss'],
-    standalone: true,
+  selector: 'lp-kicker',
+  templateUrl: './kicker.page.html',
+  styleUrls: ['./kicker.page.scss'],
+  standalone: true,
   imports: [
     IonTabs,
     IonTabBar,

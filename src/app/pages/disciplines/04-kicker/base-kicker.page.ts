@@ -10,12 +10,11 @@ import { AuthService, LatschiPanschService } from "@services";
   selector: "lp-base-kicker"
 })
 export abstract class BaseKickerPage {
+  public testMode = environment.testMode;
   protected kickerService: KickerService = inject(KickerService);
   protected authService: AuthService = inject(AuthService);
-  protected latschiPanschService: LatschiPanschService = inject(LatschiPanschService);
-  protected router: Router = inject(Router);
-
   public currentUser$ = this.authService.currentUser$;
-  public testMode = environment.testMode;
+  protected latschiPanschService: LatschiPanschService = inject(LatschiPanschService);
   public currentPansch$ = this.latschiPanschService.currentPansch$;
+  protected router: Router = inject(Router);
 }

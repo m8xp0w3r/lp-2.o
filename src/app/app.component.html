@@ -4,14 +4,14 @@
             <ion-content>
                 <ion-list id="inbox-list">
                     <ion-list-header>Latschi Pansch</ion-list-header>
-                    <ion-note *ngIf="latschiPansch(); else selectPansch">Vol. {{latschiPansch()?.edition}}</ion-note>
+                    <ion-note *ngIf="latschiPansch(); else selectPansch">Vol. {{ latschiPansch()?.edition }}</ion-note>
                     <ng-template #selectPansch>
                         <ion-note>Bitte Pansch auswählen</ion-note>
                     </ng-template>
-                    <ion-menu-toggle auto-hide="false" *ngFor="let page of appPages$ | async; let i = index">
-                        <ion-item routerDirection="root" [routerLink]="[page.url]" lines="none" detail="false"
+                    <ion-menu-toggle *ngFor="let page of appPages$ | async; let i = index" auto-hide="false">
+                        <ion-item [routerLink]="[page.url]" detail="false" lines="none" routerDirection="root"
                                   routerLinkActive="selected">
-                            <ion-icon aria-hidden="true" slot="start" [name]="page.icon + '-outline'"></ion-icon>
+                            <ion-icon [name]="page.icon + '-outline'" aria-hidden="true" slot="start"></ion-icon>
                             <ion-label>{{ page.title }}</ion-label>
                         </ion-item>
                     </ion-menu-toggle>

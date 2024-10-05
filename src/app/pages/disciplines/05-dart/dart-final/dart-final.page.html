@@ -1,63 +1,63 @@
 <lp-header title="Dart Finale"></lp-header>
 <ng-container *ngIf="currentPansch$ | async as currentPansch">
-  <ion-content [fullscreen]="true" class="ion-padding">
-    <ng-container
-      *ngIf="!currentPansch.dartCalculationFinished || currentPansch.isReleased; else panschNotFinished">
-      <ng-container *ngIf="finalGame$ | async as finalGame">
-        <ion-list>
-          <ion-list-header>
-            <ion-label>Dart Finale</ion-label>
-          </ion-list-header>
-          <ion-item *ngFor="let dartPlayer of finalGame.players" (click)="updateScore(dartPlayer, finalGame)">
-            <ion-label>{{dartPlayer.name}}</ion-label>
-            <ion-note slot="end">{{dartPlayer.score}}</ion-note>
-          </ion-item>
-        </ion-list>
-        <ion-list class="winner-list"
-                  *ngIf="(finalGame.players | dartPlayer).length > 0 && (currentUser$ | async) && !finalGame.calculationFinished">
-          <ion-list-header>
-            <ion-label>Sieger auswählen</ion-label>
-          </ion-list-header>
-          <ng-container *ngFor="let dartPlayer of finalGame.players | dartPlayer">
-            <ion-item (click)="selectWinner(dartPlayer, finalGame)">{{dartPlayer.name}}</ion-item>
-          </ng-container>
-        </ion-list>
-        <ng-container *ngIf="finalGame.winner && finalGame.calculationFinished">
-          <ion-list class="winner-list">
-            <ion-list-header>
-              <ion-label>Sieger Finale</ion-label>
-            </ion-list-header>
-            <ion-item lines="none">
-              <ion-label>
-                {{ finalGame.winner.name}}
-              </ion-label>
-            </ion-item>
-          </ion-list>
+    <ion-content [fullscreen]="true" class="ion-padding">
+        <ng-container
+                *ngIf="!currentPansch.dartCalculationFinished || currentPansch.isReleased; else panschNotFinished">
+            <ng-container *ngIf="finalGame$ | async as finalGame">
+                <ion-list>
+                    <ion-list-header>
+                        <ion-label>Dart Finale</ion-label>
+                    </ion-list-header>
+                    <ion-item (click)="updateScore(dartPlayer, finalGame)" *ngFor="let dartPlayer of finalGame.players">
+                        <ion-label>{{ dartPlayer.name }}</ion-label>
+                        <ion-note slot="end">{{ dartPlayer.score }}</ion-note>
+                    </ion-item>
+                </ion-list>
+                <ion-list *ngIf="(finalGame.players | dartPlayer).length > 0 && (currentUser$ | async) && !finalGame.calculationFinished"
+                          class="winner-list">
+                    <ion-list-header>
+                        <ion-label>Sieger auswählen</ion-label>
+                    </ion-list-header>
+                    <ng-container *ngFor="let dartPlayer of finalGame.players | dartPlayer">
+                        <ion-item (click)="selectWinner(dartPlayer, finalGame)">{{ dartPlayer.name }}</ion-item>
+                    </ng-container>
+                </ion-list>
+                <ng-container *ngIf="finalGame.winner && finalGame.calculationFinished">
+                    <ion-list class="winner-list">
+                        <ion-list-header>
+                            <ion-label>Sieger Finale</ion-label>
+                        </ion-list-header>
+                        <ion-item lines="none">
+                            <ion-label>
+                                {{ finalGame.winner.name }}
+                            </ion-label>
+                        </ion-item>
+                    </ion-list>
+                </ng-container>
+            </ng-container>
         </ng-container>
-      </ng-container>
-    </ng-container>
-    <ng-template #panschNotFinished>
-      <lp-pansch-waiting></lp-pansch-waiting>
-    </ng-template>
-  </ion-content>
-  <ion-footer>
-    <ng-container *ngIf="finalGame$ | async as finalGame">
-      <ion-button
-        *ngIf="!finalGame.calculationFinished && testMode"
-        class="ion-padding"
-        expand="block"
-        shape="round"
-        (click)="calculateFakeResult()">
-        Fake Daten Berechnen
-        <ion-icon slot="start" name="bug-outline"></ion-icon>
-      </ion-button>
-    </ng-container>
-    <ion-button
-      *ngIf="(currentUser$| async) && (finalRoundFinished$ | async) && !(currentPansch$ | async)?.dartFinalRoundCalculated"
-      class="ion-padding"
-      expand="block"
-      shape="round"
-      (click)="calculateFinal()">Endergebnis berechnen
-    </ion-button>
-  </ion-footer>
+        <ng-template #panschNotFinished>
+            <lp-pansch-waiting></lp-pansch-waiting>
+        </ng-template>
+    </ion-content>
+    <ion-footer>
+        <ng-container *ngIf="finalGame$ | async as finalGame">
+            <ion-button
+                    (click)="calculateFakeResult()"
+                    *ngIf="!finalGame.calculationFinished && testMode"
+                    class="ion-padding"
+                    expand="block"
+                    shape="round">
+                Fake Daten Berechnen
+                <ion-icon name="bug-outline" slot="start"></ion-icon>
+            </ion-button>
+        </ng-container>
+        <ion-button
+                (click)="calculateFinal()"
+                *ngIf="(currentUser$| async) && (finalRoundFinished$ | async) && !(currentPansch$ | async)?.dartFinalRoundCalculated"
+                class="ion-padding"
+                expand="block"
+                shape="round">Endergebnis berechnen
+        </ion-button>
+    </ion-footer>
 </ng-container>

@@ -4,17 +4,7 @@ import { AsyncPipe, NgFor, NgIf } from '@angular/common';
 import { LatschiPanschService } from "@services";
 import { HeaderComponent } from "@components";
 import { LatschiPansch, Player } from "@interfaces";
-import {
-  IonButton,
-  IonButtons,
-  IonContent,
-  IonHeader,
-  IonIcon, IonItem, IonLabel,
-  IonList,
-  IonMenuButton, IonNote,
-  IonTitle,
-  IonToolbar
-} from "@ionic/angular/standalone";
+import { IonContent, IonIcon, IonItem, IonLabel, IonList, IonNote } from "@ionic/angular/standalone";
 
 @Component({
   selector: 'lp-air-hockey-result',

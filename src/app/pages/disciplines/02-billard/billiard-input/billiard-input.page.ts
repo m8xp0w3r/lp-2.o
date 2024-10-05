@@ -1,6 +1,5 @@
 import { Component, inject } from "@angular/core";
 import { AsyncPipe, NgFor, NgIf } from "@angular/common";
-import { IonicModule } from "@ionic/angular";
 import { GameCardComponent, PanschWaitingComponent } from "@components";
 import { BilliardService } from "@pages/disciplines/02-billard/billiard.service";
 import { AuthService, LatschiPanschService } from "@services";
@@ -10,9 +9,11 @@ import { environment } from "@environments/environment";
 import { PanschKey } from "@types";
 import {
   IonButton,
-  IonButtons, IonContent,
+  IonButtons,
+  IonContent,
   IonHeader,
-  IonIcon, IonList,
+  IonIcon,
+  IonList,
   IonMenuButton,
   IonTitle,
   IonToolbar
@@ -20,10 +21,10 @@ import {
 
 
 @Component({
-    selector: 'lp-billiard-input',
-    templateUrl: './billiard-input.page.html',
-    styleUrls: ['./billiard-input.page.scss'],
-    standalone: true,
+  selector: 'lp-billiard-input',
+  templateUrl: './billiard-input.page.html',
+  styleUrls: ['./billiard-input.page.scss'],
+  standalone: true,
   imports: [
     NgIf,
     NgFor,
@@ -42,16 +43,15 @@ import {
   ],
 })
 export class BilliardInputPage {
+  public testMode = environment.testMode;
+  public calcStartedKey: PanschKey = "billiardCalculationStarted";
   private billiardService: BilliardService = inject(BilliardService);
-  private authService: AuthService = inject(AuthService);
-  private latschiPanschService: LatschiPanschService = inject(LatschiPanschService);
-
   public billiardGames$: Observable<Game[]> = this.billiardService.billiardGames$;
   public disableSave$: Observable<boolean> = this.billiardService.disableSave$;
+  private authService: AuthService = inject(AuthService);
   public currentUser$ = this.authService.currentUser$;
-  public testMode = environment.testMode;
+  private latschiPanschService: LatschiPanschService = inject(LatschiPanschService);
   public currentPansch$ = this.latschiPanschService.currentPansch$;
-  public calcStartedKey: PanschKey = "billiardCalculationStarted";
 
   public async calculateResult(): Promise<void> {
     const games = await firstValueFrom(this.billiardGames$);

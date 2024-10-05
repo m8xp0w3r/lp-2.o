@@ -1,12 +1,17 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
   IonButton,
   IonButtons,
   IonContent,
-  IonHeader, IonIcon, IonItem, IonLabel, IonList,
-  IonMenuButton, IonNote,
+  IonHeader,
+  IonIcon,
+  IonItem,
+  IonLabel,
+  IonList,
+  IonMenuButton,
+  IonNote,
   IonTitle,
   IonToolbar
 } from '@ionic/angular/standalone';
@@ -27,18 +32,18 @@ import { PanschWaitingComponent } from "@components";
 })
 export class BowlingInputPage {
 
-  private bowlingService: BowlingService = inject(BowlingService);
-  private latschiPanschService: LatschiPanschService = inject(LatschiPanschService);
-  private alertController: AlertController = inject(AlertController);
-  private authService: AuthService = inject(AuthService);
-  public players$: Observable<Player[]> = this.latschiPanschService.players$;
-  public currentPansch$ = this.latschiPanschService.currentPansch$;
   public disableSave$: Observable<boolean> = combineLatest([this.players$, this.currentPansch$])
     .pipe(
       map(([players, pansch]) => players
         .filter(player => player.bowlingPins !== undefined).length < 16 || (pansch?.bowlingCalculationStarted ?? false)));
-  public currentUser$ = this.authService.currentUser$;
   public testMode = environment.testMode;
+  private bowlingService: BowlingService = inject(BowlingService);
+  private latschiPanschService: LatschiPanschService = inject(LatschiPanschService);
+  public players$: Observable<Player[]> = this.latschiPanschService.players$;
+  public currentPansch$ = this.latschiPanschService.currentPansch$;
+  private alertController: AlertController = inject(AlertController);
+  private authService: AuthService = inject(AuthService);
+  public currentUser$ = this.authService.currentUser$;
 
   public async addPins(player: Player) {
     if (!await firstValueFrom(this.authService.currentUser$)) return;

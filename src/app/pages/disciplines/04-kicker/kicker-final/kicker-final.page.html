@@ -1,57 +1,58 @@
 <ng-container *ngIf="currentPansch$ | async as currentPansch">
-  <ion-header [translucent]="true">
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-menu-button></ion-menu-button>
-      </ion-buttons>
-      <ion-title>Finale</ion-title>
-      <ion-buttons slot="end" *ngIf="(currentUser$ | async)">
-        <ion-button
-          *ngIf="testMode && !currentPansch?.kickerFinalCalculationStarted && !currentPansch?.fakeKickerFinalCalculationStarted"
-          (click)="calculateFakeResult()">
-          <ion-icon slot="icon-only" name="bug-outline"></ion-icon>
-        </ion-button>
-        <ion-button [disabled]="disableSave$ | async" (click)="calculateFinalResult()">
-          <ion-icon slot="icon-only" name="save-outline"></ion-icon>
-        </ion-button>
-      </ion-buttons>
-    </ion-toolbar>
-  </ion-header>
+    <ion-header [translucent]="true">
+        <ion-toolbar>
+            <ion-buttons slot="start">
+                <ion-menu-button></ion-menu-button>
+            </ion-buttons>
+            <ion-title>Finale</ion-title>
+            <ion-buttons *ngIf="(currentUser$ | async)" slot="end">
+                <ion-button
+                        (click)="calculateFakeResult()"
+                        *ngIf="testMode && !currentPansch?.kickerFinalCalculationStarted && !currentPansch?.fakeKickerFinalCalculationStarted">
+                    <ion-icon name="bug-outline" slot="icon-only"></ion-icon>
+                </ion-button>
+                <ion-button (click)="calculateFinalResult()" [disabled]="disableSave$ | async">
+                    <ion-icon name="save-outline" slot="icon-only"></ion-icon>
+                </ion-button>
+            </ion-buttons>
+        </ion-toolbar>
+    </ion-header>
 
-  <ion-content [fullscreen]="true">
-    <ng-container *ngIf="!currentPansch.kickerCalculationFinished || currentPansch.isReleased; else panschNotFinished">
-      <ion-list *ngIf="kickerFinalGames$ | async as kickerFinalGames">
-        <lp-game-card [customTitle]="'Doppel-Finale'"
-                      [game]="game" [calcStartedKey]="calcStartedKey"
-                      *ngFor="let game of kickerFinalGames"></lp-game-card>
-      </ion-list>
-      <ng-container *ngIf="kickerFinalGame$ | async as kickerFinalGame">
-        <ion-list *ngIf="kickerFinalGame.length > 0">
-          <lp-game-card
-            [game]="game"
-            [calcStartedKey]="calcFinalStartedKey"
-            [customTitle]="'Finale'"
-            *ngFor="let game of kickerFinalGame"></lp-game-card>
-        </ion-list>
-      </ng-container>
-      <ion-button
-        *ngIf="currentPansch?.kickerFinalCalculationFinished && !currentPansch?.kickerCalculationStarted && (currentUser$ | async)"
-        class="ion-padding"
-        shape="round"
-        expand="block"
-        (click)="calculateFinalFakeResult()">Finalergebnis erstellen
-      </ion-button>
-      <ion-button
-        *ngIf="(currentPansch$ | async)?.kickerFinalCalculationFinished && (currentUser$ | async)"
-        class="ion-padding"
-        [disabled]="(disableFinalSave$ | async)"
-        shape="round"
-        expand="block"
-        (click)="calculateResult()">Finale speichern
-      </ion-button>
-    </ng-container>
-    <ng-template #panschNotFinished>
-      <lp-pansch-waiting></lp-pansch-waiting>
-    </ng-template>
-  </ion-content>
+    <ion-content [fullscreen]="true">
+        <ng-container
+                *ngIf="!currentPansch.kickerCalculationFinished || currentPansch.isReleased; else panschNotFinished">
+            <ion-list *ngIf="kickerFinalGames$ | async as kickerFinalGames">
+                <lp-game-card *ngFor="let game of kickerFinalGames"
+                              [calcStartedKey]="calcStartedKey" [customTitle]="'Doppel-Finale'"
+                              [game]="game"></lp-game-card>
+            </ion-list>
+            <ng-container *ngIf="kickerFinalGame$ | async as kickerFinalGame">
+                <ion-list *ngIf="kickerFinalGame.length > 0">
+                    <lp-game-card
+                            *ngFor="let game of kickerFinalGame"
+                            [calcStartedKey]="calcFinalStartedKey"
+                            [customTitle]="'Finale'"
+                            [game]="game"></lp-game-card>
+                </ion-list>
+            </ng-container>
+            <ion-button
+                    (click)="calculateFinalFakeResult()"
+                    *ngIf="currentPansch?.kickerFinalCalculationFinished && !currentPansch?.kickerCalculationStarted && (currentUser$ | async)"
+                    class="ion-padding"
+                    expand="block"
+                    shape="round">Finalergebnis erstellen
+            </ion-button>
+            <ion-button
+                    (click)="calculateResult()"
+                    *ngIf="(currentPansch$ | async)?.kickerFinalCalculationFinished && (currentUser$ | async)"
+                    [disabled]="(disableFinalSave$ | async)"
+                    class="ion-padding"
+                    expand="block"
+                    shape="round">Finale speichern
+            </ion-button>
+        </ng-container>
+        <ng-template #panschNotFinished>
+            <lp-pansch-waiting></lp-pansch-waiting>
+        </ng-template>
+    </ion-content>
 </ng-container>

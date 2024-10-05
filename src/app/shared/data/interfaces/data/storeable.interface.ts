@@ -1,3 +1,3 @@
 export interface Storeable {
-    id?: string;
+  id?: string;
 }

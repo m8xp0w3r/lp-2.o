@@ -11,8 +11,8 @@ export class RankingService {
   private latschiPanschService: LatschiPanschService = inject(LatschiPanschService);
   private authService: AuthService = inject(AuthService);
   private coinFlipNeededSubject$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  public coinFlipNeeded$: Observable<boolean> = this.coinFlipNeededSubject$.asObservable();
   private currentUser$ = this.authService.currentUser$;
-
   public players$: Observable<Player[]> = combineLatest([this.latschiPanschService.players$, this.latschiPanschService.currentPansch$, this.currentUser$])
     .pipe(
       map(([players, currentPansch, currentUser]) => {
@@ -34,5 +34,4 @@ export class RankingService {
         return players;
       })
     );
-  public coinFlipNeeded$: Observable<boolean> = this.coinFlipNeededSubject$.asObservable();
 }

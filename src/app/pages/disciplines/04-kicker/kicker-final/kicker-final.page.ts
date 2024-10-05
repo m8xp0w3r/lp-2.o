@@ -2,27 +2,28 @@ import { Component } from '@angular/core';
 import { firstValueFrom, Observable } from "rxjs";
 
 import { BaseKickerPage } from "@pages/disciplines/04-kicker/base-kicker.page";
-import { NgIf, NgFor, AsyncPipe } from '@angular/common';
+import { AsyncPipe, NgFor, NgIf } from '@angular/common';
 import { GameCardComponent, PanschWaitingComponent } from "@components";
 import { Game } from "@interfaces";
 import { PanschKey } from "@types";
 import {
   IonButton,
-  IonButtons, IonContent,
+  IonButtons,
+  IonContent,
   IonHeader,
-  IonIcon, IonList,
+  IonIcon,
+  IonList,
   IonMenuButton,
   IonTitle,
   IonToolbar
 } from "@ionic/angular/standalone";
 
 
-
 @Component({
-    selector: 'lp-kicker-final',
-    templateUrl: './kicker-final.page.html',
-    styleUrls: ['./kicker-final.page.scss'],
-    standalone: true,
+  selector: 'lp-kicker-final',
+  templateUrl: './kicker-final.page.html',
+  styleUrls: ['./kicker-final.page.scss'],
+  standalone: true,
   imports: [
     NgIf,
     NgFor,

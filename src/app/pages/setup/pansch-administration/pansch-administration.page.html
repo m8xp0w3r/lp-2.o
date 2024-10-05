@@ -10,17 +10,17 @@
 
             <ion-item>
                 <ion-checkbox
-                        justify="space-between"
-                        color="success"
                         [checked]="currentPansch.isFinished"
-                        [disabled]="true">Pansch abgeschlossen
+                        [disabled]="true"
+                        color="success"
+                        justify="space-between">Pansch abgeschlossen
                 </ion-checkbox>
             </ion-item>
             <ion-item>
                 <ion-toggle
                         (ionChange)="releasePansch($event)"
-                        [disabled]="!currentPansch.isFinished"
                         [checked]="currentPansch.isReleased"
+                        [disabled]="!currentPansch.isFinished"
                         color="success">
                     <ion-label>Ergebnis Veröffentlichen</ion-label>
                     <ion-note color="medium">Das Ergebnis für alle Spieler Freigeben.</ion-note>
@@ -32,9 +32,9 @@
                 <ion-modal #changeDateModal trigger="datetimeValue">
                     <ng-template>
                         <ion-datetime
-                                presentation="date"
                                 (ionChange)="updatePanschDate($event, changeDateModal)"
-                                [value]="currentPansch.createdAt.toDate().toISOString()"></ion-datetime>
+                                [value]="currentPansch.createdAt.toDate().toISOString()"
+                                presentation="date"></ion-datetime>
                     </ng-template>
                 </ion-modal>
             </ion-item>

@@ -8,12 +8,15 @@ import { LatschiPansch } from "@interfaces";
 import { DatetimeCustomEvent, ToggleCustomEvent } from "@ionic/angular";
 import {
   IonCheckbox,
-  IonContent, IonDatetime,
+  IonContent,
+  IonDatetime,
   IonItem,
   IonLabel,
   IonList,
   IonListHeader,
-  IonModal, IonNote, IonToggle
+  IonModal,
+  IonNote,
+  IonToggle
 } from "@ionic/angular/standalone";
 import { Timestamp } from "@angular/fire/firestore";
 

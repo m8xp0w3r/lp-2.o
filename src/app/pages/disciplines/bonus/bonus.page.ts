@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { BaseDisciplineComponent } from "@pages/disciplines/base-discipline.component";
-import { IonContent, IonIcon, IonLabel, IonTabBar, IonTabButton, IonTabs } from "@ionic/angular/standalone";
+import { IonIcon, IonLabel, IonTabBar, IonTabButton, IonTabs } from "@ionic/angular/standalone";
 import { LatschiPansch } from "@interfaces";
 
 @Component({

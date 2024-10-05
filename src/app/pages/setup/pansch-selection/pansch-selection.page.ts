@@ -14,43 +14,43 @@ import {
 
 
 @Component({
-    selector: 'lp-pansch-selection',
-    templateUrl: './pansch-selection.page.html',
-    styleUrls: ['./pansch-selection.page.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [HeaderComponent, IonicModule, NgIf, NgFor, AsyncPipe, DatePipe]
+  selector: 'lp-pansch-selection',
+  templateUrl: './pansch-selection.page.html',
+  styleUrls: ['./pansch-selection.page.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [HeaderComponent, IonicModule, NgIf, NgFor, AsyncPipe, DatePipe]
 })
 export class PanschSelectionPage {
-    private modalCtrl: ModalController = inject(ModalController);
-    private latschiPanschService: LatschiPanschService = inject(LatschiPanschService);
-    private playerService: PlayerService = inject(PlayerService);
-    private authService: AuthService = inject(AuthService);
-    private router: Router = inject(Router);
-    public latschiPanschCollection$: WritableSignal<LatschiPansch[]> = this.latschiPanschService.latschiPanschCollection$;
-    public currentUser$: Observable<User | null> = this.authService.currentUser$;
-    public devMode = environment.localDevMode;
+  public devMode = environment.localDevMode;
+  private modalCtrl: ModalController = inject(ModalController);
+  private latschiPanschService: LatschiPanschService = inject(LatschiPanschService);
+  public latschiPanschCollection$: WritableSignal<LatschiPansch[]> = this.latschiPanschService.latschiPanschCollection$;
+  private playerService: PlayerService = inject(PlayerService);
+  private authService: AuthService = inject(AuthService);
+  public currentUser$: Observable<User | null> = this.authService.currentUser$;
+  private router: Router = inject(Router);
 
-    async panschSelected(latschiPansch: LatschiPansch): Promise<void> {
-        if (latschiPansch && latschiPansch.id) {
-            await this.latschiPanschService.setPansch(latschiPansch);
-            if (await firstValueFrom(this.authService.currentUser$)) {
-                const players = await this.playerService.getPlayerSnapshot(latschiPansch);
-                if (!players || players.length !== 16) {
-                    void this.router.navigate([`/user-selection`]);
-                } else {
-                    await this.latschiPanschService.initializeGame(true);
-                }
-            } else {
-                void this.router.navigate(['/home']);
-            }
+  async panschSelected(latschiPansch: LatschiPansch): Promise<void> {
+    if (latschiPansch && latschiPansch.id) {
+      await this.latschiPanschService.setPansch(latschiPansch);
+      if (await firstValueFrom(this.authService.currentUser$)) {
+        const players = await this.playerService.getPlayerSnapshot(latschiPansch);
+        if (!players || players.length !== 16) {
+          void this.router.navigate([`/user-selection`]);
+        } else {
+          await this.latschiPanschService.initializeGame(true);
         }
+      } else {
+        void this.router.navigate(['/home']);
+      }
     }
+  }
 
-    async openModal() {
-        const modal = await this.modalCtrl.create({
-            component: PanschSelectionLegendComponent,
-        });
-        void modal.present();
-    }
+  async openModal() {
+    const modal = await this.modalCtrl.create({
+      component: PanschSelectionLegendComponent,
+    });
+    void modal.present();
+  }
 }

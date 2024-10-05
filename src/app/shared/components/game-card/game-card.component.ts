@@ -24,14 +24,13 @@ import { NgIf } from "@angular/common";
   ]
 })
 export class GameCardComponent {
+  @Input() game: Game | undefined;
+  @Input() calcStartedKey: PanschKey | undefined;
+  @Input() customTitle: string | undefined;
   private latschiPanschService: LatschiPanschService = inject(LatschiPanschService);
   private authService: AuthService = inject(AuthService);
   private alertController: AlertController = inject(AlertController);
   private gameService: GameService = inject(GameService);
-
-  @Input() game: Game | undefined;
-  @Input() calcStartedKey: PanschKey | undefined;
-  @Input() customTitle: string | undefined;
 
   constructor() {
   }

@@ -5,25 +5,26 @@
                 <ion-menu-button></ion-menu-button>
             </ion-buttons>
             <ion-title>Pin Eingabe</ion-title>
-            <ion-buttons slot="end" *ngIf="(currentUser$ | async)">
+            <ion-buttons *ngIf="(currentUser$ | async)" slot="end">
                 <ion-button
-                        *ngIf="testMode && !currentPansch?.bowlingCalculationStarted && !currentPansch?.fakeBowlingCalculationStarted"
-                        (click)="calculateFakeResult()">
-                    <ion-icon slot="icon-only" name="bug-outline"></ion-icon>
+                        (click)="calculateFakeResult()"
+                        *ngIf="testMode && !currentPansch?.bowlingCalculationStarted && !currentPansch?.fakeBowlingCalculationStarted">
+                    <ion-icon name="bug-outline" slot="icon-only"></ion-icon>
                 </ion-button>
-                <ion-button [disabled]="(disableSave$ | async)" (click)="calculateResult()">
-                    <ion-icon slot="icon-only" name="save-outline"></ion-icon>
+                <ion-button (click)="calculateResult()" [disabled]="(disableSave$ | async)">
+                    <ion-icon name="save-outline" slot="icon-only"></ion-icon>
                 </ion-button>
             </ion-buttons>
         </ion-toolbar>
     </ion-header>
 
     <ion-content [fullscreen]="true">
-        <ng-container *ngIf="!currentPansch.bowlingCalculationFinished || currentPansch.isReleased; else panschNotFinished">
+        <ng-container
+                *ngIf="!currentPansch.bowlingCalculationFinished || currentPansch.isReleased; else panschNotFinished">
             <ion-list *ngIf="players$ | async as players">
-                <ion-item *ngFor="let player of players" (click)="addPins(player)">
-                    <ion-label>{{player.name}}</ion-label>
-                    <ion-note slot="end">{{player.bowlingPins ?? ""}}</ion-note>
+                <ion-item (click)="addPins(player)" *ngFor="let player of players">
+                    <ion-label>{{ player.name }}</ion-label>
+                    <ion-note slot="end">{{ player.bowlingPins ?? "" }}</ion-note>
                 </ion-item>
             </ion-list>
         </ng-container>

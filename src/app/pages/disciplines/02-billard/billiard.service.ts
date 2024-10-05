@@ -8,7 +8,6 @@ import { GameService } from "@services/game.service";
 import { Player } from "@models/player.model";
 import { PlayerService } from "@services/player.service";
 import { Router } from "@angular/router";
-import { Team } from "@models/team.interface";
 import { DisciplineIconName } from "@models/discipline-icon-name.enum";
 
 
@@ -17,29 +16,20 @@ import { DisciplineIconName } from "@models/discipline-icon-name.enum";
 })
 export class BilliardService {
   private latschiPanschService: LatschiPanschService = inject(LatschiPanschService);
-  private playerService: PlayerService = inject(PlayerService);
-  private gameService: GameService = inject(GameService);
-  private router: Router = inject(Router);
-
-  private billiardGamesSubject: BehaviorSubject<Game[]> = new BehaviorSubject<Game[]>([]);
-  public billiardGames$: Observable<Game[]> = this.billiardGamesSubject.pipe(
-    map(games => games.sort((a, b) => a.gameNumber - b.gameNumber)));
   public disableSave$: Observable<boolean> = combineLatest([this.billiardGames$, this.latschiPanschService.currentPansch$])
     .pipe(
       map(([games, currentPansch]) => games
         .filter(game => !game.team1.score || !game.team2.score).length > 0 || (currentPansch?.billiardCalculationStarted ?? false))
     );
+  private playerService: PlayerService = inject(PlayerService);
+  private gameService: GameService = inject(GameService);
+  private router: Router = inject(Router);
+  private billiardGamesSubject: BehaviorSubject<Game[]> = new BehaviorSubject<Game[]>([]);
+  public billiardGames$: Observable<Game[]> = this.billiardGamesSubject.pipe(
+    map(games => games.sort((a, b) => a.gameNumber - b.gameNumber)));
 
   constructor() {
     void this.getGames();
-  }
-
-  private async getGames(): Promise<void> {
-    const pansch: LatschiPansch | undefined = await firstValueFrom(this.latschiPanschService.currentPansch$);
-    if (pansch && pansch.id) {
-      const billiardGamesCollectionName = CollectionUtil.getSubCollectionName(pansch.collectionName, pansch.id, "billiardGames");
-      (await this.gameService.getGames<Game>(billiardGamesCollectionName)).subscribe(games => this.billiardGamesSubject.next(games));
-    }
   }
 
   public async setBilliardResult(games: Game[]): Promise<void> {
@@ -99,6 +89,14 @@ export class BilliardService {
       const games: Game[] = await firstValueFrom(this.billiardGames$);
       await this.gameService.calculateFakeResult(games);
       await this.setBilliardResult(games);
+    }
+  }
+
+  private async getGames(): Promise<void> {
+    const pansch: LatschiPansch | undefined = await firstValueFrom(this.latschiPanschService.currentPansch$);
+    if (pansch && pansch.id) {
+      const billiardGamesCollectionName = CollectionUtil.getSubCollectionName(pansch.collectionName, pansch.id, "billiardGames");
+      (await this.gameService.getGames<Game>(billiardGamesCollectionName)).subscribe(games => this.billiardGamesSubject.next(games));
     }
   }
 

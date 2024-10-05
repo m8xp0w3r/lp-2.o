@@ -2,8 +2,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { DartPlayer } from "@interfaces";
 
 @Pipe({
-    name: 'dartPlayer',
-    standalone: true
+  name: 'dartPlayer',
+  standalone: true
 })
 export class DartPlayerPipe implements PipeTransform {
 

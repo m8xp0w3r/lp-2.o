@@ -4,20 +4,20 @@ import { IonicModule } from '@ionic/angular';
 import { PlayerListComponent } from './player-list.component';
 
 describe('PlayerListComponent', () => {
-    let component: PlayerListComponent;
-    let fixture: ComponentFixture<PlayerListComponent>;
+  let component: PlayerListComponent;
+  let fixture: ComponentFixture<PlayerListComponent>;
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
-    imports: [IonicModule.forRoot(), PlayerListComponent]
-}).compileComponents();
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [IonicModule.forRoot(), PlayerListComponent]
+    }).compileComponents();
 
-        fixture = TestBed.createComponent(PlayerListComponent);
-        component = fixture.componentInstance;
-        fixture.detectChanges();
-    }));
+    fixture = TestBed.createComponent(PlayerListComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  }));
 
-    it('should create', () => {
-        expect(component).toBeTruthy();
-    });
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
 });

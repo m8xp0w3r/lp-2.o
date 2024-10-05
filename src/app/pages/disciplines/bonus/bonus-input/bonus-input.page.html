@@ -1,46 +1,46 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>Punkte Eingabe</ion-title>
-    <ion-buttons slot="end" *ngIf="(currentUser$ | async)">
-      <ion-button
-        *ngIf="testMode && !(currentPansch$ | async)?.bonusCalculationStarted && !(currentPansch$ | async)?.fakeBonusCalculationStarted"
-        (click)="calculateFakeResult()">
-        <ion-icon slot="icon-only" name="bug-outline"></ion-icon>
-      </ion-button>
-      <ion-button [disabled]="(disableSave$ | async)" (click)="calculateResult()">
-        <ion-icon slot="icon-only" name="save-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>Punkte Eingabe</ion-title>
+        <ion-buttons *ngIf="(currentUser$ | async)" slot="end">
+            <ion-button
+                    (click)="calculateFakeResult()"
+                    *ngIf="testMode && !(currentPansch$ | async)?.bonusCalculationStarted && !(currentPansch$ | async)?.fakeBonusCalculationStarted">
+                <ion-icon name="bug-outline" slot="icon-only"></ion-icon>
+            </ion-button>
+            <ion-button (click)="calculateResult()" [disabled]="(disableSave$ | async)">
+                <ion-icon name="save-outline" slot="icon-only"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-list class="ion-padding list-content">
-    <ng-container *ngIf="currentPansch$ | async as currentPansch">
-      <ion-item *ngIf="currentUser$ | async">
-        <ion-select
-          [(ngModel)]="selectedSortingOrder"
-          name="sortOrderSelection"
-          aria-label="fruit"
-          interface="popover"
-          [disabled]="(currentPansch.bonusCalculationStarted ?? false) || (currentPansch.bonusCalculationFinished ?? false)"
-          [label]="selectedSortingOrder === undefined ? 'Sortierreihenfolge wählen':'Sortierreihenfolge'"
-          (ionChange)="handleChange($event)">
-          <ion-select-option [value]="BonusSortingOrder.ascending">Aufsteigend</ion-select-option>
-          <ion-select-option [value]="BonusSortingOrder.descending">Absteigend</ion-select-option>
-        </ion-select>
-      </ion-item>
-    </ng-container>
-  </ion-list>
+    <ion-list class="ion-padding list-content">
+        <ng-container *ngIf="currentPansch$ | async as currentPansch">
+            <ion-item *ngIf="currentUser$ | async">
+                <ion-select
+                        (ionChange)="handleChange($event)"
+                        [(ngModel)]="selectedSortingOrder"
+                        [disabled]="(currentPansch.bonusCalculationStarted ?? false) || (currentPansch.bonusCalculationFinished ?? false)"
+                        [label]="selectedSortingOrder === undefined ? 'Sortierreihenfolge wählen':'Sortierreihenfolge'"
+                        aria-label="fruit"
+                        interface="popover"
+                        name="sortOrderSelection">
+                    <ion-select-option [value]="BonusSortingOrder.ascending">Aufsteigend</ion-select-option>
+                    <ion-select-option [value]="BonusSortingOrder.descending">Absteigend</ion-select-option>
+                </ion-select>
+            </ion-item>
+        </ng-container>
+    </ion-list>
 
-  <ion-list *ngIf="players$ | async as players">
-    <ion-item *ngFor="let player of players" (click)="addScore(player)">
-      <ion-label>{{player.name}}</ion-label>
-      <ion-note slot="end">{{player.bonusScore ?? ""}}</ion-note>
-    </ion-item>
-  </ion-list>
+    <ion-list *ngIf="players$ | async as players">
+        <ion-item (click)="addScore(player)" *ngFor="let player of players">
+            <ion-label>{{ player.name }}</ion-label>
+            <ion-note slot="end">{{ player.bonusScore ?? "" }}</ion-note>
+        </ion-item>
+    </ion-list>
 </ion-content>
 

@@ -16,30 +16,25 @@ import { DisciplineIconName } from "@models/discipline-icon-name.enum";
   providedIn: 'root'
 })
 export class DartService {
+  public preliminaryRoundFinished$: Observable<boolean> = this.preliminaryGames$.pipe(
+    map(preliminaryGames => preliminaryGames.filter(preliminaryGame => preliminaryGame.calculationFinished).length === 4)
+  );
+  public finalRoundFinished$: Observable<boolean> = this.dartFinalGame$.pipe(
+    map(finalGame => finalGame?.calculationFinished ?? false)
+  );
   private latschiPanschService: LatschiPanschService = inject(LatschiPanschService);
   private firestoreService: FirestoreService = inject(FirestoreService);
   private playerService: PlayerService = inject(PlayerService);
   private gameService: GameService = inject(GameService);
   private router: Router = inject(Router);
-
   private preliminaryGamesSubject: BehaviorSubject<DartGame[]> = new BehaviorSubject<DartGame[]>([]);
-  private selectedPreliminaryGameSubject: BehaviorSubject<Observable<DartGame | undefined>> = new BehaviorSubject<Observable<DartGame | undefined>>(of(undefined));
-  private dartFinalGameSubject: BehaviorSubject<DartGame[]> = new BehaviorSubject<DartGame[]>([]);
-
   public preliminaryGames$: Observable<DartGame[]> = this.preliminaryGamesSubject
     .pipe(map(dartPreliminaryGames => dartPreliminaryGames.sort((a, b) => a.gameNumber - b.gameNumber)));
+  private selectedPreliminaryGameSubject: BehaviorSubject<Observable<DartGame | undefined>> = new BehaviorSubject<Observable<DartGame | undefined>>(of(undefined));
   public selectedPreliminaryGame$: Observable<Observable<DartGame | undefined>> = this.selectedPreliminaryGameSubject.asObservable();
-
-  public preliminaryRoundFinished$: Observable<boolean> = this.preliminaryGames$.pipe(
-    map(preliminaryGames => preliminaryGames.filter(preliminaryGame => preliminaryGame.calculationFinished).length === 4)
-  );
-
+  private dartFinalGameSubject: BehaviorSubject<DartGame[]> = new BehaviorSubject<DartGame[]>([]);
   public dartFinalGame$: Observable<DartGame | undefined> = this.dartFinalGameSubject
     .pipe(map(finalGames => finalGames.length === 1 ? finalGames[0] : undefined));
-
-  public finalRoundFinished$: Observable<boolean> = this.dartFinalGame$.pipe(
-    map(finalGame => finalGame?.calculationFinished ?? false)
-  );
 
   constructor() {
     void this.getGames();
@@ -51,16 +46,6 @@ export class DartService {
     if (dartGame && dartGame.id) {
       const selectedDartGame: Observable<DartGame | undefined> = await this.firestoreService.getDocumentWithChanges<DartGame>(dartGame.collectionName, dartGame.id);
       this.selectedPreliminaryGameSubject.next(selectedDartGame);
-    }
-  }
-
-  private async getGames(): Promise<void> {
-    const pansch: LatschiPansch | undefined = await firstValueFrom(this.latschiPanschService.currentPansch$);
-    if (pansch && pansch.id) {
-      const dartPreliminaryGamesCollectionName = CollectionUtil.getSubCollectionName(pansch.collectionName, pansch.id, "dartPreliminaryGames");
-      const dartFinalGameCollectionName = CollectionUtil.getSubCollectionName(pansch.collectionName, pansch.id, "dartFinalGame");
-      (await this.gameService.getGames<DartGame>(dartPreliminaryGamesCollectionName)).subscribe(games => this.preliminaryGamesSubject.next(games));
-      (await this.gameService.getGames<DartGame>(dartFinalGameCollectionName)).subscribe(games => this.dartFinalGameSubject.next(games));
     }
   }
 
@@ -152,6 +137,26 @@ export class DartService {
     }
   }
 
+  public async calculateFakeScore(dartGame: DartGame): Promise<void> {
+    const fakeScores: number[] = [0];
+    for (let i = 0; i < 3; i++) {
+      fakeScores.push(this.getRandomDartScore());
+    }
+    fakeScores.sort(() => Math.random() - 0.5);
+    dartGame.players.forEach((player, index) => player.score = fakeScores[index]);
+    await this.gameService.updateGame(dartGame);
+  }
+
+  private async getGames(): Promise<void> {
+    const pansch: LatschiPansch | undefined = await firstValueFrom(this.latschiPanschService.currentPansch$);
+    if (pansch && pansch.id) {
+      const dartPreliminaryGamesCollectionName = CollectionUtil.getSubCollectionName(pansch.collectionName, pansch.id, "dartPreliminaryGames");
+      const dartFinalGameCollectionName = CollectionUtil.getSubCollectionName(pansch.collectionName, pansch.id, "dartFinalGame");
+      (await this.gameService.getGames<DartGame>(dartPreliminaryGamesCollectionName)).subscribe(games => this.preliminaryGamesSubject.next(games));
+      (await this.gameService.getGames<DartGame>(dartFinalGameCollectionName)).subscribe(games => this.dartFinalGameSubject.next(games));
+    }
+  }
+
   private async calculateDartResult(): Promise<void> {
     const pansch: LatschiPansch | undefined = await firstValueFrom(this.latschiPanschService.currentPansch$);
     if (pansch && pansch.id) {
@@ -196,16 +201,6 @@ export class DartService {
       await this.latschiPanschService.updatePansch(pansch);
       await this.latschiPanschService.calculateFinalResult();
     }
-  }
-
-  public async calculateFakeScore(dartGame: DartGame): Promise<void> {
-    const fakeScores: number[] = [0];
-    for (let i = 0; i < 3; i++) {
-      fakeScores.push(this.getRandomDartScore());
-    }
-    fakeScores.sort(() => Math.random() - 0.5);
-    dartGame.players.forEach((player, index) => player.score = fakeScores[index]);
-    await this.gameService.updateGame(dartGame);
   }
 
   private getRandomDartScore(): number {

@@ -6,8 +6,8 @@
             <ng-container>
                 <ion-list *ngIf="players$ | async as players">
                     <ion-item *ngFor="let player of players">
-                        <ion-label>{{player.bowlingRank}}. {{player.name}}</ion-label>
-                        <ion-note slot="end">{{player.bowlingPins ?? ""}}</ion-note>
+                        <ion-label>{{ player.bowlingRank }}. {{ player.name }}</ion-label>
+                        <ion-note slot="end">{{ player.bowlingPins ?? "" }}</ion-note>
                     </ion-item>
                 </ion-list>
             </ng-container>

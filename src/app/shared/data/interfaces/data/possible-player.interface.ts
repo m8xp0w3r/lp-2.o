@@ -1,5 +1,5 @@
 export interface PossiblePlayer {
-    name: string;
-    id: string;
-    selected?: boolean;
+  name: string;
+  id: string;
+  selected?: boolean;
 }

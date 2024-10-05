@@ -14,20 +14,16 @@ import { PanschKey } from "@types";
   providedIn: 'root'
 })
 export class LatschiPanschService {
+  public latschiPanschCollection$: WritableSignal<LatschiPansch[]> = signal([]);
   private firestoreService: FirestoreService = inject(FirestoreService);
   private authService: AuthService = inject(AuthService);
   private playerService: PlayerService = inject(PlayerService);
-
   private collectionService: CollectionService = inject(CollectionService);
   private router: Router = inject(Router);
   private gameInitializedSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   public gameInitialized$: Observable<boolean> = this.gameInitializedSubject.asObservable();
-
   private currentPanschSubject: BehaviorSubject<LatschiPansch | undefined> = new BehaviorSubject<LatschiPansch | undefined>(undefined);
   public currentPansch$: Observable<LatschiPansch | undefined> = this.currentPanschSubject.asObservable();
-
-  public latschiPanschCollection$: WritableSignal<LatschiPansch[]> = signal([]);
-
   private playerSubject: BehaviorSubject<Player[]> = new BehaviorSubject<Player[]>([]);
   public players$: Observable<Player[]> = this.playerSubject.asObservable();
 
@@ -37,16 +33,16 @@ export class LatschiPanschService {
         .pipe(
           combineLatestWith(this.authService.currentUser$),
           map(([latschiPanschCollection, currentUser]) => {
-          for (let i = 0; i < latschiPanschCollection.length; i++) {
-            const pansch = latschiPanschCollection[i];
-            if (pansch.id) {
-              pansch.players = this.firestoreService.getCollection<Player>(CollectionUtil.getSubCollectionName(panschCollectionName, pansch.id, "players"));
+            for (let i = 0; i < latschiPanschCollection.length; i++) {
+              const pansch = latschiPanschCollection[i];
+              if (pansch.id) {
+                pansch.players = this.firestoreService.getCollection<Player>(CollectionUtil.getSubCollectionName(panschCollectionName, pansch.id, "players"));
+              }
             }
-          }
-          return latschiPanschCollection
-            .filter(pansch => !pansch.deletedAt && currentUser ? true : pansch.setupComplete)
-            .sort((a, b) => a.edition - b.edition);
-        }))
+            return latschiPanschCollection
+              .filter(pansch => !pansch.deletedAt && currentUser ? true : pansch.setupComplete)
+              .sort((a, b) => a.edition - b.edition);
+          }))
         .subscribe(latschiPanschCollection => this.latschiPanschCollection$?.set(latschiPanschCollection));
     });
     this.currentPansch$.subscribe((currentPansch: LatschiPansch | undefined) => {
@@ -265,7 +261,7 @@ export class LatschiPanschService {
       currentPansch.finalCalculationStarted = true;
       await this.updatePansch(currentPansch);
       const players: Player[] = await this.playerService.getPlayerSnapshot(currentPansch);
-      players.sort((a,b) => (b.totalPoints ?? 0) - (a.totalPoints ?? 0))
+      players.sort((a, b) => (b.totalPoints ?? 0) - (a.totalPoints ?? 0))
       let rank = 1;
       let tempRank = 0;
       let tempScore = players[0].totalPoints;

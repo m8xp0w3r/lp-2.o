@@ -27,18 +27,16 @@ import { HeaderComponent } from "@components";
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, ReactiveFormsModule, IonItem, IonInput, IonRow, IonCol, IonButton, HeaderComponent]
 })
 export class LoginPage implements OnInit, OnDestroy {
-  private authService: AuthService = inject(AuthService);
-  private router = inject(Router);
-  public currentUser$ = this.authService.currentUser$;
   public signingIn = signal(false);
   public wrongLoginData = signal(false);
-
-  private subscriptionSubject: Subject<void> = new Subject<void>();
-
   public loginFormGroup: FormGroup = new FormGroup({
     email: new FormControl<string>(environment.loginName, [Validators.required, Validators.email]),
     password: new FormControl<string>(environment.loginPassword, [Validators.required])
   });
+  private authService: AuthService = inject(AuthService);
+  public currentUser$ = this.authService.currentUser$;
+  private router = inject(Router);
+  private subscriptionSubject: Subject<void> = new Subject<void>();
 
   constructor() {
   }

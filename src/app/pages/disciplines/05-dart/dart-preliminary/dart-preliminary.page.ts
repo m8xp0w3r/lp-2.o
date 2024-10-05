@@ -9,7 +9,9 @@ import { FormsModule } from "@angular/forms";
 import { DartGame } from "@interfaces";
 import {
   IonButton,
-  IonContent, IonFooter, IonIcon,
+  IonContent,
+  IonFooter,
+  IonIcon,
   IonItem,
   IonLabel,
   IonList,

@@ -8,20 +8,19 @@ import { DartGame, DartPlayer, LatschiPansch } from "@interfaces";
 import { firstValueFrom } from "rxjs";
 
 @Component({
-  template: `` ,
+  template: ``,
   selector: "lp-base-dart"
 })
 export abstract class BaseDartPage {
+  public testMode = environment.testMode;
   protected dartService: DartService = inject(DartService);
   protected authService: AuthService = inject(AuthService);
+  public currentUser$ = this.authService.currentUser$;
   protected latschiPanschService: LatschiPanschService = inject(LatschiPanschService);
+  public currentPansch$ = this.latschiPanschService.currentPansch$;
   protected router: Router = inject(Router);
   protected alertController: AlertController = inject(AlertController);
   protected gameService: GameService = inject(GameService);
-
-  public currentUser$ = this.authService.currentUser$;
-  public testMode = environment.testMode;
-  public currentPansch$ = this.latschiPanschService.currentPansch$;
 
   public async updateScore(player: DartPlayer, dartGame: DartGame) {
     if (!await firstValueFrom(this.authService.currentUser$)) return;

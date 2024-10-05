@@ -1,10 +1,15 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import {
   IonApp,
-  IonContent, IonIcon, IonItem, IonLabel,
+  IonContent,
+  IonIcon,
+  IonItem,
+  IonLabel,
   IonList,
   IonListHeader,
-  IonMenu, IonMenuToggle, IonNote,
+  IonMenu,
+  IonMenuToggle,
+  IonNote,
   IonRouterOutlet,
   IonSplitPane
 } from '@ionic/angular/standalone';
@@ -21,11 +26,10 @@ import { AsyncPipe, NgForOf, NgIf } from "@angular/common";
   imports: [IonApp, IonRouterOutlet, IonSplitPane, IonMenu, IonContent, IonList, IonListHeader, IonNote, IonMenuToggle, IonItem, IonIcon, IonLabel, RouterLink, NgForOf, AsyncPipe, RouterLinkActive, NgIf],
 })
 export class AppComponent implements OnInit {
+  public latschiPansch = signal<LatschiPansch | undefined>(undefined);
   private latschiPanschService: LatschiPanschService = inject(LatschiPanschService);
   private sideMenuService: SideMenuService = inject(SideMenuService);
-
   public appPages$: Observable<SideMenuItem[]> = this.sideMenuService.appPages$;
-  public latschiPansch = signal<LatschiPansch | undefined>(undefined);
 
   constructor() {
   }

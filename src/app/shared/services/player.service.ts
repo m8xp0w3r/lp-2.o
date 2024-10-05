@@ -10,11 +10,10 @@ import { BasePlayer, LatschiPansch, Player, PossiblePlayer } from "@interfaces";
   providedIn: 'root'
 })
 export class PlayerService {
-  private firestoreService: FirestoreService = inject(FirestoreService);
-  private collectionService: CollectionService = inject(CollectionService);
-
   public possiblePlayers$: WritableSignal<PossiblePlayer[]> = signal([]);
   public selectedPlayers$: Signal<PossiblePlayer[]> = computed(() => this.possiblePlayers$().filter(player => player.selected));
+  private firestoreService: FirestoreService = inject(FirestoreService);
+  private collectionService: CollectionService = inject(CollectionService);
 
   constructor() {
     this.collectionService.possiblePlayersCollectionName$.subscribe(possiblePlayersCollectionName => {

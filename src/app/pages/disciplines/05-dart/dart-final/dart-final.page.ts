@@ -3,13 +3,13 @@ import { BaseDartPage } from "@pages/disciplines/05-dart/base-dart.page";
 import { firstValueFrom, Observable } from "rxjs";
 import { HeaderComponent, PanschWaitingComponent } from "@components";
 import { AsyncPipe, NgFor, NgIf } from "@angular/common";
-import { IonicModule } from "@ionic/angular";
 import { DartPlayerPipe } from "@pages/disciplines/05-dart/dart-player-pipe/dart-player.pipe";
 import { DartGame } from "@interfaces";
 import {
   IonButton,
   IonContent,
-  IonFooter, IonIcon,
+  IonFooter,
+  IonIcon,
   IonItem,
   IonLabel,
   IonList,

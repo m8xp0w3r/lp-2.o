@@ -27,8 +27,8 @@ import { IonContent, IonIcon, IonItem, IonLabel, IonList, IonNote } from "@ionic
 })
 export class RankingPage {
   private rankingService: RankingService = inject(RankingService);
-  private authService: AuthService = inject(AuthService);
   public players$: Observable<Player[]> = this.rankingService.players$;
   public coinFlipNeeded$ = this.rankingService.coinFlipNeeded$;
+  private authService: AuthService = inject(AuthService);
   public currentUser$ = this.authService.currentUser$;
 }

@@ -6,22 +6,22 @@
         <form [formGroup]="loginFormGroup">
             <ion-item>
                 <ion-input
+                        autocomplete="username"
                         formControlName="email"
                         id="user-text-field"
-                        autocomplete="username"
                         label="E-Mail"
                         labelPlacement="floating"
                         placeholder="E-Mail eingeben"></ion-input>
             </ion-item>
             <ion-item>
                 <ion-input
-                        formControlName="password"
-                        label="Passwort"
-                        type="password"
-                        id="password-text-field"
                         autocomplete="current_password"
+                        formControlName="password"
+                        id="password-text-field"
+                        label="Passwort"
                         labelPlacement="floating"
-                        placeholder="Passwort eingeben"></ion-input>
+                        placeholder="Passwort eingeben"
+                        type="password"></ion-input>
             </ion-item>
             <ion-row *ngIf="wrongLoginData()">
                 <ion-col class="ion-padding login-error">
@@ -31,11 +31,11 @@
             <ion-row class="login-button">
                 <ion-col>
                     <ion-button
+                            (click)="signIn()"
                             [disabled]="loginFormGroup.invalid"
                             color="success"
                             expand="block"
-                            shape="round"
-                            (click)="signIn()">Anmelden
+                            shape="round">Anmelden
                     </ion-button>
                 </ion-col>
             </ion-row>
@@ -45,10 +45,10 @@
         <ion-row *ngIf="!signingIn()">
             <ion-col>
                 <ion-button
+                        (click)="logout()"
                         color="danger"
                         expand="block"
-                        shape="round"
-                        (click)="logout()">Abmelden
+                        shape="round">Abmelden
                 </ion-button>
             </ion-col>
         </ion-row>

@@ -13,24 +13,6 @@ import { PanschKey } from "@types";
 })
 export class AirHockeyService {
   private latschiPanschService: LatschiPanschService = inject(LatschiPanschService);
-  private firestoreService: FirestoreService = inject(FirestoreService);
-  private playerService: PlayerService = inject(PlayerService);
-  private gameService: GameService = inject(GameService);
-  private router: Router = inject(Router);
-
-  private airHockeyAfGamesSubject: BehaviorSubject<Game[]> = new BehaviorSubject<Game[]>([]);
-  private airHockeyVfGamesSubject: BehaviorSubject<Game[]> = new BehaviorSubject<Game[]>([]);
-  private airHockeyHfGamesSubject: BehaviorSubject<Game[]> = new BehaviorSubject<Game[]>([]);
-  private airHockeyFinalGameSubject: BehaviorSubject<Game[]> = new BehaviorSubject<Game[]>([]);
-
-  public airHockeyAfGames$: Observable<Game[]> = this.airHockeyAfGamesSubject.pipe(
-    map(games => games.sort((a, b) => a.gameNumber - b.gameNumber)));
-  public airHockeyVfGames$: Observable<Game[]> = this.airHockeyVfGamesSubject.pipe(
-    map(games => games.sort((a, b) => a.gameNumber - b.gameNumber)));
-  public airHockeyHfGames$: Observable<Game[]> = this.airHockeyHfGamesSubject.pipe(
-    map(games => games.sort((a, b) => a.gameNumber - b.gameNumber)));
-  public airHockeyFinalGames$: Observable<Game[]> = this.airHockeyFinalGameSubject.asObservable();
-
   public disableAfSave$: Observable<boolean> = combineLatest([this.airHockeyAfGames$, this.latschiPanschService.currentPansch$])
     .pipe(
       map(([games, currentPansch]) => games
@@ -51,23 +33,24 @@ export class AirHockeyService {
       map(([games, currentPansch]) => games
         .filter(game => !game.team1.score === undefined || !game.team2.score === undefined || game.team1.score === game.team2.score).length > 0 || (currentPansch?.airHockeyFinalCalculationStarted ?? false))
     );
+  private firestoreService: FirestoreService = inject(FirestoreService);
+  private playerService: PlayerService = inject(PlayerService);
+  private gameService: GameService = inject(GameService);
+  private router: Router = inject(Router);
+  private airHockeyAfGamesSubject: BehaviorSubject<Game[]> = new BehaviorSubject<Game[]>([]);
+  public airHockeyAfGames$: Observable<Game[]> = this.airHockeyAfGamesSubject.pipe(
+    map(games => games.sort((a, b) => a.gameNumber - b.gameNumber)));
+  private airHockeyVfGamesSubject: BehaviorSubject<Game[]> = new BehaviorSubject<Game[]>([]);
+  public airHockeyVfGames$: Observable<Game[]> = this.airHockeyVfGamesSubject.pipe(
+    map(games => games.sort((a, b) => a.gameNumber - b.gameNumber)));
+  private airHockeyHfGamesSubject: BehaviorSubject<Game[]> = new BehaviorSubject<Game[]>([]);
+  public airHockeyHfGames$: Observable<Game[]> = this.airHockeyHfGamesSubject.pipe(
+    map(games => games.sort((a, b) => a.gameNumber - b.gameNumber)));
+  private airHockeyFinalGameSubject: BehaviorSubject<Game[]> = new BehaviorSubject<Game[]>([]);
+  public airHockeyFinalGames$: Observable<Game[]> = this.airHockeyFinalGameSubject.asObservable();
 
   constructor() {
     void this.getGames();
-  }
-
-  private async getGames(): Promise<void> {
-    const pansch: LatschiPansch | undefined = await firstValueFrom(this.latschiPanschService.currentPansch$);
-    if (pansch && pansch.id) {
-      const billiardGamesCollectionName = CollectionUtil.getSubCollectionName(pansch.collectionName, pansch.id, "airHockeyGames");
-      const billiardVfGamesCollectionName = CollectionUtil.getSubCollectionName(pansch.collectionName, pansch.id, "airHockeyVfGames");
-      const billiardHfGamesCollectionName = CollectionUtil.getSubCollectionName(pansch.collectionName, pansch.id, "airHockeyHfGames");
-      const billiardFinalGamesCollectionName = CollectionUtil.getSubCollectionName(pansch.collectionName, pansch.id, "airHockeyFinalGames");
-      (await this.gameService.getGames<Game>(billiardGamesCollectionName)).subscribe(games => this.airHockeyAfGamesSubject.next(games));
-      (await this.gameService.getGames<Game>(billiardVfGamesCollectionName)).subscribe(games => this.airHockeyVfGamesSubject.next(games));
-      (await this.gameService.getGames<Game>(billiardHfGamesCollectionName)).subscribe(games => this.airHockeyHfGamesSubject.next(games));
-      (await this.gameService.getGames<Game>(billiardFinalGamesCollectionName)).subscribe(games => this.airHockeyFinalGameSubject.next(games));
-    }
   }
 
   public async addAirHockeyScore(games: Game[]): Promise<void> {
@@ -162,6 +145,20 @@ export class AirHockeyService {
     if (pansch) {
       await this.latschiPanschService.updatePanschItem(panschKey);
       await this.gameService.calculateFakeResult(games);
+    }
+  }
+
+  private async getGames(): Promise<void> {
+    const pansch: LatschiPansch | undefined = await firstValueFrom(this.latschiPanschService.currentPansch$);
+    if (pansch && pansch.id) {
+      const billiardGamesCollectionName = CollectionUtil.getSubCollectionName(pansch.collectionName, pansch.id, "airHockeyGames");
+      const billiardVfGamesCollectionName = CollectionUtil.getSubCollectionName(pansch.collectionName, pansch.id, "airHockeyVfGames");
+      const billiardHfGamesCollectionName = CollectionUtil.getSubCollectionName(pansch.collectionName, pansch.id, "airHockeyHfGames");
+      const billiardFinalGamesCollectionName = CollectionUtil.getSubCollectionName(pansch.collectionName, pansch.id, "airHockeyFinalGames");
+      (await this.gameService.getGames<Game>(billiardGamesCollectionName)).subscribe(games => this.airHockeyAfGamesSubject.next(games));
+      (await this.gameService.getGames<Game>(billiardVfGamesCollectionName)).subscribe(games => this.airHockeyVfGamesSubject.next(games));
+      (await this.gameService.getGames<Game>(billiardHfGamesCollectionName)).subscribe(games => this.airHockeyHfGamesSubject.next(games));
+      (await this.gameService.getGames<Game>(billiardFinalGamesCollectionName)).subscribe(games => this.airHockeyFinalGameSubject.next(games));
     }
   }
 

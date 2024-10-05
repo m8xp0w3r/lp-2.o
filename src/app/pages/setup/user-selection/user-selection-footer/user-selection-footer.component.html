@@ -1,12 +1,12 @@
 <ion-footer class="ion-no-border">
-	<ion-toolbar>
-		<ng-container *ngIf="selectedPlayers$() as selectedPlayers">
-			<ion-title>{{selectedPlayers.length}}/16 Spielern ausgewählt</ion-title>
-			<ion-buttons slot="end">
-				<ion-button color="success" [disabled]="selectedPlayers.length !== 16"
-							(click)="setPlayer(selectedPlayers)">PANSCH
-				</ion-button>
-			</ion-buttons>
-		</ng-container>
-	</ion-toolbar>
+    <ion-toolbar>
+        <ng-container *ngIf="selectedPlayers$() as selectedPlayers">
+            <ion-title>{{ selectedPlayers.length }}/16 Spielern ausgewählt</ion-title>
+            <ion-buttons slot="end">
+                <ion-button (click)="setPlayer(selectedPlayers)" [disabled]="selectedPlayers.length !== 16"
+                            color="success">PANSCH
+                </ion-button>
+            </ion-buttons>
+        </ng-container>
+    </ion-toolbar>
 </ion-footer>

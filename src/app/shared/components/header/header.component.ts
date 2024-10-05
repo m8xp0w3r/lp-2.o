@@ -17,12 +17,12 @@ import { AsyncPipe, NgIf } from "@angular/common";
   ]
 })
 export class HeaderComponent {
+  @Input() title = "";
+  @Input() showAddPanschButtons = false;
   private alertController: AlertController = inject(AlertController);
   private latschiPanschService: LatschiPanschService = inject(LatschiPanschService);
   private authService: AuthService = inject(AuthService);
   public currentUser$: Observable<User | null> = this.authService.currentUser$;
-  @Input() title = "";
-  @Input() showAddPanschButtons = false;
 
   async createPansch(): Promise<void> {
     const alert = await this.alertController.create({

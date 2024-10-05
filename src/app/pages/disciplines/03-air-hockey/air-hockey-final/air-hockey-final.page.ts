@@ -7,9 +7,11 @@ import { Game } from "@interfaces";
 import { PanschKey } from "@types";
 import {
   IonButton,
-  IonButtons, IonContent,
+  IonButtons,
+  IonContent,
   IonHeader,
-  IonIcon, IonList,
+  IonIcon,
+  IonList,
   IonMenuButton,
   IonTitle,
   IonToolbar

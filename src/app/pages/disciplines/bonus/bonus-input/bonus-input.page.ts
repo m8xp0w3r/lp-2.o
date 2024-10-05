@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { combineLatest, firstValueFrom, map, Observable, take } from "rxjs";
 
-import { NgIf, NgFor, AsyncPipe } from '@angular/common';
+import { AsyncPipe, NgFor, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AuthService, LatschiPanschService } from "@services";
 import { BonusService } from "@pages/disciplines/bonus/bonus.service";
@@ -11,19 +11,26 @@ import { Player } from "@interfaces";
 import { environment } from "@environments/environment";
 import {
   IonButton,
-  IonButtons, IonContent,
+  IonButtons,
+  IonContent,
   IonHeader,
-  IonIcon, IonItem, IonLabel, IonList,
-  IonMenuButton, IonNote, IonSelect, IonSelectOption,
+  IonIcon,
+  IonItem,
+  IonLabel,
+  IonList,
+  IonMenuButton,
+  IonNote,
+  IonSelect,
+  IonSelectOption,
   IonTitle,
   IonToolbar
 } from "@ionic/angular/standalone";
 
 @Component({
-    selector: 'lp-bonus-input',
-    templateUrl: './bonus-input.page.html',
-    styleUrls: ['./bonus-input.page.scss'],
-    standalone: true,
+  selector: 'lp-bonus-input',
+  templateUrl: './bonus-input.page.html',
+  styleUrls: ['./bonus-input.page.scss'],
+  standalone: true,
   imports: [
     NgIf,
     FormsModule,
@@ -46,13 +53,16 @@ import {
   ],
 })
 export class BonusInputPage implements OnInit {
-  private latschiPanschService: LatschiPanschService = inject(LatschiPanschService);
-  private bonusService: BonusService = inject(BonusService);
-  private alertController: AlertController = inject(AlertController);
-  private authService: AuthService = inject(AuthService);
-
   public readonly BonusSortingOrder = BonusSortingOrder;
-
+  public disableSave$: Observable<boolean> = combineLatest([this.players$, this.currentPansch$, this.sortingOrder$])
+    .pipe(
+      map(([players, pansch, sortingOrder]) => players
+        .filter(player => player.bonusScore !== undefined).length < 16 || (pansch?.bonusCalculationStarted ?? false) || sortingOrder === undefined));
+  public testMode = environment.testMode;
+  public selectedSortingOrder: BonusSortingOrder | undefined;
+  private latschiPanschService: LatschiPanschService = inject(LatschiPanschService);
+  public currentPansch$ = this.latschiPanschService.currentPansch$;
+  private bonusService: BonusService = inject(BonusService);
   public sortingOrder$: Observable<BonusSortingOrder | undefined> = this.bonusService.selectedSortingOrder$;
   public players$: Observable<Player[]> = combineLatest([this.latschiPanschService.players$, this.sortingOrder$])
     .pipe(
@@ -62,14 +72,9 @@ export class BonusInputPage implements OnInit {
         return players;
       })
     );
+  private alertController: AlertController = inject(AlertController);
+  private authService: AuthService = inject(AuthService);
   public currentUser$ = this.authService.currentUser$;
-  public currentPansch$ = this.latschiPanschService.currentPansch$;
-  public disableSave$: Observable<boolean> = combineLatest([this.players$, this.currentPansch$, this.sortingOrder$])
-    .pipe(
-      map(([players, pansch, sortingOrder]) => players
-        .filter(player => player.bonusScore !== undefined).length < 16 || (pansch?.bonusCalculationStarted ?? false) || sortingOrder === undefined));
-  public testMode = environment.testMode;
-  public selectedSortingOrder: BonusSortingOrder | undefined;
 
   ngOnInit(): void {
     this.sortingOrder$

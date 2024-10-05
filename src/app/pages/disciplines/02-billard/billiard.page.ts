@@ -4,11 +4,11 @@ import { IonicModule } from '@ionic/angular';
 import { LatschiPansch } from "@interfaces";
 
 @Component({
-    selector: 'lp-billard',
-    templateUrl: './billiard.page.html',
-    styleUrls: ['./billiard.page.scss'],
-    standalone: true,
-    imports: [IonicModule],
+  selector: 'lp-billard',
+  templateUrl: './billiard.page.html',
+  styleUrls: ['./billiard.page.scss'],
+  standalone: true,
+  imports: [IonicModule],
 })
 export class BilliardPage extends BaseDisciplineComponent {
   route = "/billiard/billiard-results";

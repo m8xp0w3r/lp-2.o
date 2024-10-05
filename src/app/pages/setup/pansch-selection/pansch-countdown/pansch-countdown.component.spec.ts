@@ -4,20 +4,20 @@ import { IonicModule } from '@ionic/angular';
 import { PanschCountdownComponent } from './pansch-countdown.component';
 
 describe('PanschCountdownComponent', () => {
-    let component: PanschCountdownComponent;
-    let fixture: ComponentFixture<PanschCountdownComponent>;
+  let component: PanschCountdownComponent;
+  let fixture: ComponentFixture<PanschCountdownComponent>;
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
-    imports: [IonicModule.forRoot(), PanschCountdownComponent]
-}).compileComponents();
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [IonicModule.forRoot(), PanschCountdownComponent]
+    }).compileComponents();
 
-        fixture = TestBed.createComponent(PanschCountdownComponent);
-        component = fixture.componentInstance;
-        fixture.detectChanges();
-    }));
+    fixture = TestBed.createComponent(PanschCountdownComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  }));
 
-    it('should create', () => {
-        expect(component).toBeTruthy();
-    });
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
 });
