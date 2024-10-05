@@ -1,0 +1,15 @@
+<lp-header title="Bonus Ergebnisse"></lp-header>
+
+<ion-content [fullscreen]="true">
+  <ng-container *ngIf="(currentPansch$ | async)?.bonusCalculationFinished; else bonusNotCalculatedYet">
+    <ion-list *ngIf="players$ | async as players">
+      <ion-item *ngFor="let player of players">
+        <ion-label>{{player.bonusRank}}. {{player.name}}</ion-label>
+        <ion-note slot="end">{{player.bonusScore ?? ""}}</ion-note>
+      </ion-item>
+    </ion-list>
+  </ng-container>
+  <ng-template #bonusNotCalculatedYet>
+    <h3>Noch nicht berechnet</h3>
+  </ng-template>
+</ion-content>

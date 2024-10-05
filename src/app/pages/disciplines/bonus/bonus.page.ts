@@ -1,20 +1,22 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { Component } from '@angular/core';
+import { BaseDisciplineComponent } from "@pages/disciplines/base-discipline.component";
+import { IonContent, IonIcon, IonLabel, IonTabBar, IonTabButton, IonTabs } from "@ionic/angular/standalone";
+import { LatschiPansch } from "@interfaces";
 
 @Component({
   selector: 'lp-bonus',
   templateUrl: './bonus.page.html',
   styleUrls: ['./bonus.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [
+    IonTabs,
+    IonTabBar,
+    IonTabButton,
+    IonIcon,
+    IonLabel
+  ],
 })
-export class BonusPage implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+export class BonusPage extends BaseDisciplineComponent {
+  route = "/bonus/bonus-results";
+  property = "bonusCalculationFinished" as keyof LatschiPansch;
 }

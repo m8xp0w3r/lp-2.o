@@ -1,0 +1,33 @@
+<ng-container *ngIf="currentPansch$ | async as currentPansch">
+  <ion-header [translucent]="true">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Finale</ion-title>
+      <ion-buttons slot="end" *ngIf="(currentUser$ | async)">
+        <ion-button
+          *ngIf="testMode && !currentPansch?.airHockeyFinalCalculationStarted && !currentPansch?.fakeAirHockeyFinalCalculationStarted"
+          (click)="calculateFakeResult()">
+          <ion-icon slot="icon-only" name="bug-outline"></ion-icon>
+        </ion-button>
+        <ion-button [disabled]="disableSave$ | async" (click)="calculateResult()">
+          <ion-icon slot="icon-only" name="save-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content [fullscreen]="true">
+    <ng-container
+      *ngIf="!currentPansch.airHockeyCalculationFinished || currentPansch.isReleased; else panschNotFinished">
+      <ion-list *ngIf="airHockeyFinalGames$ | async as airHockeyFinalGames">
+        <lp-game-card [game]="game" [calcStartedKey]="calcStartedKey"
+                      *ngFor="let game of airHockeyFinalGames"></lp-game-card>
+      </ion-list>
+    </ng-container>
+    <ng-template #panschNotFinished>
+      <lp-pansch-waiting></lp-pansch-waiting>
+    </ng-template>
+  </ion-content>
+</ng-container>

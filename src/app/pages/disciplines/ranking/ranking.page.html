@@ -1,13 +1,18 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>ranking</ion-title>
-  </ion-toolbar>
-</ion-header>
+<lp-header title="Endergebnis"></lp-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">ranking</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ng-container *ngIf="(coinFlipNeeded$| async) && (currentUser$ | async)">
+    <ion-item class="ion-text-center coinflip-needed">
+      <ion-label>Coinflip wird benötigt!</ion-label>
+    </ion-item>
+  </ng-container>
+  <ion-list *ngIf="players$ | async as players">
+    <ion-item *ngFor="let player of players; let i = index">
+      <ion-label>{{player.finalRank}}. {{player.name}}</ion-label>
+      <div class="metadata-end-wrapper" slot="end">
+        <ion-icon *ngFor="let winIcon of player.wins" class="discipline-win" [name]="winIcon + '-outline'"></ion-icon>
+        <ion-note>{{player.totalPoints ?? ""}}</ion-note>
+      </div>
+    </ion-item>
+  </ion-list>
 </ion-content>

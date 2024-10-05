@@ -3,6 +3,7 @@ import { firstValueFrom, Observable } from "rxjs";
 import { FirestoreService } from "./firestore.service";
 import { LatschiPanschService } from "./latschi-pansch.service";
 import { Game, Storeable, Team } from "@interfaces";
+import { Collectable } from "../data/interfaces/data/collectable.interface";
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,7 @@ export class GameService {
     return Promise.reject();
   }
 
-  public async updateGame<T extends Storeable>(game: T): Promise<void> {
+  public async updateGame<T extends Collectable & Storeable>(game: T): Promise<void> {
     if (game.id) {
       await this.firestoreService.updateItem<T>(game.collectionName, game, game.id);
     }

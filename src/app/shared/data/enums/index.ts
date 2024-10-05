@@ -1,3 +1,3 @@
-export * from './discipline-icon-name.enum';
-export * from './bonus-sorting-order.enum';
+export { DisciplineIconName } from './discipline-icon-name.enum';
+export { BonusSortingOrder } from './bonus-sorting-order.enum';
 

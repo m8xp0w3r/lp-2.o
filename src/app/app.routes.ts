@@ -28,7 +28,7 @@ export const routes: Routes = [
   },
   {
     path: 'billard',
-    loadComponent: () => import('./pages/disciplines/02-billard/billard.page').then( m => m.BillardPage)
+    loadComponent: () => import('./pages/disciplines/02-billard/billiard.page').then( m => m.BilliardPage)
   },
   {
     path: 'bonus',
@@ -57,5 +57,13 @@ export const routes: Routes = [
   {
     path: 'user-selection',
     loadComponent: () => import('./pages/setup/user-selection/user-selection.page').then( m => m.UserSelectionPage)
+  },
+  {
+    path: 'bowling-input',
+    loadComponent: () => import('./pages/disciplines/01-bowling/bowling-input/bowling-input.page').then( m => m.BowlingInputPage)
+  },
+  {
+    path: 'bowling-results',
+    loadComponent: () => import('./pages/disciplines/01-bowling/bowling-results/bowling-results.page').then( m => m.BowlingResultsPage)
   },
 ];

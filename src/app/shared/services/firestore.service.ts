@@ -19,7 +19,7 @@ import {
   setDoc,
 } from "@angular/fire/firestore";
 import { DocumentData } from "@angular/fire/compat/firestore";
-import { Storeable } from "@interfaces/storeable.interface";
+import { Storeable } from "@interfaces";
 
 /**
  *

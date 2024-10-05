@@ -3,6 +3,7 @@ import { AlertController, IonicModule } from "@ionic/angular";
 import { AuthService, LatschiPanschService } from "@services";
 import { Observable } from "rxjs";
 import { User } from "@angular/fire/auth";
+import { AsyncPipe, NgIf } from "@angular/common";
 
 @Component({
   selector: 'lp-header',
@@ -10,7 +11,9 @@ import { User } from "@angular/fire/auth";
   styleUrls: ['./header.component.scss'],
   standalone: true,
   imports: [
-    IonicModule
+    IonicModule,
+    AsyncPipe,
+    NgIf
   ]
 })
 export class HeaderComponent {

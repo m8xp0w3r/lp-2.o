@@ -1,13 +1,38 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>pansch-selection</ion-title>
-  </ion-toolbar>
-</ion-header>
+<lp-header title="Latschi" [showAddPanschButtons]="devMode"></lp-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">pansch-selection</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+	<ion-button fill="clear" class="legend-icon" *ngIf="currentUser$ | async" (click)="openModal()">
+		<ion-icon slot="icon-only" name="information-circle-outline" size="large" color="primary"></ion-icon>
+	</ion-button>
+
+	<div class="ion-padding ion-text-center">
+		<h3>Latschi Pansch Vol 12</h3>
+		<h4>?????</h4>
+   <!-- <lp-pansch-countdown *ngIf="!devMode"></lp-pansch-countdown>-->
+	</div>
+
+	<ion-list class="pansch-selection-list" *ngIf="latschiPanschCollection$().length > 0; else emptyList">
+		<ion-item *ngFor="let latschiPansch of latschiPanschCollection$()" (click)="panschSelected(latschiPansch)">
+			<ion-label>
+
+				<h1>Vol. {{latschiPansch.edition}}</h1>
+				<p>{{latschiPansch.createdAt.toMillis() | date: "dd.MM.YYYY"}}</p>
+			</ion-label>
+			<div class="metadata-end-wrapper" slot="end">
+				<ion-note *ngIf="currentUser$ | async"
+						  color="medium">
+					<ion-icon *ngIf="(latschiPansch.players | async) as players" name="people-outline"
+							  [color]="players.length > 0 ? 'success' : 'danger'"></ion-icon>&nbsp;
+					<ion-icon [name]="latschiPansch.isReleased ? 'eye-outline' : 'eye-off-outline'"
+							  [color]="latschiPansch.isReleased ? 'success' : 'danger'"></ion-icon>&nbsp;
+					<ion-icon [name]="latschiPansch.isFinished ? 'checkmark-outline' : 'close-circle-outline'"
+							  [color]="latschiPansch.isFinished ? 'success' : 'danger'"></ion-icon>
+				</ion-note>
+				<br>
+			</div>
+		</ion-item>
+	</ion-list>
+	<ng-template #emptyList>
+		<ion-img class="vertical-center invert-image" src="assets/images/LatschiPansch_Logo_2D.png"></ion-img>
+	</ng-template>
 </ion-content>

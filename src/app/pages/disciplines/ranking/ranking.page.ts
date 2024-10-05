@@ -1,20 +1,34 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { Component, inject } from '@angular/core';
+import { RankingService } from "@pages/disciplines/ranking/ranking.service";
+import { Observable } from "rxjs";
+import { AsyncPipe, NgFor, NgIf } from '@angular/common';
+import { HeaderComponent } from "@components";
+import { AuthService } from "@services";
+import { Player } from "@interfaces";
+import { IonContent, IonIcon, IonItem, IonLabel, IonList, IonNote } from "@ionic/angular/standalone";
 
 @Component({
   selector: 'lp-ranking',
   templateUrl: './ranking.page.html',
   styleUrls: ['./ranking.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [
+    HeaderComponent,
+    NgIf,
+    NgFor,
+    AsyncPipe,
+    IonContent,
+    IonLabel,
+    IonItem,
+    IonList,
+    IonIcon,
+    IonNote
+  ],
 })
-export class RankingPage implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+export class RankingPage {
+  private rankingService: RankingService = inject(RankingService);
+  private authService: AuthService = inject(AuthService);
+  public players$: Observable<Player[]> = this.rankingService.players$;
+  public coinFlipNeeded$ = this.rankingService.coinFlipNeeded$;
+  public currentUser$ = this.authService.currentUser$;
 }

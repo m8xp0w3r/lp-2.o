@@ -1,13 +1,45 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>pansch-administration</ion-title>
-  </ion-toolbar>
-</ion-header>
+<lp-header title="Pansch Verwaltung"></lp-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">pansch-administration</ion-title>
-    </ion-toolbar>
-  </ion-header>
+    <ng-container *ngIf="currentPansch$ | async as currentPansch">
+        <ion-list>
+
+            <ion-list-header>
+                <ion-label>Latschi Pansch Vol. {{ currentPansch.edition }}</ion-label>
+            </ion-list-header>
+
+            <ion-item>
+                <ion-checkbox
+                        justify="space-between"
+                        color="success"
+                        [checked]="currentPansch.isFinished"
+                        [disabled]="true">Pansch abgeschlossen
+                </ion-checkbox>
+            </ion-item>
+            <ion-item>
+                <ion-toggle
+                        (ionChange)="releasePansch($event)"
+                        [disabled]="!currentPansch.isFinished"
+                        [checked]="currentPansch.isReleased"
+                        color="success">
+                    <ion-label>Ergebnis Veröffentlichen</ion-label>
+                    <ion-note color="medium">Das Ergebnis für alle Spieler Freigeben.</ion-note>
+                </ion-toggle>
+            </ion-item>
+            <ion-item id="datetimeValue">
+                <ion-label>Datum aktualisieren</ion-label>
+                <ion-note slot="end">{{ currentPansch.createdAt.toMillis() | date: "dd.MM.YYYY" }}</ion-note>
+                <ion-modal #changeDateModal trigger="datetimeValue">
+                    <ng-template>
+                        <ion-datetime
+                                presentation="date"
+                                (ionChange)="updatePanschDate($event, changeDateModal)"
+                                [value]="currentPansch.createdAt.toDate().toISOString()"></ion-datetime>
+                    </ng-template>
+                </ion-modal>
+            </ion-item>
+        </ion-list>
+    </ng-container>
 </ion-content>
+
+

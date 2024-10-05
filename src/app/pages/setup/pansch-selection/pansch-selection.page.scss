@@ -1,0 +1,30 @@
+ion-content {
+  --overflow: hidden
+}
+
+.vertical-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 70%;
+}
+
+@media (prefers-color-scheme: dark) {
+  .invert-image {
+    filter: invert(1) hue-rotate(-180deg);
+  }
+}
+
+ion-list {
+  overflow: auto
+}
+
+.pansch-selection-list {
+  height: 60vh;
+}
+
+.legend-icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+}

@@ -6,6 +6,7 @@ import { PanschKey } from "@types";
 import { firstValueFrom } from "rxjs";
 import { IonCard, IonCardHeader, IonCol, IonGrid, IonRow } from "@ionic/angular/standalone";
 import { TeamComponent } from "./team/team.component";
+import { NgIf } from "@angular/common";
 
 @Component({
   selector: 'lp-game-card',
@@ -18,7 +19,8 @@ import { TeamComponent } from "./team/team.component";
     IonGrid,
     IonRow,
     TeamComponent,
-    IonCol
+    IonCol,
+    NgIf
   ]
 })
 export class GameCardComponent {

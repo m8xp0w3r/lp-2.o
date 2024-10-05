@@ -1,0 +1,36 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-button color="medium" (click)="cancel()">schließen</ion-button>
+		</ion-buttons>
+		<ion-title>Legende</ion-title>
+	</ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+	<ion-list class="legend-list">
+		<ion-item>
+			<ion-icon aria-hidden="true" name="people-outline" slot="start" color="success"></ion-icon>
+			<ion-label>Alle Spieler ausgewählt</ion-label>
+		</ion-item>
+		<ion-item>
+			<ion-icon aria-hidden="true" name="people-outline" slot="start" color="danger"></ion-icon>
+			<ion-label>Spielerauswahl anstehend</ion-label>
+		</ion-item>
+		<ion-item>
+			<ion-icon aria-hidden="true" name="eye-outline" slot="start" color="success"></ion-icon>
+			<ion-label>Pansch für alle sichtbar</ion-label>
+		</ion-item>
+		<ion-item>
+			<ion-icon aria-hidden="true" name="eye-off-outline" slot="start" color="danger"></ion-icon>
+			<ion-label>Pansch nur für Admins sichtbar</ion-label>
+		</ion-item>
+		<ion-item>
+			<ion-icon aria-hidden="true" name="checkmark-outline" slot="start" color="success"></ion-icon>
+			<ion-label>Pansch abgeschlossen</ion-label>
+		</ion-item>
+		<ion-item>
+			<ion-icon aria-hidden="true" name="close-circle-outline" slot="start" color="danger"></ion-icon>
+			<ion-label>Pansch im Gange</ion-label>
+		</ion-item>
+	</ion-list>
+</ion-content>

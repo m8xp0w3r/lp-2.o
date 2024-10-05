@@ -1,0 +1,19 @@
+<lp-header title="Bowling Ergebnisse"></lp-header>
+
+<ion-content [fullscreen]="true">
+    <ng-container *ngIf="(currentPansch$ | async) as currentPansch">
+        <ng-container *ngIf="currentPansch.bowlingCalculationFinished; else bowlingNotCalculatedYet">
+            <ng-container>
+                <ion-list *ngIf="players$ | async as players">
+                    <ion-item *ngFor="let player of players">
+                        <ion-label>{{player.bowlingRank}}. {{player.name}}</ion-label>
+                        <ion-note slot="end">{{player.bowlingPins ?? ""}}</ion-note>
+                    </ion-item>
+                </ion-list>
+            </ng-container>
+        </ng-container>
+        <ng-template #bowlingNotCalculatedYet>
+            <h3>Noch nicht berechnet</h3>
+        </ng-template>
+    </ng-container>
+</ion-content>

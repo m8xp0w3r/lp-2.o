@@ -1,0 +1,17 @@
+<lp-header title="Dart Ergebnisse"></lp-header>
+
+<ion-content [fullscreen]="true">
+  <ng-container *ngIf="(currentPansch$ | async)?.dartCalculationFinished; else dartNotCalculatedYet">
+    <ion-list *ngIf="players$ | async as players">
+      <ion-item *ngFor="let player of players">
+        <ion-label>{{player.dartRank}}. {{player.name}}</ion-label>
+        <ion-note slot="end">
+          <ng-container *ngIf="player.dartScoreFinal !== undefined">Finale: {{player.dartScoreFinal}} </ng-container>
+          Vorrunde: {{(player.dartScorePreliminaryRound ?? 0)}}</ion-note>
+      </ion-item>
+    </ion-list>
+  </ng-container>
+  <ng-template #dartNotCalculatedYet>
+    <h3>Noch nicht berechnet</h3>
+  </ng-template>
+</ion-content>

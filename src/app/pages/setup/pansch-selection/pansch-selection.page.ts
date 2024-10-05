@@ -1,20 +1,56 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { ChangeDetectionStrategy, Component, inject, WritableSignal } from "@angular/core";
+import { HeaderComponent } from "@components";
+import { IonicModule, ModalController } from "@ionic/angular";
+import { AsyncPipe, DatePipe, NgFor, NgIf } from "@angular/common";
+import { AuthService, LatschiPanschService, PlayerService } from "@services";
+import { Router } from "@angular/router";
+import { LatschiPansch } from "@interfaces";
+import { firstValueFrom, Observable } from "rxjs";
+import { User } from "@angular/fire/auth";
+import { environment } from "@environments/environment";
+import {
+    PanschSelectionLegendComponent
+} from "@pages/setup/pansch-selection/pansch-selection-legend/pansch-selection-legend.component";
+
 
 @Component({
-  selector: 'lp-pansch-selection',
-  templateUrl: './pansch-selection.page.html',
-  styleUrls: ['./pansch-selection.page.scss'],
-  standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+    selector: 'lp-pansch-selection',
+    templateUrl: './pansch-selection.page.html',
+    styleUrls: ['./pansch-selection.page.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [HeaderComponent, IonicModule, NgIf, NgFor, AsyncPipe, DatePipe]
 })
-export class PanschSelectionPage implements OnInit {
+export class PanschSelectionPage {
+    private modalCtrl: ModalController = inject(ModalController);
+    private latschiPanschService: LatschiPanschService = inject(LatschiPanschService);
+    private playerService: PlayerService = inject(PlayerService);
+    private authService: AuthService = inject(AuthService);
+    private router: Router = inject(Router);
+    public latschiPanschCollection$: WritableSignal<LatschiPansch[]> = this.latschiPanschService.latschiPanschCollection$;
+    public currentUser$: Observable<User | null> = this.authService.currentUser$;
+    public devMode = environment.localDevMode;
 
-  constructor() { }
+    async panschSelected(latschiPansch: LatschiPansch): Promise<void> {
+        if (latschiPansch && latschiPansch.id) {
+            await this.latschiPanschService.setPansch(latschiPansch);
+            if (await firstValueFrom(this.authService.currentUser$)) {
+                const players = await this.playerService.getPlayerSnapshot(latschiPansch);
+                if (!players || players.length !== 16) {
+                    void this.router.navigate([`/user-selection`]);
+                } else {
+                    await this.latschiPanschService.initializeGame(true);
+                }
+            } else {
+                void this.router.navigate(['/home']);
+            }
+        }
+    }
 
-  ngOnInit() {
-  }
-
+    async openModal() {
+        const modal = await this.modalCtrl.create({
+            component: PanschSelectionLegendComponent,
+        });
+        void modal.present();
+    }
 }

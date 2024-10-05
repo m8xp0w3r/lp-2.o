@@ -1,13 +1,12 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>bowling</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">bowling</ion-title>
-    </ion-toolbar>
-  </ion-header>
-</ion-content>
+<ion-tabs>
+    <ion-tab-bar slot="bottom">
+        <ion-tab-button tab="bowling-input" href="/bowling/bowling-input">
+            <ion-icon aria-hidden="true" name="add-circle-outline"></ion-icon>
+            <ion-label>Pin-Eingabe</ion-label>
+        </ion-tab-button>
+        <ion-tab-button tab="bowling-results" href="/bowling/bowling-results">
+            <ion-icon aria-hidden="true" name="clipboard-outline"></ion-icon>
+            <ion-label>Ergebnis</ion-label>
+        </ion-tab-button>
+    </ion-tab-bar>
+</ion-tabs>

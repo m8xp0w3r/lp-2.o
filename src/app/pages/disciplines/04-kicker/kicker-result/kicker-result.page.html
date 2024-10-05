@@ -1,0 +1,15 @@
+<lp-header title="Kicker Ergebnisse"></lp-header>
+
+<ion-content [fullscreen]="true">
+  <ng-container *ngIf="(currentPansch$ | async)?.kickerCalculationFinished; else kickerNotCalculatedYet">
+    <ion-list *ngIf="players$ | async as players">
+      <ion-item *ngFor="let player of players">
+        <ion-label>{{player.kickerRank}}. {{player.name}}</ion-label>
+        <ion-note slot="end"><ng-container *ngIf="player.kickerWins">{{player.kickerWins + (player.kickerWins === 1 ? ' Sieg' : ' Siege')}} </ng-container>{{(player.kickerGoals ?? 0)}}:{{(player.kickerGoals ?? 0) - (player.kickerDiff ?? 0)}} Tore</ion-note>
+      </ion-item>
+    </ion-list>
+  </ng-container>
+  <ng-template #kickerNotCalculatedYet>
+    <h3>Noch nicht berechnet</h3>
+  </ng-template>
+</ion-content>

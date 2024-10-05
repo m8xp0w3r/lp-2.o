@@ -1,20 +1,39 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { BaseDisciplineComponent } from "@pages/disciplines/base-discipline.component";
+import { take } from "rxjs";
+import { LatschiPansch } from "@interfaces";
+import { IonIcon, IonLabel, IonTabBar, IonTabButton, IonTabs } from "@ionic/angular/standalone";
 
 @Component({
-  selector: 'lp-kicker',
-  templateUrl: './kicker.page.html',
-  styleUrls: ['./kicker.page.scss'],
-  standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+    selector: 'lp-kicker',
+    templateUrl: './kicker.page.html',
+    styleUrls: ['./kicker.page.scss'],
+    standalone: true,
+  imports: [
+    IonTabs,
+    IonTabBar,
+    IonTabButton,
+    IonIcon,
+    IonLabel
+  ],
 })
-export class KickerPage implements OnInit {
+export class KickerPage extends BaseDisciplineComponent implements OnInit {
+  route = "/kicker/kicker-result";
+  property = "kickerCalculationFinished" as keyof LatschiPansch;
 
-  constructor() { }
-
-  ngOnInit() {
+  public ngOnInit() {
+    this.latschiPanschService.currentPansch$
+      .pipe(take(1))
+      .subscribe(currentPansch => {
+        if (!currentPansch) return;
+        if (currentPansch.kickerHfCalculationFinished) {
+          void this.router.navigate(["/kicker/kicker-final"]);
+          return;
+        }
+        if (currentPansch.kickerVfCalculationFinished) {
+          void this.router.navigate(["/kicker/kicker-hf"]);
+          return;
+        }
+      });
   }
-
 }

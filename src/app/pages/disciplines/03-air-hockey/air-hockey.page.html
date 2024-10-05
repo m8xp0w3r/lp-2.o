@@ -1,13 +1,24 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>air-hockey</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">air-hockey</ion-title>
-    </ion-toolbar>
-  </ion-header>
-</ion-content>
+<ion-tabs>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="air-hockey-af" href="/air-hockey/air-hockey-af">
+      <ion-icon aria-hidden="true" name="add-circle-outline"></ion-icon>
+      <ion-label>AF</ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab="air-hockey-vf" href="/air-hockey/air-hockey-vf">
+      <ion-icon aria-hidden="true" name="add-circle-outline"></ion-icon>
+      <ion-label>VF</ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab="air-hockey-hf" href="/air-hockey/air-hockey-hf">
+      <ion-icon aria-hidden="true" name="add-circle-outline"></ion-icon>
+      <ion-label>HF</ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab="air-hockey-final" href="/air-hockey/air-hockey-final">
+      <ion-icon aria-hidden="true" name="add-circle-outline"></ion-icon>
+      <ion-label>Finale</ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab="air-hockey-result" href="/air-hockey/air-hockey-result">
+      <ion-icon aria-hidden="true" name="add-circle-outline"></ion-icon>
+      <ion-label>Ergebnis</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
