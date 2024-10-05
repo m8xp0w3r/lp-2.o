@@ -2,7 +2,6 @@ import { Component, inject } from '@angular/core';
 import { combineLatest, map, Observable } from "rxjs";
 import { AsyncPipe, NgFor, NgIf } from '@angular/common';
 import { HeaderComponent } from "@components";
-import { BilliardService } from "@pages/disciplines/02-billard/billiard.service";
 import { LatschiPanschService } from "@services";
 import { LatschiPansch, Player } from "@interfaces";
 import { IonContent, IonItem, IonLabel, IonList, IonNote } from "@ionic/angular/standalone";
@@ -25,7 +24,6 @@ import { IonContent, IonItem, IonLabel, IonList, IonNote } from "@ionic/angular/
   ],
 })
 export class BilliardResultPage {
-  private billiardService: BilliardService = inject(BilliardService);
   private latschiPanschService: LatschiPanschService = inject(LatschiPanschService);
   public currentPansch$: Observable<LatschiPansch | undefined> = this.latschiPanschService.currentPansch$;
   public players$: Observable<Player[]> = combineLatest([this.latschiPanschService.players$, this.currentPansch$])

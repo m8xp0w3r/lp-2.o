@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { PanschWaitingComponent } from './pansch-waiting.component';
+import { PanschWaitingComponent } from '@components';
 
 describe('PanschWaitingComponent', () => {
   let component: PanschWaitingComponent;
