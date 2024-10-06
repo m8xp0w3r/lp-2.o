@@ -23,10 +23,9 @@ export class RankingService {
             coinFlipMap.set(player.finalRank, (coinFlipMap.get(player.finalRank) ?? 0) + 1);
           }
         });
-        this.coinFlipNeededSubject$.next(Array
-          .from(coinFlipMap.values())
+        this.coinFlipNeededSubject$.next(Array.from(coinFlipMap.values())
           .map((count: number) => count > 1)
-          .reduce((previousValue, currentValue) => previousValue || currentValue));
+          .reduce((previousValue, currentValue) => previousValue || currentValue, false));
 
         if (!currentUser && currentPansch && !currentPansch.isReleased) {
           return [];

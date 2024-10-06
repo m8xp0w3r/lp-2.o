@@ -32,7 +32,9 @@ export class FirestoreService {
 
   constructor() {
     if (isDevMode()) {
-      connectFirestoreEmulator(this.firestore, '127.0.0.1', 8888);
+      connectFirestoreEmulator(this.firestore, '127.0.0.1', 8088);
+    } else {
+
     }
   }
 

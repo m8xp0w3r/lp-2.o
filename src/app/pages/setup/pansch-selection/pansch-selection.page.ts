@@ -11,6 +11,7 @@ import { environment } from "@environments/environment";
 import {
     PanschSelectionLegendComponent
 } from "@pages/setup/pansch-selection/pansch-selection-legend/pansch-selection-legend.component";
+import { PanschCountdownComponent } from "@pages/setup/pansch-selection/pansch-countdown/pansch-countdown.component";
 
 
 @Component({
@@ -19,7 +20,7 @@ import {
   styleUrls: ['./pansch-selection.page.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [HeaderComponent, IonicModule, NgIf, NgFor, AsyncPipe, DatePipe]
+  imports: [HeaderComponent, IonicModule, NgIf, NgFor, AsyncPipe, DatePipe, PanschCountdownComponent]
 })
 export class PanschSelectionPage {
   public devMode = environment.localDevMode;

@@ -32,10 +32,6 @@ import { PanschWaitingComponent } from "@components";
 })
 export class BowlingInputPage {
 
-  public disableSave$: Observable<boolean> = combineLatest([this.players$, this.currentPansch$])
-    .pipe(
-      map(([players, pansch]) => players
-        .filter(player => player.bowlingPins !== undefined).length < 16 || (pansch?.bowlingCalculationStarted ?? false)));
   public testMode = environment.testMode;
   private bowlingService: BowlingService = inject(BowlingService);
   private latschiPanschService: LatschiPanschService = inject(LatschiPanschService);
@@ -44,6 +40,10 @@ export class BowlingInputPage {
   private alertController: AlertController = inject(AlertController);
   private authService: AuthService = inject(AuthService);
   public currentUser$ = this.authService.currentUser$;
+  public disableSave$: Observable<boolean> = combineLatest([this.players$, this.currentPansch$])
+    .pipe(
+      map(([players, pansch]) => players
+        .filter(player => player.bowlingPins !== undefined).length < 16 || (pansch?.bowlingCalculationStarted ?? false)));
 
   public async addPins(player: Player) {
     if (!await firstValueFrom(this.authService.currentUser$)) return;

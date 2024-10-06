@@ -1,14 +1,11 @@
 import { inject, Injectable } from '@angular/core';
-import { LatschiPanschService } from "@services/latschi-pansch.service";
-import { BehaviorSubject, combineLatest, firstValueFrom, map, Observable } from "rxjs";
-import { LatschiPansch } from "@models/latschi-pansch.interface";
-import { CollectionUtil } from "@util/collection.util";
-import { Game } from "@models/game.interface";
-import { GameService } from "@services/game.service";
-import { Player } from "@models/player.model";
-import { PlayerService } from "@services/player.service";
+import { GameService, LatschiPanschService, PlayerService } from "@services";
 import { Router } from "@angular/router";
-import { DisciplineIconName } from "@models/discipline-icon-name.enum";
+import { BehaviorSubject, combineLatest, firstValueFrom, map, Observable } from "rxjs";
+import { Game, LatschiPansch, Player } from "@interfaces";
+import { DisciplineIconName } from "@enums";
+import { CollectionUtil } from "@util/collection.util";
+
 
 
 @Injectable({
@@ -16,17 +13,19 @@ import { DisciplineIconName } from "@models/discipline-icon-name.enum";
 })
 export class BilliardService {
   private latschiPanschService: LatschiPanschService = inject(LatschiPanschService);
-  public disableSave$: Observable<boolean> = combineLatest([this.billiardGames$, this.latschiPanschService.currentPansch$])
-    .pipe(
-      map(([games, currentPansch]) => games
-        .filter(game => !game.team1.score || !game.team2.score).length > 0 || (currentPansch?.billiardCalculationStarted ?? false))
-    );
+
   private playerService: PlayerService = inject(PlayerService);
   private gameService: GameService = inject(GameService);
   private router: Router = inject(Router);
   private billiardGamesSubject: BehaviorSubject<Game[]> = new BehaviorSubject<Game[]>([]);
   public billiardGames$: Observable<Game[]> = this.billiardGamesSubject.pipe(
     map(games => games.sort((a, b) => a.gameNumber - b.gameNumber)));
+
+  public disableSave$: Observable<boolean> = combineLatest([this.billiardGames$, this.latschiPanschService.currentPansch$])
+    .pipe(
+      map(([games, currentPansch]) => games
+        .filter(game => !game.team1.score || !game.team2.score).length > 0 || (currentPansch?.billiardCalculationStarted ?? false))
+    );
 
   constructor() {
     void this.getGames();

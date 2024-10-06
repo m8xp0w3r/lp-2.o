@@ -18,6 +18,16 @@ import { Observable } from "rxjs";
 import { LatschiPansch, SideMenuItem } from "@interfaces";
 import { RouterLink, RouterLinkActive } from "@angular/router";
 import { AsyncPipe, NgForOf, NgIf } from "@angular/common";
+import { addIcons } from "ionicons";
+import {
+  addCircleOutline,
+  barbellOutline, basketOutline, bowlingBallOutline, bugOutline, checkmarkOutline,
+  clipboardOutline, closeCircleOutline, ellipseOutline, eyeOffOutline, eyeOutline, footballOutline,
+  homeOutline, informationCircleOutline,
+  logInOutline,
+  paperPlaneOutline, peopleOutline, personAddOutline, saveOutline,
+  settingsOutline, statsChartOutline
+} from "ionicons/icons";
 
 @Component({
   selector: 'lp-root',
@@ -32,6 +42,29 @@ export class AppComponent implements OnInit {
   public appPages$: Observable<SideMenuItem[]> = this.sideMenuService.appPages$;
 
   constructor() {
+    addIcons({
+      homeOutline,
+      clipboardOutline,
+      settingsOutline,
+      bowlingBallOutline,
+      ellipseOutline,
+      basketOutline,
+      footballOutline,
+      paperPlaneOutline,
+      barbellOutline,
+      logInOutline,
+      informationCircleOutline,
+      addCircleOutline,
+      eyeOffOutline,
+      closeCircleOutline,
+      checkmarkOutline,
+      eyeOutline,
+      peopleOutline,
+      statsChartOutline,
+      saveOutline,
+      bugOutline,
+      personAddOutline
+    })
   }
 
   async ngOnInit(): Promise<void> {

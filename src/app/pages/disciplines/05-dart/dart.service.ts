@@ -1,28 +1,17 @@
 import { inject, Injectable } from '@angular/core';
-import { LatschiPanschService } from "@services/latschi-pansch.service";
-import { FirestoreService } from "@services/firestore.service";
-import { PlayerService } from "@services/player.service";
-import { GameService } from "@services/game.service";
+import { FirestoreService, GameService, LatschiPanschService, PlayerService } from "@services";
 import { Router } from "@angular/router";
 import { BehaviorSubject, firstValueFrom, map, Observable, of } from "rxjs";
+import { DartGame, DartPlayer, LatschiPansch, Player } from "@interfaces";
 import { CollectionUtil } from "@util/collection.util";
-import { LatschiPansch } from "@models/latschi-pansch.interface";
-import { DartGame } from "@models/dart-game.interface";
-import { DartPlayer } from "@models/dart-player.interface";
-import { Player } from "@models/player.model";
-import { DisciplineIconName } from "@models/discipline-icon-name.enum";
+import { DisciplineIconName } from "@enums";
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class DartService {
-  public preliminaryRoundFinished$: Observable<boolean> = this.preliminaryGames$.pipe(
-    map(preliminaryGames => preliminaryGames.filter(preliminaryGame => preliminaryGame.calculationFinished).length === 4)
-  );
-  public finalRoundFinished$: Observable<boolean> = this.dartFinalGame$.pipe(
-    map(finalGame => finalGame?.calculationFinished ?? false)
-  );
-  private latschiPanschService: LatschiPanschService = inject(LatschiPanschService);
+ private latschiPanschService: LatschiPanschService = inject(LatschiPanschService);
   private firestoreService: FirestoreService = inject(FirestoreService);
   private playerService: PlayerService = inject(PlayerService);
   private gameService: GameService = inject(GameService);
@@ -35,6 +24,12 @@ export class DartService {
   private dartFinalGameSubject: BehaviorSubject<DartGame[]> = new BehaviorSubject<DartGame[]>([]);
   public dartFinalGame$: Observable<DartGame | undefined> = this.dartFinalGameSubject
     .pipe(map(finalGames => finalGames.length === 1 ? finalGames[0] : undefined));
+  public preliminaryRoundFinished$: Observable<boolean> = this.preliminaryGames$.pipe(
+    map(preliminaryGames => preliminaryGames.filter(preliminaryGame => preliminaryGame.calculationFinished).length === 4)
+  );
+  public finalRoundFinished$: Observable<boolean> = this.dartFinalGame$.pipe(
+    map(finalGame => finalGame?.calculationFinished ?? false)
+  );
 
   constructor() {
     void this.getGames();

@@ -1,0 +1,17 @@
+ion-content {
+  --overflow: hidden
+}
+
+.vertical-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+@media (prefers-color-scheme: dark) {
+  .invert-image {
+    filter: invert(1) hue-rotate(-180deg);
+  }
+}
+

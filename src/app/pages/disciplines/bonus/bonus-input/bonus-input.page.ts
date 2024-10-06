@@ -54,10 +54,6 @@ import {
 })
 export class BonusInputPage implements OnInit {
   public readonly BonusSortingOrder = BonusSortingOrder;
-  public disableSave$: Observable<boolean> = combineLatest([this.players$, this.currentPansch$, this.sortingOrder$])
-    .pipe(
-      map(([players, pansch, sortingOrder]) => players
-        .filter(player => player.bonusScore !== undefined).length < 16 || (pansch?.bonusCalculationStarted ?? false) || sortingOrder === undefined));
   public testMode = environment.testMode;
   public selectedSortingOrder: BonusSortingOrder | undefined;
   private latschiPanschService: LatschiPanschService = inject(LatschiPanschService);
@@ -75,6 +71,11 @@ export class BonusInputPage implements OnInit {
   private alertController: AlertController = inject(AlertController);
   private authService: AuthService = inject(AuthService);
   public currentUser$ = this.authService.currentUser$;
+  public disableSave$: Observable<boolean> = combineLatest([this.players$, this.currentPansch$, this.sortingOrder$])
+    .pipe(
+      map(([players, pansch, sortingOrder]) => players
+        .filter(player => player.bonusScore !== undefined).length < 16 || (pansch?.bonusCalculationStarted ?? false) || sortingOrder === undefined));
+
 
   ngOnInit(): void {
     this.sortingOrder$

@@ -13,6 +13,21 @@ import { DisciplineIconName } from "@enums";
 })
 export class KickerService {
   private latschiPanschService: LatschiPanschService = inject(LatschiPanschService);
+  private firestoreService: FirestoreService = inject(FirestoreService);
+  private playerService: PlayerService = inject(PlayerService);
+  private gameService: GameService = inject(GameService);
+  private router: Router = inject(Router);
+  private kickerVfGamesSubject: BehaviorSubject<Game[]> = new BehaviorSubject<Game[]>([]);
+  public kickerVfGames$: Observable<Game[]> = this.kickerVfGamesSubject.pipe(
+    map((games: Game[]) => games.sort((a, b) => a.gameNumber - b.gameNumber)));
+  private kickerHfGamesSubject: BehaviorSubject<Game[]> = new BehaviorSubject<Game[]>([]);
+  public kickerHfGames$: Observable<Game[]> = this.kickerHfGamesSubject.pipe(
+    map(games => games.sort((a, b) => a.gameNumber - b.gameNumber)));
+  private kickerFinalGamesSubject: BehaviorSubject<Game[]> = new BehaviorSubject<Game[]>([]);
+  private kickerFinalGameSubject: BehaviorSubject<Game[]> = new BehaviorSubject<Game[]>([]);
+  public kickerFinalGames$: Observable<Game[]> = this.kickerFinalGamesSubject.asObservable();
+  public kickerFinalGame$: Observable<Game[]> = this.kickerFinalGameSubject.asObservable();
+
   public disableVfSave$: Observable<boolean> = combineLatest([this.kickerVfGames$, this.latschiPanschService.currentPansch$])
     .pipe(
       map(([games, currentPansch]) => games
@@ -33,20 +48,7 @@ export class KickerService {
       map(([games, currentPansch]) => games
         .filter(game => !game.team1.score === undefined || !game.team2.score === undefined || game.team1.score === game.team2.score).length > 0 || (currentPansch?.kickerCalculationStarted ?? false))
     );
-  private firestoreService: FirestoreService = inject(FirestoreService);
-  private playerService: PlayerService = inject(PlayerService);
-  private gameService: GameService = inject(GameService);
-  private router: Router = inject(Router);
-  private kickerVfGamesSubject: BehaviorSubject<Game[]> = new BehaviorSubject<Game[]>([]);
-  public kickerVfGames$: Observable<Game[]> = this.kickerVfGamesSubject.pipe(
-    map((games: Game[]) => games.sort((a, b) => a.gameNumber - b.gameNumber)));
-  private kickerHfGamesSubject: BehaviorSubject<Game[]> = new BehaviorSubject<Game[]>([]);
-  public kickerHfGames$: Observable<Game[]> = this.kickerHfGamesSubject.pipe(
-    map(games => games.sort((a, b) => a.gameNumber - b.gameNumber)));
-  private kickerFinalGamesSubject: BehaviorSubject<Game[]> = new BehaviorSubject<Game[]>([]);
-  public kickerFinalGames$: Observable<Game[]> = this.kickerFinalGamesSubject.asObservable();
-  private kickerFinalGameSubject: BehaviorSubject<Game[]> = new BehaviorSubject<Game[]>([]);
-  public kickerFinalGame$: Observable<Game[]> = this.kickerFinalGameSubject.asObservable();
+
 
   constructor() {
     void this.getGames();

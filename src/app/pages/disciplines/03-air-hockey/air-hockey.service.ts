@@ -13,6 +13,23 @@ import { PanschKey } from "@types";
 })
 export class AirHockeyService {
   private latschiPanschService: LatschiPanschService = inject(LatschiPanschService);
+
+  private firestoreService: FirestoreService = inject(FirestoreService);
+  private playerService: PlayerService = inject(PlayerService);
+  private gameService: GameService = inject(GameService);
+  private router: Router = inject(Router);
+  private airHockeyAfGamesSubject: BehaviorSubject<Game[]> = new BehaviorSubject<Game[]>([]);
+  public airHockeyAfGames$: Observable<Game[]> = this.airHockeyAfGamesSubject.pipe(
+    map(games => games.sort((a, b) => a.gameNumber - b.gameNumber)));
+  private airHockeyVfGamesSubject: BehaviorSubject<Game[]> = new BehaviorSubject<Game[]>([]);
+  public airHockeyVfGames$: Observable<Game[]> = this.airHockeyVfGamesSubject.pipe(
+    map(games => games.sort((a, b) => a.gameNumber - b.gameNumber)));
+  private airHockeyHfGamesSubject: BehaviorSubject<Game[]> = new BehaviorSubject<Game[]>([]);
+  public airHockeyHfGames$: Observable<Game[]> = this.airHockeyHfGamesSubject.pipe(
+    map(games => games.sort((a, b) => a.gameNumber - b.gameNumber)));
+  private airHockeyFinalGameSubject: BehaviorSubject<Game[]> = new BehaviorSubject<Game[]>([]);
+  public airHockeyFinalGames$: Observable<Game[]> = this.airHockeyFinalGameSubject.asObservable();
+
   public disableAfSave$: Observable<boolean> = combineLatest([this.airHockeyAfGames$, this.latschiPanschService.currentPansch$])
     .pipe(
       map(([games, currentPansch]) => games
@@ -33,21 +50,6 @@ export class AirHockeyService {
       map(([games, currentPansch]) => games
         .filter(game => !game.team1.score === undefined || !game.team2.score === undefined || game.team1.score === game.team2.score).length > 0 || (currentPansch?.airHockeyFinalCalculationStarted ?? false))
     );
-  private firestoreService: FirestoreService = inject(FirestoreService);
-  private playerService: PlayerService = inject(PlayerService);
-  private gameService: GameService = inject(GameService);
-  private router: Router = inject(Router);
-  private airHockeyAfGamesSubject: BehaviorSubject<Game[]> = new BehaviorSubject<Game[]>([]);
-  public airHockeyAfGames$: Observable<Game[]> = this.airHockeyAfGamesSubject.pipe(
-    map(games => games.sort((a, b) => a.gameNumber - b.gameNumber)));
-  private airHockeyVfGamesSubject: BehaviorSubject<Game[]> = new BehaviorSubject<Game[]>([]);
-  public airHockeyVfGames$: Observable<Game[]> = this.airHockeyVfGamesSubject.pipe(
-    map(games => games.sort((a, b) => a.gameNumber - b.gameNumber)));
-  private airHockeyHfGamesSubject: BehaviorSubject<Game[]> = new BehaviorSubject<Game[]>([]);
-  public airHockeyHfGames$: Observable<Game[]> = this.airHockeyHfGamesSubject.pipe(
-    map(games => games.sort((a, b) => a.gameNumber - b.gameNumber)));
-  private airHockeyFinalGameSubject: BehaviorSubject<Game[]> = new BehaviorSubject<Game[]>([]);
-  public airHockeyFinalGames$: Observable<Game[]> = this.airHockeyFinalGameSubject.asObservable();
 
   constructor() {
     void this.getGames();

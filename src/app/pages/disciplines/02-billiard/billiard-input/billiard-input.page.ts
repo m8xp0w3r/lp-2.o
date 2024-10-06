@@ -1,7 +1,6 @@
 import { Component, inject } from "@angular/core";
 import { AsyncPipe, NgFor, NgIf } from "@angular/common";
 import { GameCardComponent, PanschWaitingComponent } from "@components";
-import { BilliardService } from "@pages/disciplines/02-billard/billiard.service";
 import { AuthService, LatschiPanschService } from "@services";
 import { firstValueFrom, Observable } from "rxjs";
 import { Game } from "@interfaces";
@@ -18,6 +17,7 @@ import {
   IonTitle,
   IonToolbar
 } from "@ionic/angular/standalone";
+import { BilliardService } from "@pages/disciplines/02-billiard/billiard.service";
 
 
 @Component({

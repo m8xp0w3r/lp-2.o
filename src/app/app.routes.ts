@@ -1,42 +1,49 @@
 import { Routes } from '@angular/router';
+import { panschSelectedGuard } from "@guards/pansch-selected.guard";
 
 export const routes: Routes = [
-  {
-    path: 'home',
-    loadComponent: () => import('./home/home.page').then((m) => m.HomePage),
-  },
   {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full',
   },
   {
-    path: 'air-hockey',
-    loadComponent: () => import('./pages/disciplines/03-air-hockey/air-hockey.page').then(m => m.AirHockeyPage)
-  },
-  {
-    path: 'kicker',
-    loadComponent: () => import('./pages/disciplines/04-kicker/kicker.page').then(m => m.KickerPage)
-  },
-  {
-    path: 'dart',
-    loadComponent: () => import('./pages/disciplines/05-dart/dart.page').then(m => m.DartPage)
+    path: 'home',
+    loadComponent: () => import('./pages/home/home.page').then((m) => m.HomePage),
+    canActivate: [panschSelectedGuard]
   },
   {
     path: 'bowling',
-    loadComponent: () => import('./pages/disciplines/01-bowling/bowling.page').then(m => m.BowlingPage)
+    loadChildren: () => import('./pages/disciplines/01-bowling/bowling.routes').then(m => m.routes),
+    canActivate: [panschSelectedGuard]
   },
   {
-    path: 'billard',
-    loadComponent: () => import('./pages/disciplines/02-billard/billiard.page').then(m => m.BilliardPage)
+    path: 'billiard',
+    loadChildren: () => import('./pages/disciplines/02-billiard/billiard.routes').then(m => m.routes),
+    canActivate: [panschSelectedGuard]
+  },
+  {
+    path: 'air-hockey',
+    loadChildren: () => import('./pages/disciplines/03-air-hockey/air-hockey.routes').then(m => m.routes),
+    canActivate: [panschSelectedGuard]
+  },
+  {
+    path: 'kicker',
+    loadChildren: () => import('./pages/disciplines/04-kicker/kicker.routes').then(m => m.routes)
+  },
+  {
+    path: 'dart',
+    loadChildren: () => import('./pages/disciplines/05-dart/dart.routes').then(m => m.routes)
   },
   {
     path: 'bonus',
-    loadComponent: () => import('./pages/disciplines/bonus/bonus.page').then(m => m.BonusPage)
+    loadChildren: () => import('./pages/disciplines/bonus/bonus.routes').then(m => m.routes),
+    canActivate: [panschSelectedGuard]
   },
   {
     path: 'ranking',
-    loadComponent: () => import('./pages/disciplines/ranking/ranking.page').then(m => m.RankingPage)
+    loadComponent: () => import('./pages/disciplines/ranking/ranking.page').then(m => m.RankingPage),
+    canActivate: [panschSelectedGuard]
   },
   {
     path: 'rules',
@@ -48,7 +55,8 @@ export const routes: Routes = [
   },
   {
     path: 'pansch-administration',
-    loadComponent: () => import('./pages/setup/pansch-administration/pansch-administration.page').then(m => m.PanschAdministrationPage)
+    loadComponent: () => import('./pages/setup/pansch-administration/pansch-administration.page').then(m => m.PanschAdministrationPage),
+    canActivate: [panschSelectedGuard]
   },
   {
     path: 'pansch-selection',
@@ -56,14 +64,7 @@ export const routes: Routes = [
   },
   {
     path: 'user-selection',
-    loadComponent: () => import('./pages/setup/user-selection/user-selection.page').then(m => m.UserSelectionPage)
-  },
-  {
-    path: 'bowling-input',
-    loadComponent: () => import('./pages/disciplines/01-bowling/bowling-input/bowling-input.page').then(m => m.BowlingInputPage)
-  },
-  {
-    path: 'bowling-results',
-    loadComponent: () => import('./pages/disciplines/01-bowling/bowling-results/bowling-results.page').then(m => m.BowlingResultsPage)
+    loadComponent: () => import('./pages/setup/user-selection/user-selection.page').then(m => m.UserSelectionPage),
+    canActivate: [panschSelectedGuard]
   },
 ];

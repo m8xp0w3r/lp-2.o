@@ -22,6 +22,7 @@ export class AuthService {
       connectAuthEmulator(this.firebaseAuth, "http://127.0.0.1:9099", { disableWarnings: true });
     }
     onAuthStateChanged(this.firebaseAuth, user => {
+      console.log("user", user);
       this.currentUserSubject$.next(user);
     });
   }
