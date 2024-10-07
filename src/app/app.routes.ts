@@ -14,18 +14,15 @@ export const routes: Routes = [
   },
   {
     path: 'bowling',
-    loadChildren: () => import('./pages/disciplines/01-bowling/bowling.routes').then(m => m.routes),
-    canActivate: [panschSelectedGuard]
+    loadChildren: () => import('./pages/disciplines/01-bowling/bowling.routes').then(m => m.routes)
   },
   {
     path: 'billiard',
-    loadChildren: () => import('./pages/disciplines/02-billiard/billiard.routes').then(m => m.routes),
-    canActivate: [panschSelectedGuard]
+    loadChildren: () => import('./pages/disciplines/02-billiard/billiard.routes').then(m => m.routes)
   },
   {
     path: 'air-hockey',
-    loadChildren: () => import('./pages/disciplines/03-air-hockey/air-hockey.routes').then(m => m.routes),
-    canActivate: [panschSelectedGuard]
+    loadChildren: () => import('./pages/disciplines/03-air-hockey/air-hockey.routes').then(m => m.routes)
   },
   {
     path: 'kicker',
@@ -37,8 +34,7 @@ export const routes: Routes = [
   },
   {
     path: 'bonus',
-    loadChildren: () => import('./pages/disciplines/bonus/bonus.routes').then(m => m.routes),
-    canActivate: [panschSelectedGuard]
+    loadChildren: () => import('./pages/disciplines/bonus/bonus.routes').then(m => m.routes)
   },
   {
     path: 'ranking',

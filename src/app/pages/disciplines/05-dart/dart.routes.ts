@@ -1,5 +1,6 @@
 import { Routes } from "@angular/router";
 import { DartPage } from "@pages/disciplines/05-dart/dart.page";
+import { panschSelectedGuard } from "@guards/pansch-selected.guard";
 
 export const routes: Routes = [
   {
@@ -8,15 +9,18 @@ export const routes: Routes = [
     children: [
       {
         path: 'dart-preliminary',
-        loadComponent: () => import('./dart-preliminary/dart-preliminary.page').then(m => m.DartPreliminaryPage)
+        loadComponent: () => import('./dart-preliminary/dart-preliminary.page').then(m => m.DartPreliminaryPage),
+        canActivate: [panschSelectedGuard]
       },
       {
         path: 'dart-final',
-        loadComponent: () => import('./dart-final/dart-final.page').then(m => m.DartFinalPage)
+        loadComponent: () => import('./dart-final/dart-final.page').then(m => m.DartFinalPage),
+        canActivate: [panschSelectedGuard]
       },
       {
         path: 'dart-result',
-        loadComponent: () => import('./dart-result/dart-result.page').then(m => m.DartResultPage)
+        loadComponent: () => import('./dart-result/dart-result.page').then(m => m.DartResultPage),
+        canActivate: [panschSelectedGuard]
       }
     ]
   },

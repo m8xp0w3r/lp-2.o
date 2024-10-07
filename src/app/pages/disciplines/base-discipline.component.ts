@@ -1,14 +1,15 @@
-import { Component, inject, OnDestroy } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import { Router } from "@angular/router";
 import { Subject, takeUntil } from "rxjs";
 import { LatschiPanschService } from "@services";
 import { PanschKey } from "@types";
+import { ViewDidLeave } from "@ionic/angular/standalone";
 
 
 @Component({
   template: ""
 })
-export abstract class BaseDisciplineComponent implements OnDestroy {
+export abstract class BaseDisciplineComponent implements ViewDidLeave {
   protected latschiPanschService: LatschiPanschService = inject(LatschiPanschService);
   protected router: Router = inject(Router);
   protected subscriptionSubject$: Subject<void> = new Subject<void>();
@@ -20,13 +21,16 @@ export abstract class BaseDisciplineComponent implements OnDestroy {
     this.latschiPanschService.currentPansch$
       .pipe(takeUntil(this.subscriptionSubject$))
       .subscribe(currentPansch => {
+        console.log("cp: ", currentPansch);
+        console.log("prop: ", this.property);
         if (currentPansch && currentPansch[this.property]) {
+          console.log("navigate to: ", this.property);
           void this.router.navigate([this.route]);
         }
       });
   }
 
-  ngOnDestroy(): void {
+  ionViewDidLeave(): void {
     this.subscriptionSubject$.next();
     this.subscriptionSubject$.complete();
   }

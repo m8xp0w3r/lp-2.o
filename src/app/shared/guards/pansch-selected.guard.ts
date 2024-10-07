@@ -14,15 +14,18 @@ export const panschSelectedGuard = async (route: ActivatedRouteSnapshot): Promis
   const pansch: LatschiPansch | undefined = (await firstValueFrom(latschiPanschService.currentPansch$));
   const currentUser: User | null = await firstValueFrom(authService.currentUser$);
   if (!pansch) {
+    console.log("Nicht pansch");
     return router.parseUrl('/pansch-selection');
   }
   if (currentUser) {
+    console.log("currentUser");
     if (route.routeConfig?.path === "user-selection") {
       return true;
     }
   }
   const players: Player[] = await playerService.getPlayerSnapshot(pansch);
   if (players.length !== 16) {
+    console.log("players.length", players.length);
     if (currentUser) {
       return router.parseUrl('/user-selection');
     }

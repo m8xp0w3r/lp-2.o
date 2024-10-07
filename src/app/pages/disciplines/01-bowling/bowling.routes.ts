@@ -8,11 +8,11 @@ export const routes: Routes = [
     children: [
       {
         path: 'bowling-input',
-        loadComponent: () => import('./bowling-input/bowling-input.page').then(m => m.BowlingInputPage)
+        loadComponent: () => import('./bowling-input/bowling-input.page').then(m => m.BowlingInputPage),
       },
       {
         path: 'bowling-results',
-        loadComponent: () => import('./bowling-results/bowling-results.page').then(m => m.BowlingResultsPage)
+        loadComponent: () => import('./bowling-results/bowling-results.page').then(m => m.BowlingResultsPage),
       }
     ]
   },
