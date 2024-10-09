@@ -1,4 +1,4 @@
-<lp-header [showAddPanschButtons]="devMode" title="Latschi"></lp-header>
+<lp-header [showAddPanschButtons]="(currentUser$ | async) !== null" title="Latschi"></lp-header>
 
 <ion-content>
     <ion-button (click)="openModal()" *ngIf="currentUser$ | async" class="legend-icon" fill="clear">

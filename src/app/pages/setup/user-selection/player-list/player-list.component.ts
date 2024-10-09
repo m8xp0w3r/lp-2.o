@@ -1,17 +1,26 @@
-import { ChangeDetectionStrategy, Component, inject, Signal } from '@angular/core';
-import { AlertController, CheckboxCustomEvent, IonicModule, IonItemSliding } from "@ionic/angular";
+import { Component, inject, Signal } from '@angular/core';
+import { AlertController, CheckboxCustomEvent } from "@ionic/angular";
 import { PlayerService } from "@services";
 import { NgFor } from '@angular/common';
 import { UserSelectionService } from "@pages/setup/user-selection/user-selection.service";
 import { PossiblePlayer } from "@interfaces";
+import {
+  IonCheckbox,
+  IonItem,
+  IonItemOption,
+  IonItemOptions,
+  IonItemSliding,
+  IonList,
+  IonListHeader
+} from "@ionic/angular/standalone";
 
 @Component({
   selector: 'lp-player-list',
   templateUrl: './player-list.component.html',
   styleUrls: ['./player-list.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  //changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [IonicModule, NgFor]
+  imports: [NgFor, IonList, IonListHeader, IonItemSliding, IonItem, IonCheckbox, IonItemOptions, IonItemOption]
 })
 export class PlayerListComponent {
   private alertController: AlertController = inject(AlertController);
