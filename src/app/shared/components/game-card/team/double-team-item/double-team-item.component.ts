@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicModule } from "@ionic/angular";
 import { BaseTeamItemComponent } from "../base-team-item.abstract";
 import { NgIf } from "@angular/common";
+import { IonCol, IonItem, IonLabel, IonNote, IonRow } from "@ionic/angular/standalone";
 
 @Component({
   selector: 'lp-double-team-item',
@@ -9,8 +9,12 @@ import { NgIf } from "@angular/common";
   styleUrls: ['./double-team-item.component.scss'],
   standalone: true,
   imports: [
-    IonicModule,
-    NgIf
+    NgIf,
+    IonItem,
+    IonRow,
+    IonCol,
+    IonLabel,
+    IonNote
   ]
 })
 export class DoubleTeamItemComponent extends BaseTeamItemComponent {

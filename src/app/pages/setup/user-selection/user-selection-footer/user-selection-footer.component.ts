@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, inject, Signal } from '@angular/core';
 import { LatschiPanschService, PlayerService } from "@services";
 import { firstValueFrom } from "rxjs";
-import { IonicModule } from '@ionic/angular';
 import { NgIf } from '@angular/common';
 import { LatschiPansch, PossiblePlayer } from "@interfaces";
+import { IonButton, IonButtons, IonFooter, IonTitle, IonToolbar } from "@ionic/angular/standalone";
 
 @Component({
   selector: 'lp-user-selection-footer',
@@ -11,7 +11,14 @@ import { LatschiPansch, PossiblePlayer } from "@interfaces";
   styleUrls: ['./user-selection-footer.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [IonicModule, NgIf]
+  imports: [
+    NgIf,
+    IonFooter,
+    IonToolbar,
+    IonTitle,
+    IonButtons,
+    IonButton
+  ]
 })
 export class UserSelectionFooterComponent {
   private latschiPanschService: LatschiPanschService = inject(LatschiPanschService);

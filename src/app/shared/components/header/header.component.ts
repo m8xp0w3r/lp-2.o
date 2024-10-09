@@ -1,9 +1,18 @@
 import { Component, inject, Input } from '@angular/core';
-import { AlertController, IonicModule } from "@ionic/angular";
+import { AlertController } from "@ionic/angular";
 import { AuthService, LatschiPanschService } from "@services";
 import { Observable } from "rxjs";
 import { User } from "@angular/fire/auth";
 import { AsyncPipe, NgIf } from "@angular/common";
+import {
+  IonButton,
+  IonButtons,
+  IonHeader,
+  IonIcon,
+  IonMenuButton,
+  IonTitle,
+  IonToolbar
+} from "@ionic/angular/standalone";
 
 @Component({
   selector: 'lp-header',
@@ -11,9 +20,15 @@ import { AsyncPipe, NgIf } from "@angular/common";
   styleUrls: ['./header.component.scss'],
   standalone: true,
   imports: [
-    IonicModule,
     AsyncPipe,
-    NgIf
+    NgIf,
+    IonHeader,
+    IonToolbar,
+    IonButtons,
+    IonMenuButton,
+    IonTitle,
+    IonButton,
+    IonIcon
   ]
 })
 export class HeaderComponent {

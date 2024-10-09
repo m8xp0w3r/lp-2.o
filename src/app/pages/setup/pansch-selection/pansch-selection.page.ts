@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject, WritableSignal } from "@angular/core";
 import { HeaderComponent } from "@components";
-import { IonicModule, ModalController } from "@ionic/angular";
+import { ModalController } from "@ionic/angular";
 import { AsyncPipe, DatePipe, NgFor, NgIf } from "@angular/common";
 import { AuthService, LatschiPanschService, PlayerService } from "@services";
 import { Router } from "@angular/router";
@@ -12,6 +12,7 @@ import {
     PanschSelectionLegendComponent
 } from "@pages/setup/pansch-selection/pansch-selection-legend/pansch-selection-legend.component";
 import { PanschCountdownComponent } from "@pages/setup/pansch-selection/pansch-countdown/pansch-countdown.component";
+import { IonButton, IonContent, IonIcon, IonImg, IonItem, IonLabel, IonList, IonNote } from "@ionic/angular/standalone";
 
 
 @Component({
@@ -20,7 +21,7 @@ import { PanschCountdownComponent } from "@pages/setup/pansch-selection/pansch-c
   styleUrls: ['./pansch-selection.page.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [HeaderComponent, IonicModule, NgIf, NgFor, AsyncPipe, DatePipe, PanschCountdownComponent]
+  imports: [HeaderComponent, NgIf, NgFor, AsyncPipe, DatePipe, PanschCountdownComponent, IonContent, IonButton, IonIcon, IonList, IonItem, IonLabel, IonNote, IonImg]
 })
 export class PanschSelectionPage {
   public devMode = environment.localDevMode;

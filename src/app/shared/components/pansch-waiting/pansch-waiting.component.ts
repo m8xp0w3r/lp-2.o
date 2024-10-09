@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { IonicModule } from "@ionic/angular";
 import { CommonModule } from "@angular/common";
+import { IonProgressBar } from "@ionic/angular/standalone";
 
 @Component({
   selector: 'lp-pansch-waiting',
   templateUrl: './pansch-waiting.component.html',
   standalone: true,
-  imports: [CommonModule, IonicModule],
+  imports: [CommonModule, IonProgressBar],
   styleUrls: ['./pansch-waiting.component.scss'],
 })
 export class PanschWaitingComponent {
