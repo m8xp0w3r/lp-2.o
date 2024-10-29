@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Latschi Pansch</string>
+    <string name="title_activity_main">Latschi Pansch</string>
+    <string name="package_name">de.m8xp0w3r.latschipansch</string>
+    <string name="custom_url_scheme">de.m8xp0w3r.latschipansch</string>
+</resources>
