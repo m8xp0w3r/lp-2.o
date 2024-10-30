@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject, WritableSignal } from "@angular/core";
 import { HeaderComponent } from "@components";
-import { ModalController } from "@ionic/angular";
+import { ModalController } from "@ionic/angular/standalone";
 import { AsyncPipe, DatePipe, NgFor, NgIf } from "@angular/common";
 import { AuthService, LatschiPanschService, PlayerService } from "@services";
 import { Router } from "@angular/router";
@@ -9,7 +9,7 @@ import { firstValueFrom, Observable } from "rxjs";
 import { User } from "@angular/fire/auth";
 import { environment } from "@environments/environment";
 import {
-    PanschSelectionLegendComponent
+  PanschSelectionLegendComponent
 } from "@pages/setup/pansch-selection/pansch-selection-legend/pansch-selection-legend.component";
 import { PanschCountdownComponent } from "@pages/setup/pansch-selection/pansch-countdown/pansch-countdown.component";
 import { IonButton, IonContent, IonIcon, IonImg, IonItem, IonLabel, IonList, IonNote } from "@ionic/angular/standalone";
@@ -21,7 +21,10 @@ import { IonButton, IonContent, IonIcon, IonImg, IonItem, IonLabel, IonList, Ion
   styleUrls: ['./pansch-selection.page.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [HeaderComponent, NgIf, NgFor, AsyncPipe, DatePipe, PanschCountdownComponent, IonContent, IonButton, IonIcon, IonList, IonItem, IonLabel, IonNote, IonImg]
+  imports: [
+    HeaderComponent,
+    NgIf, NgFor,
+    AsyncPipe, DatePipe, PanschCountdownComponent, IonContent, IonButton, IonIcon, IonList, IonItem, IonLabel, IonNote, IonImg]
 })
 export class PanschSelectionPage {
   public devMode = environment.localDevMode;
@@ -55,4 +58,5 @@ export class PanschSelectionPage {
     });
     void modal.present();
   }
+
 }

@@ -2,8 +2,8 @@ ion-menu ion-content {
   --background: var(--ion-item-background, var(--ion-background-color, #fff));
 }
 
-ion-menu {
-  margin-top: env(safe-area-inset-top);
+.pansch-menu {
+  margin-top: 2.5rem !important;
   margin-bottom: env(safe-area-inset-bottom);
 }
 
