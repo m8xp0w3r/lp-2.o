@@ -16,7 +16,7 @@
             <ion-label>
 
                 <h1>Vol. {{ latschiPansch.edition }}</h1>
-                <p>{{ latschiPansch.createdAt.toMillis() | date: "dd.MM.YYYY" }}</p>
+                <p>{{ latschiPansch.createdAt.toMillis() | date: "dd.MM.yyyy" }}</p>
             </ion-label>
             <div class="metadata-end-wrapper" slot="end">
                 <ion-note *ngIf="currentUser$ | async"

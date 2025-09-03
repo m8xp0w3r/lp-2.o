@@ -1,6 +1,18 @@
 <div>
-    <span *ngIf="remainingDays() !== undefined">{{ remainingDays() }} Tage</span>
-    <span *ngIf="remainingHours() !== undefined">{{ remainingHours() }} Stunden</span>
-    <span *ngIf="remainingMinutes() !== undefined">{{ remainingMinutes() }} Minuten</span>
-    <span *ngIf="remainingSeconds() !== undefined">{{ remainingSeconds() }} Sekunden</span>
+    @if (remainingDays(); as days) {
+        <span>{{ days }} Tage</span>
+
+    }
+    @if (remainingHours(); as hours) {
+        <span>{{ hours }} Stunden</span>
+
+    }
+    @if (remainingMinutes(); as minutes) {
+        <span>{{ minutes }} Minuten</span>
+
+    }
+    @if (remainingSeconds(); as seconds) {
+        <span>{{ seconds }} Sekunden</span>
+
+    }
 </div>

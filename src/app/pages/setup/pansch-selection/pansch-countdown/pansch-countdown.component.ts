@@ -1,12 +1,10 @@
 import { Component, OnDestroy, OnInit, signal, WritableSignal } from '@angular/core';
 import { interval, Subject, takeUntil } from "rxjs";
-import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'lp-pansch-countdown',
   templateUrl: './pansch-countdown.component.html',
   styleUrls: ['./pansch-countdown.component.scss'],
-  imports: [NgIf],
 })
 export class PanschCountdownComponent implements OnInit, OnDestroy {
   public remainingDays: WritableSignal<number | undefined> = signal(undefined);
