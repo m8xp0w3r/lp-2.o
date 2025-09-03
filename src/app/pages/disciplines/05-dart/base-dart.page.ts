@@ -8,9 +8,9 @@ import { DartGame, DartPlayer, LatschiPansch } from "@interfaces";
 import { firstValueFrom } from "rxjs";
 
 @Component({
-    template: ``,
-    selector: "lp-base-dart",
-    standalone: false
+  template: ``,
+  selector: "lp-base-dart",
+  standalone: false,
 })
 export abstract class BaseDartPage {
   public testMode = environment.testMode;
@@ -42,7 +42,7 @@ export abstract class BaseDartPage {
           role: 'cancel',
           cssClass: 'alert-button-cancel',
           handler: async () => {
-          }
+          },
         },
           {
             text: 'OK',
@@ -54,7 +54,7 @@ export abstract class BaseDartPage {
                 this.gameService.updateGame<DartGame>(dartGame);
               }
             },
-          }]
+          }],
       });
       await alert.present();
       const inputField: HTMLElement = document.querySelector("#scoreInput") as HTMLElement;
@@ -64,7 +64,7 @@ export abstract class BaseDartPage {
     } else {
       const warnAlert = await this.alertController.create({
         header: "Berechnung abgeschlossen. Keine weiteren Änderungen möglich!",
-        buttons: ['OK']
+        buttons: ['OK'],
       });
       await warnAlert.present();
     }
@@ -90,8 +90,8 @@ export abstract class BaseDartPage {
               selectedGame.winner = dartPlayer;
               selectedGame.calculationFinished = true;
               this.gameService.updateGame<DartGame>(selectedGame);
-            }
-          }
+            },
+          },
         ],
       });
       await alert.present();

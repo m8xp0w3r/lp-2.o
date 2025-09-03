@@ -6,10 +6,8 @@ import { Game, LatschiPansch, Player } from "@interfaces";
 import { DisciplineIconName } from "@enums";
 import { CollectionUtil } from "@util/collection.util";
 
-
-
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class BilliardService {
   private latschiPanschService: LatschiPanschService = inject(LatschiPanschService);
@@ -22,10 +20,10 @@ export class BilliardService {
     map(games => games.sort((a, b) => a.gameNumber - b.gameNumber)));
 
   public disableSave$: Observable<boolean> = combineLatest([this.billiardGames$, this.latschiPanschService.currentPansch$])
-    .pipe(
-      map(([games, currentPansch]) => games
-        .filter(game => !game.team1.score || !game.team2.score).length > 0 || (currentPansch?.billiardCalculationStarted ?? false))
-    );
+  .pipe(
+    map(([games, currentPansch]) => games
+    .filter(game => !game.team1.score || !game.team2.score).length > 0 || (currentPansch?.billiardCalculationStarted ?? false)),
+  );
 
   constructor() {
     void this.getGames();

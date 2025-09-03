@@ -7,9 +7,8 @@ import { CollectionUtil } from "@util/collection.util";
 import { PanschKey } from "@types";
 import { DisciplineIconName } from "@enums";
 
-
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class KickerService {
   private latschiPanschService: LatschiPanschService = inject(LatschiPanschService);
@@ -29,26 +28,25 @@ export class KickerService {
   public kickerFinalGame$: Observable<Game[]> = this.kickerFinalGameSubject.asObservable();
 
   public disableVfSave$: Observable<boolean> = combineLatest([this.kickerVfGames$, this.latschiPanschService.currentPansch$])
-    .pipe(
-      map(([games, currentPansch]) => games
-        .filter(game => !game.team1.score === undefined || !game.team2.score === undefined || game.team1.score === game.team2.score).length > 0 || (currentPansch?.kickerVfCalculationStarted ?? false))
-    );
+  .pipe(
+    map(([games, currentPansch]) => games
+    .filter(game => !game.team1.score === undefined || !game.team2.score === undefined || game.team1.score === game.team2.score).length > 0 || (currentPansch?.kickerVfCalculationStarted ?? false)),
+  );
   public disableHfSave$: Observable<boolean> = combineLatest([this.kickerHfGames$, this.latschiPanschService.currentPansch$])
-    .pipe(
-      map(([games, currentPansch]) => games
-        .filter(game => !game.team1.score === undefined || !game.team2.score === undefined || game.team1.score === game.team2.score).length > 0 || (currentPansch?.kickerHfCalculationStarted ?? false))
-    );
+  .pipe(
+    map(([games, currentPansch]) => games
+    .filter(game => !game.team1.score === undefined || !game.team2.score === undefined || game.team1.score === game.team2.score).length > 0 || (currentPansch?.kickerHfCalculationStarted ?? false)),
+  );
   public disableFinalSave$: Observable<boolean> = combineLatest([this.kickerFinalGames$, this.latschiPanschService.currentPansch$])
-    .pipe(
-      map(([games, currentPansch]) => games
-        .filter(game => !game.team1.score === undefined || !game.team2.score === undefined || game.team1.score === game.team2.score).length > 0 || (currentPansch?.kickerFinalCalculationStarted ?? false))
-    );
+  .pipe(
+    map(([games, currentPansch]) => games
+    .filter(game => !game.team1.score === undefined || !game.team2.score === undefined || game.team1.score === game.team2.score).length > 0 || (currentPansch?.kickerFinalCalculationStarted ?? false)),
+  );
   public disableSave$: Observable<boolean> = combineLatest([this.kickerFinalGame$, this.latschiPanschService.currentPansch$])
-    .pipe(
-      map(([games, currentPansch]) => games
-        .filter(game => !game.team1.score === undefined || !game.team2.score === undefined || game.team1.score === game.team2.score).length > 0 || (currentPansch?.kickerCalculationStarted ?? false))
-    );
-
+  .pipe(
+    map(([games, currentPansch]) => games
+    .filter(game => !game.team1.score === undefined || !game.team2.score === undefined || game.team1.score === game.team2.score).length > 0 || (currentPansch?.kickerCalculationStarted ?? false)),
+  );
 
   constructor() {
     void this.getGames();
@@ -96,7 +94,7 @@ export class KickerService {
           finished: false,
           gameNumber: i + 1,
           team1: team1,
-          team2: team2
+          team2: team2,
         };
         await this.firestoreService.addItem<Game>(game.collectionName, game);
       }
@@ -115,13 +113,13 @@ export class KickerService {
         team1: {
           player1: winningTeam.player1,
           collectionName: kickerSubCollectionName,
-          score: 0
+          score: 0,
         },
         team2: {
           player1: winningTeam.player2!,
           collectionName: kickerSubCollectionName,
-          score: 0
-        }
+          score: 0,
+        },
       };
       await this.firestoreService.addItem<Game>(game.collectionName, game);
     }

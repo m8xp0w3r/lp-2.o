@@ -10,38 +10,38 @@ export const routes: Routes = [
       {
         path: 'dart-preliminary',
         loadComponent: () => import('./dart-preliminary/dart-preliminary.page').then(m => m.DartPreliminaryPage),
-        canActivate: [panschSelectedGuard]
+        canActivate: [panschSelectedGuard],
       },
       {
         path: 'dart-final',
         loadComponent: () => import('./dart-final/dart-final.page').then(m => m.DartFinalPage),
-        canActivate: [panschSelectedGuard]
+        canActivate: [panschSelectedGuard],
       },
       {
         path: 'dart-result',
         loadComponent: () => import('./dart-result/dart-result.page').then(m => m.DartResultPage),
-        canActivate: [panschSelectedGuard]
-      }
-    ]
+        canActivate: [panschSelectedGuard],
+      },
+    ],
   },
   {
     path: '',
     redirectTo: 'tabs/dart-preliminary',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: 'dart-preliminary',
     redirectTo: 'tabs/dart-preliminary',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: 'dart-final',
     redirectTo: 'tabs/dart-final',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: 'dart-result',
     redirectTo: 'tabs/dart-result',
-    pathMatch: 'full'
-  }
-]
+    pathMatch: 'full',
+  },
+];

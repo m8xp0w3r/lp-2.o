@@ -6,7 +6,7 @@ import { firstValueFrom, Observable } from "rxjs";
 import { DisciplineIconName } from "@enums";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class BowlingService {
   private latschiPanschService: LatschiPanschService = inject(LatschiPanschService);

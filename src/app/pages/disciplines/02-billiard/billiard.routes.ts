@@ -10,28 +10,28 @@ export const routes: Routes = [
       {
         path: 'billiard-input',
         loadComponent: () => import('./billiard-input/billiard-input.page').then(m => m.BilliardInputPage),
-        canActivate: [panschSelectedGuard]
+        canActivate: [panschSelectedGuard],
       },
       {
         path: 'billiard-results',
         loadComponent: () => import('./billiard-result/billiard-result.page').then(m => m.BilliardResultPage),
-        canActivate: [panschSelectedGuard]
-      }
-    ]
+        canActivate: [panschSelectedGuard],
+      },
+    ],
   },
   {
     path: '',
     redirectTo: 'tabs/billiard-input',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: 'billiard-results',
     redirectTo: 'tabs/billiard-results',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: 'billiard-input',
     redirectTo: 'tabs/billiard-input',
-    pathMatch: 'full'
-  }
+    pathMatch: 'full',
+  },
 ];

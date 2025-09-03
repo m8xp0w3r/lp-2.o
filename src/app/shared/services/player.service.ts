@@ -5,9 +5,8 @@ import { CollectionUtil } from "@util/collection.util";
 import { CollectionService } from "./collection.service";
 import { BasePlayer, LatschiPansch, Player, PossiblePlayer } from "@interfaces";
 
-
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PlayerService {
   public possiblePlayers$: WritableSignal<PossiblePlayer[]> = signal([]);
@@ -18,11 +17,11 @@ export class PlayerService {
   constructor() {
     this.collectionService.possiblePlayersCollectionName$.subscribe(possiblePlayersCollectionName => {
       this.firestoreService.getCollection<PossiblePlayer>(possiblePlayersCollectionName)
-        .pipe(map(possiblePlayers => possiblePlayers.sort((a: PossiblePlayer, b: PossiblePlayer) => {
-          if (a.selected && b.selected) return a.name > b.name ? 1 : -1;
-          return a.selected ? -1 : 1;
-        })))
-        .subscribe(possiblePlayers => this.possiblePlayers$.set(possiblePlayers));
+      .pipe(map(possiblePlayers => possiblePlayers.sort((a: PossiblePlayer, b: PossiblePlayer) => {
+        if (a.selected && b.selected) return a.name > b.name ? 1 : -1;
+        return a.selected ? -1 : 1;
+      })))
+      .subscribe(possiblePlayers => this.possiblePlayers$.set(possiblePlayers));
     });
   }
 

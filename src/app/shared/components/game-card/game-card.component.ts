@@ -9,18 +9,18 @@ import { TeamComponent } from "./team/team.component";
 import { NgIf } from "@angular/common";
 
 @Component({
-    selector: 'lp-game-card',
-    templateUrl: './game-card.component.html',
-    styleUrls: ['./game-card.component.scss'],
-    imports: [
-        IonCard,
-        IonCardHeader,
-        IonGrid,
-        IonRow,
-        TeamComponent,
-        IonCol,
-        NgIf
-    ]
+  selector: 'lp-game-card',
+  templateUrl: './game-card.component.html',
+  styleUrls: ['./game-card.component.scss'],
+  imports: [
+    IonCard,
+    IonCardHeader,
+    IonGrid,
+    IonRow,
+    TeamComponent,
+    IonCol,
+    NgIf,
+  ],
 })
 export class GameCardComponent {
   @Input() game: Game | undefined;
@@ -53,7 +53,7 @@ export class GameCardComponent {
           role: 'cancel',
           cssClass: 'alert-button-cancel',
           handler: async () => {
-          }
+          },
         },
           {
             text: 'OK',
@@ -67,7 +67,7 @@ export class GameCardComponent {
                 }
               }
             },
-          }]
+          }],
       });
       await alert.present();
       const inputField: HTMLElement = document.querySelector("#scoreInput") as HTMLElement;
@@ -77,7 +77,7 @@ export class GameCardComponent {
     } else {
       const warnAlert = await this.alertController.create({
         header: "Berechnung abgeschlossen. Keine weiteren Änderungen möglich!",
-        buttons: ['OK']
+        buttons: ['OK'],
       });
       await warnAlert.present();
     }

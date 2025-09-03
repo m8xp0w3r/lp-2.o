@@ -19,7 +19,7 @@ import {
   personAddOutline,
   saveOutline,
   settingsOutline,
-  statsChartOutline
+  statsChartOutline,
 } from "ionicons/icons";
 import { addIcons } from "ionicons";
 
@@ -45,6 +45,6 @@ export function addIonicIcons(): void {
     statsChartOutline,
     saveOutline,
     bugOutline,
-    personAddOutline
+    personAddOutline,
   });
 }

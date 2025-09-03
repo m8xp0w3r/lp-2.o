@@ -2,8 +2,8 @@ import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { Team } from "@interfaces";
 
 @Component({
-    template: "",
-    standalone: false
+  template: "",
+  standalone: false,
 })
 export abstract class BaseTeamItemComponent {
   @Input() team: Team | undefined;

@@ -4,31 +4,23 @@ import { AuthService, LatschiPanschService } from "@services";
 import { Observable } from "rxjs";
 import { User } from "@angular/fire/auth";
 import { AsyncPipe, NgIf } from "@angular/common";
-import {
-  IonButton,
-  IonButtons,
-  IonHeader,
-  IonIcon,
-  IonMenuButton,
-  IonTitle,
-  IonToolbar
-} from "@ionic/angular/standalone";
+import { IonButton, IonButtons, IonHeader, IonIcon, IonMenuButton, IonTitle, IonToolbar } from "@ionic/angular/standalone";
 
 @Component({
-    selector: 'lp-header',
-    templateUrl: './header.component.html',
-    styleUrls: ['./header.component.scss'],
-    imports: [
-        AsyncPipe,
-        NgIf,
-        IonHeader,
-        IonToolbar,
-        IonButtons,
-        IonMenuButton,
-        IonTitle,
-        IonButton,
-        IonIcon
-    ]
+  selector: 'lp-header',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.scss'],
+  imports: [
+    AsyncPipe,
+    NgIf,
+    IonHeader,
+    IonToolbar,
+    IonButtons,
+    IonMenuButton,
+    IonTitle,
+    IonButton,
+    IonIcon,
+  ],
 })
 export class HeaderComponent {
   @Input() title = "";
@@ -50,15 +42,15 @@ export class HeaderComponent {
         placeholder: 'Volume',
         value: "",
         attributes: {
-          autofocus: true
-        }
+          autofocus: true,
+        },
       }],
       buttons: [{
         text: 'Abbrechen',
         role: 'cancel',
         cssClass: 'alert-button-cancel',
         handler: async () => {
-        }
+        },
       },
         {
           text: 'OK',
@@ -70,7 +62,7 @@ export class HeaderComponent {
               this.latschiPanschService.createPansch(edition);
             }
           },
-        }]
+        }],
     });
     await alert.present();
     const inputField: HTMLElement = document.querySelector("#addPansch") as HTMLElement;

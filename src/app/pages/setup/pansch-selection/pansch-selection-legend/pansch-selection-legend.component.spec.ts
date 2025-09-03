@@ -9,7 +9,7 @@ describe('PanschSelectionLegendComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [IonicModule.forRoot(), PanschSelectionLegendComponent]
+      imports: [IonicModule.forRoot(), PanschSelectionLegendComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(PanschSelectionLegendComponent);

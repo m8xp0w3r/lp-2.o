@@ -3,7 +3,7 @@ import { DartPlayer } from "@interfaces";
 
 @Pipe({
   name: 'dartPlayer',
-  standalone: true
+  standalone: true,
 })
 export class DartPlayerPipe implements PipeTransform {
 

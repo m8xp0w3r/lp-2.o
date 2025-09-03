@@ -16,35 +16,34 @@ import {
   IonListHeader,
   IonModal,
   IonNote,
-  IonToggle
+  IonToggle,
 } from "@ionic/angular/standalone";
 import { Timestamp } from "@angular/fire/firestore";
 
 @Component({
-    selector: 'lp-pansch-administration',
-    templateUrl: './pansch-administration.page.html',
-    styleUrls: ['./pansch-administration.page.scss'],
-    imports: [
-        HeaderComponent,
-        NgIf,
-        AsyncPipe,
-        DatePipe,
-        IonContent,
-        IonList,
-        IonListHeader,
-        IonLabel,
-        IonItem,
-        IonCheckbox,
-        IonToggle,
-        IonNote,
-        IonModal,
-        IonDatetime,
-    ]
+  selector: 'lp-pansch-administration',
+  templateUrl: './pansch-administration.page.html',
+  styleUrls: ['./pansch-administration.page.scss'],
+  imports: [
+    HeaderComponent,
+    NgIf,
+    AsyncPipe,
+    DatePipe,
+    IonContent,
+    IonList,
+    IonListHeader,
+    IonLabel,
+    IonItem,
+    IonCheckbox,
+    IonToggle,
+    IonNote,
+    IonModal,
+    IonDatetime,
+  ],
 })
 export class PanschAdministrationPage {
   private latschiPanschService: LatschiPanschService = inject(LatschiPanschService);
   public currentPansch$: Observable<LatschiPansch | undefined> = this.latschiPanschService.currentPansch$;
-
 
   public releasePansch(event: Event): void {
     const releasePanschEvent = event as ToggleCustomEvent;

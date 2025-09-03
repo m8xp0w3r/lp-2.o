@@ -18,33 +18,33 @@ import {
   IonListHeader,
   IonNote,
   IonSelect,
-  IonSelectOption
+  IonSelectOption,
 } from "@ionic/angular/standalone";
 
 @Component({
-    selector: 'lp-dart-preliminary',
-    templateUrl: './dart-preliminary.page.html',
-    styleUrls: ['./dart-preliminary.page.scss'],
-    imports: [
-        HeaderComponent,
-        NgIf,
-        FormsModule,
-        NgFor,
-        PanschWaitingComponent,
-        AsyncPipe,
-        DartPlayerPipe,
-        IonContent,
-        IonList,
-        IonItem,
-        IonSelect,
-        IonSelectOption,
-        IonLabel,
-        IonNote,
-        IonListHeader,
-        IonFooter,
-        IonButton,
-        IonIcon
-    ]
+  selector: 'lp-dart-preliminary',
+  templateUrl: './dart-preliminary.page.html',
+  styleUrls: ['./dart-preliminary.page.scss'],
+  imports: [
+    HeaderComponent,
+    NgIf,
+    FormsModule,
+    NgFor,
+    PanschWaitingComponent,
+    AsyncPipe,
+    DartPlayerPipe,
+    IonContent,
+    IonList,
+    IonItem,
+    IonSelect,
+    IonSelectOption,
+    IonLabel,
+    IonNote,
+    IonListHeader,
+    IonFooter,
+    IonButton,
+    IonIcon,
+  ],
 })
 export class DartPreliminaryPage extends BaseDartPage implements OnInit, OnDestroy {
   public preliminaryGames$: Observable<DartGame[]> = this.dartService.preliminaryGames$;

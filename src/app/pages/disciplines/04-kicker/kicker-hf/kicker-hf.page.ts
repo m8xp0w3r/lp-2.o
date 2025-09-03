@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { BaseKickerPage } from "@pages/disciplines/04-kicker/base-kicker.page";
 import { firstValueFrom, Observable } from "rxjs";
 
-
 import {
   IonButton,
   IonButtons,
@@ -12,7 +11,7 @@ import {
   IonList,
   IonMenuButton,
   IonTitle,
-  IonToolbar
+  IonToolbar,
 } from "@ionic/angular/standalone";
 import { AsyncPipe, NgFor, NgIf } from "@angular/common";
 import { GameCardComponent, PanschWaitingComponent } from "@components";
@@ -20,25 +19,25 @@ import { Game } from "@interfaces";
 import { PanschKey } from "@types";
 
 @Component({
-    selector: 'lp-kicker-hf',
-    templateUrl: './kicker-hf.page.html',
-    styleUrls: ['./kicker-hf.page.scss'],
-    imports: [
-        NgIf,
-        IonHeader,
-        IonToolbar,
-        IonButtons,
-        IonMenuButton,
-        IonTitle,
-        IonButton,
-        IonIcon,
-        IonContent,
-        IonList,
-        NgFor,
-        GameCardComponent,
-        PanschWaitingComponent,
-        AsyncPipe,
-    ]
+  selector: 'lp-kicker-hf',
+  templateUrl: './kicker-hf.page.html',
+  styleUrls: ['./kicker-hf.page.scss'],
+  imports: [
+    NgIf,
+    IonHeader,
+    IonToolbar,
+    IonButtons,
+    IonMenuButton,
+    IonTitle,
+    IonButton,
+    IonIcon,
+    IonContent,
+    IonList,
+    NgFor,
+    GameCardComponent,
+    PanschWaitingComponent,
+    AsyncPipe,
+  ],
 })
 export class KickerHfPage extends BaseKickerPage {
   public kickerHfGames$: Observable<Game[]> = this.kickerService.kickerHfGames$;

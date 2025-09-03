@@ -5,11 +5,15 @@ describe('AirHockeyHfPage', () => {
   let component: AirHockeyHfPage;
   let fixture: ComponentFixture<AirHockeyHfPage>;
 
-  beforeEach(waitForAsync () => {
+  beforeEach(waitForAsync()
+=>
+  {
     fixture = TestBed.createComponent(AirHockeyHfPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  });
+  }
+)
+  ;
 
   it('should create', () => {
     expect(component).toBeTruthy();

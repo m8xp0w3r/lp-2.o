@@ -5,9 +5,8 @@ import { BehaviorSubject, firstValueFrom, Observable } from "rxjs";
 import { BonusSortingOrder, DisciplineIconName } from "@enums";
 import { LatschiPansch, Player } from "@interfaces";
 
-
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class BonusService {
   private latschiPanschService: LatschiPanschService = inject(LatschiPanschService);

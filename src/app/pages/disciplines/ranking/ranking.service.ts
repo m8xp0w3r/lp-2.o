@@ -3,9 +3,8 @@ import { AuthService, LatschiPanschService } from "@services";
 import { BehaviorSubject, combineLatest, map, Observable } from "rxjs";
 import { Player } from "@interfaces";
 
-
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class RankingService {
   private latschiPanschService: LatschiPanschService = inject(LatschiPanschService);
@@ -14,23 +13,23 @@ export class RankingService {
   public coinFlipNeeded$: Observable<boolean> = this.coinFlipNeededSubject$.asObservable();
   private currentUser$ = this.authService.currentUser$;
   public players$: Observable<Player[]> = combineLatest([this.latschiPanschService.players$, this.latschiPanschService.currentPansch$, this.currentUser$])
-    .pipe(
-      map(([players, currentPansch, currentUser]) => {
-        players.sort((a, b) => (a.finalRank ?? 0) - (b.finalRank ?? 0));
-        const coinFlipMap: Map<number, number> = new Map<number, number>();
-        players.forEach(player => {
-          if (player.finalRank && player.finalRank! < 4) {
-            coinFlipMap.set(player.finalRank, (coinFlipMap.get(player.finalRank) ?? 0) + 1);
-          }
-        });
-        this.coinFlipNeededSubject$.next(Array.from(coinFlipMap.values())
-          .map((count: number) => count > 1)
-          .reduce((previousValue, currentValue) => previousValue || currentValue, false));
-
-        if (!currentUser && currentPansch && !currentPansch.isReleased) {
-          return [];
+  .pipe(
+    map(([players, currentPansch, currentUser]) => {
+      players.sort((a, b) => (a.finalRank ?? 0) - (b.finalRank ?? 0));
+      const coinFlipMap: Map<number, number> = new Map<number, number>();
+      players.forEach(player => {
+        if (player.finalRank && player.finalRank! < 4) {
+          coinFlipMap.set(player.finalRank, (coinFlipMap.get(player.finalRank) ?? 0) + 1);
         }
-        return players;
-      })
-    );
+      });
+      this.coinFlipNeededSubject$.next(Array.from(coinFlipMap.values())
+      .map((count: number) => count > 1)
+      .reduce((previousValue, currentValue) => previousValue || currentValue, false));
+
+      if (!currentUser && currentPansch && !currentPansch.isReleased) {
+        return [];
+      }
+      return players;
+    }),
+  );
 }

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject, WritableSignal } from "@angular/core";
 import { HeaderComponent } from "@components";
-import { ModalController } from "@ionic/angular/standalone";
+import { IonButton, IonContent, IonIcon, IonImg, IonItem, IonLabel, IonList, IonNote, ModalController } from "@ionic/angular/standalone";
 import { AsyncPipe, DatePipe, NgFor, NgIf } from "@angular/common";
 import { AuthService, LatschiPanschService, PlayerService } from "@services";
 import { Router } from "@angular/router";
@@ -8,23 +8,19 @@ import { LatschiPansch } from "@interfaces";
 import { firstValueFrom, Observable } from "rxjs";
 import { User } from "@angular/fire/auth";
 import { environment } from "@environments/environment";
-import {
-  PanschSelectionLegendComponent
-} from "@pages/setup/pansch-selection/pansch-selection-legend/pansch-selection-legend.component";
+import { PanschSelectionLegendComponent } from "@pages/setup/pansch-selection/pansch-selection-legend/pansch-selection-legend.component";
 import { PanschCountdownComponent } from "@pages/setup/pansch-selection/pansch-countdown/pansch-countdown.component";
-import { IonButton, IonContent, IonIcon, IonImg, IonItem, IonLabel, IonList, IonNote } from "@ionic/angular/standalone";
-
 
 @Component({
-    selector: 'lp-pansch-selection',
-    templateUrl: './pansch-selection.page.html',
-    styleUrls: ['./pansch-selection.page.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [
-        HeaderComponent,
-        NgIf, NgFor,
-        AsyncPipe, DatePipe, PanschCountdownComponent, IonContent, IonButton, IonIcon, IonList, IonItem, IonLabel, IonNote, IonImg
-    ]
+  selector: 'lp-pansch-selection',
+  templateUrl: './pansch-selection.page.html',
+  styleUrls: ['./pansch-selection.page.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    HeaderComponent,
+    NgIf, NgFor,
+    AsyncPipe, DatePipe, PanschCountdownComponent, IonContent, IonButton, IonIcon, IonList, IonItem, IonLabel, IonNote, IonImg,
+  ],
 })
 export class PanschSelectionPage {
   public devMode = environment.localDevMode;

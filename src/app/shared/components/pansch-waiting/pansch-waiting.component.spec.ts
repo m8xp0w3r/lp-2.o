@@ -9,7 +9,7 @@ describe('PanschWaitingComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [IonicModule.forRoot(), PanschWaitingComponent]
+      imports: [IonicModule.forRoot(), PanschWaitingComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(PanschWaitingComponent);

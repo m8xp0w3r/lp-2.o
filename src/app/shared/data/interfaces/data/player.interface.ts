@@ -6,7 +6,6 @@ import { Bowling } from "./bowling.interface";
 import { Dart } from "./dart.interface";
 import { Bonus } from "./bonus.interface";
 
-
 export interface Player extends BasePlayer, AirHockey, Kicker, Billiard, Bowling, Dart, Bonus {
   wins: string[];
   totalPoints?: number;

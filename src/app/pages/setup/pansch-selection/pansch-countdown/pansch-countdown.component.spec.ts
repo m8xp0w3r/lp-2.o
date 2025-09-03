@@ -9,7 +9,7 @@ describe('PanschCountdownComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [IonicModule.forRoot(), PanschCountdownComponent]
+      imports: [IonicModule.forRoot(), PanschCountdownComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(PanschCountdownComponent);

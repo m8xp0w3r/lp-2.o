@@ -9,7 +9,7 @@ describe('AddPlayerInputComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [IonicModule.forRoot(), AddPlayerInputComponent]
+      imports: [IonicModule.forRoot(), AddPlayerInputComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(AddPlayerInputComponent);

@@ -13,22 +13,22 @@ export const routes: Routes = [
       {
         path: 'bowling-results',
         loadComponent: () => import('./bowling-results/bowling-results.page').then(m => m.BowlingResultsPage),
-      }
-    ]
+      },
+    ],
   },
   {
     path: '',
     redirectTo: 'tabs/bowling-input',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: 'bowling-results',
     redirectTo: 'tabs/bowling-results',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: 'bowling-input',
     redirectTo: 'tabs/bowling-input',
-    pathMatch: 'full'
-  }
+    pathMatch: 'full',
+  },
 ];

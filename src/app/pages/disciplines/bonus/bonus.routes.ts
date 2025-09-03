@@ -10,28 +10,28 @@ export const routes: Routes = [
       {
         path: 'bonus-input',
         loadComponent: () => import('./bonus-input/bonus-input.page').then(m => m.BonusInputPage),
-        canActivate: [panschSelectedGuard]
+        canActivate: [panschSelectedGuard],
       },
       {
         path: 'bonus-results',
         loadComponent: () => import('./bonus-results/bonus-results.page').then(m => m.BonusResultsPage),
-        canActivate: [panschSelectedGuard]
-      }
-    ]
+        canActivate: [panschSelectedGuard],
+      },
+    ],
   },
   {
     path: '',
     redirectTo: 'tabs/bonus-input',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: 'bonus-results',
     redirectTo: 'tabs/bonus-results',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: 'bonus-input',
     redirectTo: 'tabs/bonus-input',
-    pathMatch: 'full'
-  }
-]
+    pathMatch: 'full',
+  },
+];

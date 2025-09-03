@@ -7,35 +7,36 @@ import { Game } from "@interfaces";
 import { PanschKey } from "@types";
 import {
   IonButton,
-  IonButtons, IonContent,
+  IonButtons,
+  IonContent,
   IonHeader,
-  IonIcon, IonList,
+  IonIcon,
+  IonList,
   IonMenuButton,
   IonTitle,
-  IonToolbar
+  IonToolbar,
 } from "@ionic/angular/standalone";
 
-
 @Component({
-    selector: 'lp-air-hockey-hf',
-    templateUrl: './air-hockey-hf.page.html',
-    styleUrls: ['./air-hockey-hf.page.scss'],
-    imports: [
-        NgIf,
-        NgFor,
-        GameCardComponent,
-        PanschWaitingComponent,
-        AsyncPipe,
-        IonHeader,
-        IonToolbar,
-        IonButtons,
-        IonMenuButton,
-        IonTitle,
-        IonButton,
-        IonIcon,
-        IonContent,
-        IonList,
-    ]
+  selector: 'lp-air-hockey-hf',
+  templateUrl: './air-hockey-hf.page.html',
+  styleUrls: ['./air-hockey-hf.page.scss'],
+  imports: [
+    NgIf,
+    NgFor,
+    GameCardComponent,
+    PanschWaitingComponent,
+    AsyncPipe,
+    IonHeader,
+    IonToolbar,
+    IonButtons,
+    IonMenuButton,
+    IonTitle,
+    IonButton,
+    IonIcon,
+    IonContent,
+    IonList,
+  ],
 })
 export class AirHockeyHfPage extends BaseAirHockeyPage {
   public airHockeyHfGames$: Observable<Game[]> = this.airHockeyService.airHockeyHfGames$;

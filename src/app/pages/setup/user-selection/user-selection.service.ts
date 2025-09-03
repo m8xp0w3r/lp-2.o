@@ -4,7 +4,7 @@ import { CollectionService, FirestoreService } from "@services";
 import { BasePlayer, PossiblePlayer } from "@interfaces";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserSelectionService {
   private firestoreService: FirestoreService = inject(FirestoreService);

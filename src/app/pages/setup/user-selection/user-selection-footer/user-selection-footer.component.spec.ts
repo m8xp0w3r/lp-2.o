@@ -9,7 +9,7 @@ describe('UserSelectionFooterComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [IonicModule.forRoot(), UserSelectionFooterComponent]
+      imports: [IonicModule.forRoot(), UserSelectionFooterComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(UserSelectionFooterComponent);

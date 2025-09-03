@@ -8,21 +8,21 @@ import { Player } from "@interfaces";
 import { IonContent, IonIcon, IonItem, IonLabel, IonList, IonNote } from "@ionic/angular/standalone";
 
 @Component({
-    selector: 'lp-ranking',
-    templateUrl: './ranking.page.html',
-    styleUrls: ['./ranking.page.scss'],
-    imports: [
-        HeaderComponent,
-        NgIf,
-        NgFor,
-        AsyncPipe,
-        IonContent,
-        IonLabel,
-        IonItem,
-        IonList,
-        IonIcon,
-        IonNote
-    ]
+  selector: 'lp-ranking',
+  templateUrl: './ranking.page.html',
+  styleUrls: ['./ranking.page.scss'],
+  imports: [
+    HeaderComponent,
+    NgIf,
+    NgFor,
+    AsyncPipe,
+    IonContent,
+    IonLabel,
+    IonItem,
+    IonList,
+    IonIcon,
+    IonNote,
+  ],
 })
 export class RankingPage {
   private rankingService: RankingService = inject(RankingService);

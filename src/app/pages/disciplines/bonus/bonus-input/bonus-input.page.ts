@@ -23,33 +23,33 @@ import {
   IonSelect,
   IonSelectOption,
   IonTitle,
-  IonToolbar
+  IonToolbar,
 } from "@ionic/angular/standalone";
 
 @Component({
-    selector: 'lp-bonus-input',
-    templateUrl: './bonus-input.page.html',
-    styleUrls: ['./bonus-input.page.scss'],
-    imports: [
-        NgIf,
-        FormsModule,
-        NgFor,
-        AsyncPipe,
-        IonHeader,
-        IonToolbar,
-        IonButtons,
-        IonMenuButton,
-        IonTitle,
-        IonButton,
-        IonIcon,
-        IonContent,
-        IonList,
-        IonItem,
-        IonSelect,
-        IonSelectOption,
-        IonLabel,
-        IonNote,
-    ]
+  selector: 'lp-bonus-input',
+  templateUrl: './bonus-input.page.html',
+  styleUrls: ['./bonus-input.page.scss'],
+  imports: [
+    NgIf,
+    FormsModule,
+    NgFor,
+    AsyncPipe,
+    IonHeader,
+    IonToolbar,
+    IonButtons,
+    IonMenuButton,
+    IonTitle,
+    IonButton,
+    IonIcon,
+    IonContent,
+    IonList,
+    IonItem,
+    IonSelect,
+    IonSelectOption,
+    IonLabel,
+    IonNote,
+  ],
 })
 export class BonusInputPage implements OnInit {
   public readonly BonusSortingOrder = BonusSortingOrder;
@@ -60,26 +60,25 @@ export class BonusInputPage implements OnInit {
   private bonusService: BonusService = inject(BonusService);
   public sortingOrder$: Observable<BonusSortingOrder | undefined> = this.bonusService.selectedSortingOrder$;
   public players$: Observable<Player[]> = combineLatest([this.latschiPanschService.players$, this.sortingOrder$])
-    .pipe(
-      map(([players, sortingOrder]) => {
-        if (sortingOrder === undefined) return players;
-        players.sort(sortingOrder === BonusSortingOrder.descending ? this.bonusService.sortAscending : this.bonusService.sortDescending);
-        return players;
-      })
-    );
+  .pipe(
+    map(([players, sortingOrder]) => {
+      if (sortingOrder === undefined) return players;
+      players.sort(sortingOrder === BonusSortingOrder.descending ? this.bonusService.sortAscending : this.bonusService.sortDescending);
+      return players;
+    }),
+  );
   private alertController: AlertController = inject(AlertController);
   private authService: AuthService = inject(AuthService);
   public currentUser$ = this.authService.currentUser$;
   public disableSave$: Observable<boolean> = combineLatest([this.players$, this.currentPansch$, this.sortingOrder$])
-    .pipe(
-      map(([players, pansch, sortingOrder]) => players
-        .filter(player => player.bonusScore !== undefined).length < 16 || (pansch?.bonusCalculationStarted ?? false) || sortingOrder === undefined));
-
+  .pipe(
+    map(([players, pansch, sortingOrder]) => players
+    .filter(player => player.bonusScore !== undefined).length < 16 || (pansch?.bonusCalculationStarted ?? false) || sortingOrder === undefined));
 
   ngOnInit(): void {
     this.sortingOrder$
-      .pipe(take(1))
-      .subscribe(sortingOrder => this.selectedSortingOrder = sortingOrder);
+    .pipe(take(1))
+    .subscribe(sortingOrder => this.selectedSortingOrder = sortingOrder);
   }
 
   async handleChange(event: Event) {
@@ -106,7 +105,7 @@ export class BonusInputPage implements OnInit {
           role: 'cancel',
           cssClass: 'alert-button-cancel',
           handler: async () => {
-          }
+          },
         },
           {
             text: 'OK',
@@ -118,7 +117,7 @@ export class BonusInputPage implements OnInit {
                 this.bonusService.updatePlayer(player);
               }
             },
-          }]
+          }],
       });
       await alert.present();
       const inputField: HTMLElement = document.querySelector("#pinInput") as HTMLElement;
@@ -128,7 +127,7 @@ export class BonusInputPage implements OnInit {
     } else {
       const warnAlert = await this.alertController.create({
         header: "Bonusrunden-Berechnung abgeschlossen. Keine weiteren Änderungen möglich!",
-        buttons: ['OK']
+        buttons: ['OK'],
       });
       await warnAlert.present();
     }

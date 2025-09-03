@@ -29,8 +29,9 @@
                                 <ion-note slot="end">{{ dartPlayer.score }}</ion-note>
                             </ion-item>
                         </ion-list>
-                        <ion-list *ngIf="(dartPlayers | dartPlayer).length > 0 && (currentUser$ | async) && !selectedGame.calculationFinished"
-                                  class="winner-list">
+                        <ion-list
+                                *ngIf="(dartPlayers | dartPlayer).length > 0 && (currentUser$ | async) && !selectedGame.calculationFinished"
+                                class="winner-list">
                             <ion-list-header>Sieger auswählen</ion-list-header>
                             <ng-container *ngFor="let dartPlayer of dartPlayers | dartPlayer">
                                 <ion-item (click)="selectWinner(dartPlayer, selectedGame)">{{ dartPlayer.name }}

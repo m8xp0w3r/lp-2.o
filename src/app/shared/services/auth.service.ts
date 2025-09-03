@@ -1,16 +1,9 @@
 import { inject, Injectable, isDevMode } from "@angular/core";
-import {
-  Auth,
-  connectAuthEmulator,
-  onAuthStateChanged,
-  signInWithEmailAndPassword,
-  signOut,
-  User
-} from "@angular/fire/auth";
+import { Auth, connectAuthEmulator, onAuthStateChanged, signInWithEmailAndPassword, signOut, User } from "@angular/fire/auth";
 import { BehaviorSubject, Observable } from "rxjs";
 
 @Injectable({
-  providedIn: "root"
+  providedIn: "root",
 })
 export class AuthService {
   private firebaseAuth = inject(Auth);

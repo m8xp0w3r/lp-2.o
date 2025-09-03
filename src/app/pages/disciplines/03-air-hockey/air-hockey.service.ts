@@ -7,9 +7,8 @@ import { CollectionUtil } from "@util/collection.util";
 import { DisciplineIconName } from "@enums";
 import { PanschKey } from "@types";
 
-
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AirHockeyService {
   private latschiPanschService: LatschiPanschService = inject(LatschiPanschService);
@@ -31,25 +30,25 @@ export class AirHockeyService {
   public airHockeyFinalGames$: Observable<Game[]> = this.airHockeyFinalGameSubject.asObservable();
 
   public disableAfSave$: Observable<boolean> = combineLatest([this.airHockeyAfGames$, this.latschiPanschService.currentPansch$])
-    .pipe(
-      map(([games, currentPansch]) => games
-        .filter(game => game.team1.score === undefined || !game.team2.score === undefined || game.team1.score === game.team2.score).length > 0 || (currentPansch?.airHockeyAfCalculationStarted ?? false))
-    );
+  .pipe(
+    map(([games, currentPansch]) => games
+    .filter(game => game.team1.score === undefined || !game.team2.score === undefined || game.team1.score === game.team2.score).length > 0 || (currentPansch?.airHockeyAfCalculationStarted ?? false)),
+  );
   public disableVfSave$: Observable<boolean> = combineLatest([this.airHockeyVfGames$, this.latschiPanschService.currentPansch$])
-    .pipe(
-      map(([games, currentPansch]) => games
-        .filter(game => !game.team1.score === undefined || !game.team2.score === undefined || game.team1.score === game.team2.score).length > 0 || (currentPansch?.airHockeyVfCalculationStarted ?? false))
-    );
+  .pipe(
+    map(([games, currentPansch]) => games
+    .filter(game => !game.team1.score === undefined || !game.team2.score === undefined || game.team1.score === game.team2.score).length > 0 || (currentPansch?.airHockeyVfCalculationStarted ?? false)),
+  );
   public disableHfSave$: Observable<boolean> = combineLatest([this.airHockeyHfGames$, this.latschiPanschService.currentPansch$])
-    .pipe(
-      map(([games, currentPansch]) => games
-        .filter(game => !game.team1.score === undefined || !game.team2.score === undefined || game.team1.score === game.team2.score).length > 0 || (currentPansch?.airHockeyHfCalculationStarted ?? false))
-    );
+  .pipe(
+    map(([games, currentPansch]) => games
+    .filter(game => !game.team1.score === undefined || !game.team2.score === undefined || game.team1.score === game.team2.score).length > 0 || (currentPansch?.airHockeyHfCalculationStarted ?? false)),
+  );
   public disableFinalSave$: Observable<boolean> = combineLatest([this.airHockeyFinalGames$, this.latschiPanschService.currentPansch$])
-    .pipe(
-      map(([games, currentPansch]) => games
-        .filter(game => !game.team1.score === undefined || !game.team2.score === undefined || game.team1.score === game.team2.score).length > 0 || (currentPansch?.airHockeyFinalCalculationStarted ?? false))
-    );
+  .pipe(
+    map(([games, currentPansch]) => games
+    .filter(game => !game.team1.score === undefined || !game.team2.score === undefined || game.team1.score === game.team2.score).length > 0 || (currentPansch?.airHockeyFinalCalculationStarted ?? false)),
+  );
 
   constructor() {
     void this.getGames();
@@ -83,7 +82,7 @@ export class AirHockeyService {
           finished: false,
           gameNumber: i + 1,
           team1: team1,
-          team2: team2
+          team2: team2,
         };
         await this.firestoreService.addItem<Game>(game.collectionName, game);
       }

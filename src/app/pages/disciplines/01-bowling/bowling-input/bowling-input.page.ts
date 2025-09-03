@@ -13,7 +13,7 @@ import {
   IonMenuButton,
   IonNote,
   IonTitle,
-  IonToolbar
+  IonToolbar,
 } from '@ionic/angular/standalone';
 import { AuthService, LatschiPanschService } from "@services";
 import { AlertController } from "@ionic/angular";
@@ -24,10 +24,10 @@ import { environment } from "@environments/environment";
 import { PanschWaitingComponent } from "@components";
 
 @Component({
-    selector: 'lp-bowling-input',
-    templateUrl: './bowling-input.page.html',
-    styleUrls: ['./bowling-input.page.scss'],
-    imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButtons, IonMenuButton, IonButton, IonIcon, IonList, IonItem, IonNote, IonLabel, PanschWaitingComponent]
+  selector: 'lp-bowling-input',
+  templateUrl: './bowling-input.page.html',
+  styleUrls: ['./bowling-input.page.scss'],
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButtons, IonMenuButton, IonButton, IonIcon, IonList, IonItem, IonNote, IonLabel, PanschWaitingComponent],
 })
 export class BowlingInputPage {
 
@@ -40,9 +40,9 @@ export class BowlingInputPage {
   private authService: AuthService = inject(AuthService);
   public currentUser$ = this.authService.currentUser$;
   public disableSave$: Observable<boolean> = combineLatest([this.players$, this.currentPansch$])
-    .pipe(
-      map(([players, pansch]) => players
-        .filter(player => player.bowlingPins !== undefined).length < 16 || (pansch?.bowlingCalculationStarted ?? false)));
+  .pipe(
+    map(([players, pansch]) => players
+    .filter(player => player.bowlingPins !== undefined).length < 16 || (pansch?.bowlingCalculationStarted ?? false)));
 
   public async addPins(player: Player) {
     if (!await firstValueFrom(this.authService.currentUser$)) return;
@@ -62,7 +62,7 @@ export class BowlingInputPage {
           role: 'cancel',
           cssClass: 'alert-button-cancel',
           handler: async () => {
-          }
+          },
         },
           {
             text: 'OK',
@@ -74,7 +74,7 @@ export class BowlingInputPage {
                 this.bowlingService.updatePlayer(player);
               }
             },
-          }]
+          }],
       });
       await alert.present();
       const inputField: HTMLElement = document.querySelector("#pinInput") as HTMLElement;
@@ -84,7 +84,7 @@ export class BowlingInputPage {
     } else {
       const warnAlert = await this.alertController.create({
         header: "Bowling Berechnung abgeschlossen. Keine weiteren Änderungen möglich!",
-        buttons: ['OK']
+        buttons: ['OK'],
       });
       await warnAlert.present();
     }

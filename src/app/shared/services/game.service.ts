@@ -6,7 +6,7 @@ import { Game, Storeable, Team } from "@interfaces";
 import { Collectable } from "../data/interfaces/data/collectable.interface";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class GameService {
   private firestoreService: FirestoreService = inject(FirestoreService);

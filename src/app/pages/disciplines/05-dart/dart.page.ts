@@ -5,10 +5,10 @@ import { IonIcon, IonLabel, IonTabBar, IonTabButton, IonTabs } from "@ionic/angu
 import { LatschiPansch } from "@interfaces";
 
 @Component({
-    selector: 'lp-dart',
-    templateUrl: './dart.page.html',
-    styleUrls: ['./dart.page.scss'],
-    imports: [IonTabs, IonTabBar, IonTabButton, IonIcon, IonLabel]
+  selector: 'lp-dart',
+  templateUrl: './dart.page.html',
+  styleUrls: ['./dart.page.scss'],
+  imports: [IonTabs, IonTabBar, IonTabButton, IonIcon, IonLabel],
 })
 export class DartPage extends BaseDisciplineComponent implements OnInit {
   route = "/dart/dart-result";
@@ -16,11 +16,11 @@ export class DartPage extends BaseDisciplineComponent implements OnInit {
 
   ngOnInit() {
     this.latschiPanschService.currentPansch$
-      .pipe(takeUntil(this.subscriptionSubject$))
-      .subscribe(currentPansch => {
-        if (currentPansch && currentPansch.dartPreliminaryRoundCalculated && !currentPansch[this.property]) {
-          void this.router.navigate(["/dart/dart-final"]);
-        }
-      });
+    .pipe(takeUntil(this.subscriptionSubject$))
+    .subscribe(currentPansch => {
+      if (currentPansch && currentPansch.dartPreliminaryRoundCalculated && !currentPansch[this.property]) {
+        void this.router.navigate(["/dart/dart-final"]);
+      }
+    });
   }
 }

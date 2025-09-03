@@ -4,21 +4,13 @@ import { PlayerService } from "@services";
 import { NgFor } from '@angular/common';
 import { UserSelectionService } from "@pages/setup/user-selection/user-selection.service";
 import { PossiblePlayer } from "@interfaces";
-import {
-  IonCheckbox,
-  IonItem,
-  IonItemOption,
-  IonItemOptions,
-  IonItemSliding,
-  IonList,
-  IonListHeader
-} from "@ionic/angular/standalone";
+import { IonCheckbox, IonItem, IonItemOption, IonItemOptions, IonItemSliding, IonList, IonListHeader } from "@ionic/angular/standalone";
 
 @Component({
-    selector: 'lp-player-list',
-    templateUrl: './player-list.component.html',
-    styleUrls: ['./player-list.component.scss'],
-    imports: [NgFor, IonList, IonListHeader, IonItemSliding, IonItem, IonCheckbox, IonItemOptions, IonItemOption]
+  selector: 'lp-player-list',
+  templateUrl: './player-list.component.html',
+  styleUrls: ['./player-list.component.scss'],
+  imports: [NgFor, IonList, IonListHeader, IonItemSliding, IonItem, IonCheckbox, IonItemOptions, IonItemOption],
 })
 export class PlayerListComponent {
   private alertController: AlertController = inject(AlertController);
@@ -40,7 +32,7 @@ export class PlayerListComponent {
         text: 'Fick dich',
         role: 'cancel',
         cssClass: 'alert-button-cancel',
-        handler: async () => await slidingItem.close()
+        handler: async () => await slidingItem.close(),
       },
         {
           text: 'Weg mit ihm',
@@ -49,7 +41,7 @@ export class PlayerListComponent {
           handler: () => {
             this.userSelectionService.deletePossiblePlayer(possiblePlayer);
           },
-        }]
+        }],
     });
     await alert.present();
   }

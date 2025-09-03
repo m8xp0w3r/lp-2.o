@@ -103,7 +103,7 @@ export class FirestoreService {
   async addItem<T>(collectionName: string, item: T): Promise<DocumentReference<T>> {
     const collectionRef = collection(
       this.firestore,
-      collectionName
+      collectionName,
     ) as CollectionReference<T>;
     return addDoc(collectionRef, item);
   }

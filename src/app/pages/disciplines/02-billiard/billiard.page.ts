@@ -4,16 +4,16 @@ import { LatschiPansch } from "@interfaces";
 import { IonIcon, IonLabel, IonTabBar, IonTabButton, IonTabs } from "@ionic/angular/standalone";
 
 @Component({
-    selector: 'lp-billard',
-    templateUrl: './billiard.page.html',
-    styleUrls: ['./billiard.page.scss'],
-    imports: [
-        IonTabs,
-        IonTabBar,
-        IonTabButton,
-        IonIcon,
-        IonLabel
-    ]
+  selector: 'lp-billard',
+  templateUrl: './billiard.page.html',
+  styleUrls: ['./billiard.page.scss'],
+  imports: [
+    IonTabs,
+    IonTabBar,
+    IonTabButton,
+    IonIcon,
+    IonLabel,
+  ],
 })
 export class BilliardPage extends BaseDisciplineComponent {
   route = "/billiard/billiard-results";

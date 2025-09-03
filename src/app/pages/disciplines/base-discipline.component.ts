@@ -5,10 +5,9 @@ import { LatschiPanschService } from "@services";
 import { PanschKey } from "@types";
 import { ViewDidLeave } from "@ionic/angular/standalone";
 
-
 @Component({
-    template: "",
-    standalone: false
+  template: "",
+  standalone: false,
 })
 export abstract class BaseDisciplineComponent implements ViewDidLeave {
   protected latschiPanschService: LatschiPanschService = inject(LatschiPanschService);
@@ -20,15 +19,15 @@ export abstract class BaseDisciplineComponent implements ViewDidLeave {
 
   constructor() {
     this.latschiPanschService.currentPansch$
-      .pipe(takeUntil(this.subscriptionSubject$))
-      .subscribe(currentPansch => {
-        console.log("cp: ", currentPansch);
-        console.log("prop: ", this.property);
-        if (currentPansch && currentPansch[this.property]) {
-          console.log("navigate to: ", this.property);
-          void this.router.navigate([this.route]);
-        }
-      });
+    .pipe(takeUntil(this.subscriptionSubject$))
+    .subscribe(currentPansch => {
+      console.log("cp: ", currentPansch);
+      console.log("prop: ", this.property);
+      if (currentPansch && currentPansch[this.property]) {
+        console.log("navigate to: ", this.property);
+        void this.router.navigate([this.route]);
+      }
+    });
   }
 
   ionViewDidLeave(): void {

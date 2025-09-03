@@ -10,59 +10,59 @@ export const routes: Routes = [
       {
         path: 'air-hockey-af',
         loadComponent: () => import('./air-hockey-af/air-hockey-af.page').then(m => m.AirHockeyAfPage),
-        canActivate: [panschSelectedGuard]
+        canActivate: [panschSelectedGuard],
       },
       {
         path: 'air-hockey-vf',
         loadComponent: () => import('./air-hockey-vf/air-hockey-vf.page').then(m => m.AirHockeyVfPage),
-        canActivate: [panschSelectedGuard]
+        canActivate: [panschSelectedGuard],
       },
       {
         path: 'air-hockey-hf',
         loadComponent: () => import('./air-hockey-hf/air-hockey-hf.page').then(m => m.AirHockeyHfPage),
-        canActivate: [panschSelectedGuard]
+        canActivate: [panschSelectedGuard],
       },
       {
         path: 'air-hockey-final',
         loadComponent: () => import('./air-hockey-final/air-hockey-final.page').then(m => m.AirHockeyFinalPage),
-        canActivate: [panschSelectedGuard]
+        canActivate: [panschSelectedGuard],
       },
       {
         path: 'air-hockey-result',
         loadComponent: () => import('./air-hockey-result/air-hockey-result.page').then(m => m.AirHockeyResultPage),
-        canActivate: [panschSelectedGuard]
-      }
-    ]
+        canActivate: [panschSelectedGuard],
+      },
+    ],
   },
   {
     path: '',
     redirectTo: 'tabs/air-hockey-af',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: 'air-hockey-af',
     redirectTo: 'tabs/air-hockey-af',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: 'air-hockey-vf',
     redirectTo: 'tabs/air-hockey-vf',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: 'air-hockey-hf',
     redirectTo: 'tabs/air-hockey-hf',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: 'air-hockey-final',
     redirectTo: 'tabs/air-hockey-final',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: 'air-hockey-result',
     redirectTo: 'tabs/air-hockey-result',
-    pathMatch: 'full'
-  }
+    pathMatch: 'full',
+  },
 
-]
+];

@@ -11,7 +11,7 @@ import { DartGame, DartPlayer, Game, LatschiPansch, Player } from "@interfaces";
 import { PanschKey } from "@types";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LatschiPanschService {
   public latschiPanschCollection$: WritableSignal<LatschiPansch[]> = signal([]);
@@ -30,25 +30,25 @@ export class LatschiPanschService {
   constructor() {
     this.collectionService.panschCollectionName$.subscribe(panschCollectionName => {
       this.firestoreService.getCollection<LatschiPansch>(panschCollectionName)
-        .pipe(
-          combineLatestWith(this.authService.currentUser$),
-          map(([latschiPanschCollection, currentUser]) => {
-            for (let i = 0; i < latschiPanschCollection.length; i++) {
-              const pansch = latschiPanschCollection[i];
-              if (pansch.id) {
-                pansch.players = this.firestoreService.getCollection<Player>(CollectionUtil.getSubCollectionName(panschCollectionName, pansch.id, "players"));
-              }
+      .pipe(
+        combineLatestWith(this.authService.currentUser$),
+        map(([latschiPanschCollection, currentUser]) => {
+          for (let i = 0; i < latschiPanschCollection.length; i++) {
+            const pansch = latschiPanschCollection[i];
+            if (pansch.id) {
+              pansch.players = this.firestoreService.getCollection<Player>(CollectionUtil.getSubCollectionName(panschCollectionName, pansch.id, "players"));
             }
-            return latschiPanschCollection
-              .filter(pansch => !pansch.deletedAt && currentUser ? true : pansch.setupComplete)
-              .sort((a, b) => a.edition - b.edition);
-          }))
-        .subscribe(latschiPanschCollection => this.latschiPanschCollection$?.set(latschiPanschCollection));
+          }
+          return latschiPanschCollection
+          .filter(pansch => !pansch.deletedAt && currentUser ? true : pansch.setupComplete)
+          .sort((a, b) => a.edition - b.edition);
+        }))
+      .subscribe(latschiPanschCollection => this.latschiPanschCollection$?.set(latschiPanschCollection));
     });
     this.currentPansch$.subscribe((currentPansch: LatschiPansch | undefined) => {
       if (currentPansch && currentPansch.id) {
         this.firestoreService.getCollection<Player>(CollectionUtil.getSubCollectionName(currentPansch.collectionName, currentPansch.id, "players"))
-          .subscribe(players => this.playerSubject.next(players));
+        .subscribe(players => this.playerSubject.next(players));
       }
     });
   }
@@ -58,7 +58,6 @@ export class LatschiPanschService {
     if (!pansch || !pansch.id) return undefined;
     return firstValueFrom(await this.firestoreService.getDocumentWithChanges<LatschiPansch>(pansch.collectionName, pansch.id));
   }
-
 
   public getSelectedPansch(): LatschiPansch | undefined {
     return this.currentPanschSubject.value;
@@ -84,7 +83,7 @@ export class LatschiPanschService {
       isFinished: false,
       createdAt: Timestamp.fromDate(new Date()),
       setupComplete: false,
-      collectionName: latschiPanschCollectionName
+      collectionName: latschiPanschCollectionName,
     });
   }
 
@@ -93,7 +92,7 @@ export class LatschiPanschService {
       const currentPansch = await firstValueFrom(await this.firestoreService.getDocumentWithChanges<LatschiPansch>(latschiPansch.collectionName, latschiPansch.id));
       this.currentPanschSubject.next(currentPansch);
       (await this.firestoreService.getDocumentWithChanges<LatschiPansch>(latschiPansch.collectionName, latschiPansch.id))
-        .subscribe(pansch => this.currentPanschSubject.next(pansch));
+      .subscribe(pansch => this.currentPanschSubject.next(pansch));
     }
   }
 
@@ -131,7 +130,6 @@ export class LatschiPanschService {
     }
   }
 
-
   public async initBilliardGames(): Promise<void> {
     const currentPansch: LatschiPansch | undefined = await firstValueFrom(this.currentPansch$);
     if (currentPansch && currentPansch.id) {
@@ -148,12 +146,12 @@ export class LatschiPanschService {
             gameNumber: i + 1,
             team1: {
               player1: players[i],
-              collectionName: billiardGamesCollectionName
+              collectionName: billiardGamesCollectionName,
             },
             team2: {
               player1: players[length - i],
-              collectionName: billiardGamesCollectionName
-            }
+              collectionName: billiardGamesCollectionName,
+            },
           };
           await this.firestoreService.addItem<Game>(game.collectionName, game);
         }
@@ -178,13 +176,13 @@ export class LatschiPanschService {
             team1: {
               player1: players[i],
               collectionName: airHockeyGamesCollectionName,
-              score: 0
+              score: 0,
             },
             team2: {
               player1: players[length - i],
               collectionName: airHockeyGamesCollectionName,
-              score: 0
-            }
+              score: 0,
+            },
           };
           await this.firestoreService.addItem<Game>(game.collectionName, game);
         }
@@ -210,14 +208,14 @@ export class LatschiPanschService {
               player1: players[i],
               player2: players[length - i],
               collectionName: kickerGamesCollectionName,
-              score: 0
+              score: 0,
             },
             team2: {
               player1: players[7 - i],
               player2: players[8 + i],
               collectionName: kickerGamesCollectionName,
-              score: 0
-            }
+              score: 0,
+            },
           };
           await this.firestoreService.addItem<Game>(game.collectionName, game);
         }
@@ -239,7 +237,7 @@ export class LatschiPanschService {
           for (let x = 0; x < 4; x++) {
             dartPlayers.push({
               id: players[playerIndex].id,
-              name: players[playerIndex].name
+              name: players[playerIndex].name,
             });
             playerIndex += 4;
           }
@@ -247,7 +245,7 @@ export class LatschiPanschService {
           const game: DartGame = {
             collectionName: dartPreliminaryGamesCollectionName,
             gameNumber: i + 1,
-            players: dartPlayers
+            players: dartPlayers,
           };
           await this.firestoreService.addItem<DartGame>(game.collectionName, game);
         }
@@ -261,7 +259,7 @@ export class LatschiPanschService {
       currentPansch.finalCalculationStarted = true;
       await this.updatePansch(currentPansch);
       const players: Player[] = await this.playerService.getPlayerSnapshot(currentPansch);
-      players.sort((a, b) => (b.totalPoints ?? 0) - (a.totalPoints ?? 0))
+      players.sort((a, b) => (b.totalPoints ?? 0) - (a.totalPoints ?? 0));
       let rank = 1;
       let tempRank = 0;
       let tempScore = players[0].totalPoints;
