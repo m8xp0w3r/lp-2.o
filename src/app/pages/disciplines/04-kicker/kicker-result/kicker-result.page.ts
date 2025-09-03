@@ -7,21 +7,20 @@ import { LatschiPansch, Player } from "@interfaces";
 import { IonContent, IonItem, IonLabel, IonList, IonNote } from "@ionic/angular/standalone";
 
 @Component({
-  selector: 'lp-kicker-result',
-  templateUrl: './kicker-result.page.html',
-  styleUrls: ['./kicker-result.page.scss'],
-  standalone: true,
-  imports: [
-    HeaderComponent,
-    NgIf,
-    NgFor,
-    AsyncPipe,
-    IonContent,
-    IonList,
-    IonItem,
-    IonLabel,
-    IonNote
-  ],
+    selector: 'lp-kicker-result',
+    templateUrl: './kicker-result.page.html',
+    styleUrls: ['./kicker-result.page.scss'],
+    imports: [
+        HeaderComponent,
+        NgIf,
+        NgFor,
+        AsyncPipe,
+        IonContent,
+        IonList,
+        IonItem,
+        IonLabel,
+        IonNote
+    ]
 })
 export class KickerResultPage {
   private latschiPanschService: LatschiPanschService = inject(LatschiPanschService);

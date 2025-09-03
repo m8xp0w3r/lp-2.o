@@ -14,23 +14,21 @@ import {
 } from "@ionic/angular/standalone";
 
 @Component({
-  selector: 'lp-pansch-selection-legend',
-  templateUrl: './pansch-selection-legend.component.html',
-  styleUrls: ['./pansch-selection-legend.component.scss'],
-  standalone: true,
-  imports: [
-    IonHeader,
-    IonToolbar,
-    IonButtons,
-    IonButton,
-    IonTitle,
-    IonContent,
-    IonList,
-    IonItem,
-    IonIcon,
-    IonLabel
-
-  ],
+    selector: 'lp-pansch-selection-legend',
+    templateUrl: './pansch-selection-legend.component.html',
+    styleUrls: ['./pansch-selection-legend.component.scss'],
+    imports: [
+        IonHeader,
+        IonToolbar,
+        IonButtons,
+        IonButton,
+        IonTitle,
+        IonContent,
+        IonList,
+        IonItem,
+        IonIcon,
+        IonLabel
+    ]
 })
 export class PanschSelectionLegendComponent {
   private modalCtrl: ModalController = inject(ModalController);

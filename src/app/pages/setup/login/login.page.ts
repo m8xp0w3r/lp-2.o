@@ -20,11 +20,10 @@ import { SignInData } from "@interfaces";
 import { HeaderComponent } from "@components";
 
 @Component({
-  selector: 'lp-login',
-  templateUrl: './login.page.html',
-  styleUrls: ['./login.page.scss'],
-  standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, ReactiveFormsModule, IonItem, IonInput, IonRow, IonCol, IonButton, HeaderComponent]
+    selector: 'lp-login',
+    templateUrl: './login.page.html',
+    styleUrls: ['./login.page.scss'],
+    imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, ReactiveFormsModule, IonItem, IonInput, IonRow, IonCol, IonButton, HeaderComponent]
 })
 export class LoginPage implements OnInit, OnDestroy {
   public signingIn = signal(false);

@@ -24,11 +24,10 @@ import { environment } from "@environments/environment";
 import { PanschWaitingComponent } from "@components";
 
 @Component({
-  selector: 'lp-bowling-input',
-  templateUrl: './bowling-input.page.html',
-  styleUrls: ['./bowling-input.page.scss'],
-  standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButtons, IonMenuButton, IonButton, IonIcon, IonList, IonItem, IonNote, IonLabel, PanschWaitingComponent]
+    selector: 'lp-bowling-input',
+    templateUrl: './bowling-input.page.html',
+    styleUrls: ['./bowling-input.page.scss'],
+    imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButtons, IonMenuButton, IonButton, IonIcon, IonList, IonItem, IonNote, IonLabel, PanschWaitingComponent]
 })
 export class BowlingInputPage {
 

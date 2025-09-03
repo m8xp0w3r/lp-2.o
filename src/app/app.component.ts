@@ -22,19 +22,19 @@ import { addIonicIcons } from "@util/icon.util";
 import { toSignal } from "@angular/core/rxjs-interop";
 
 @Component({
-  selector: 'lp-root',
-  templateUrl: 'app.component.html',
-  standalone: true,
-  imports: [
-    IonApp,
-    IonRouterOutlet,
-    IonSplitPane,
-    IonMenu,
-    IonContent,
-    IonList,
-    IonListHeader,
-    IonNote,
-    IonMenuToggle, IonItem, IonIcon, IonLabel, RouterLink, NgForOf, AsyncPipe, RouterLinkActive, NgIf],
+    selector: 'lp-root',
+    templateUrl: 'app.component.html',
+    imports: [
+        IonApp,
+        IonRouterOutlet,
+        IonSplitPane,
+        IonMenu,
+        IonContent,
+        IonList,
+        IonListHeader,
+        IonNote,
+        IonMenuToggle, IonItem, IonIcon, IonLabel, RouterLink, NgForOf, AsyncPipe, RouterLinkActive, NgIf
+    ]
 })
 export class AppComponent {
   private latschiPanschService: LatschiPanschService = inject(LatschiPanschService);

@@ -4,17 +4,16 @@ import { IonIcon, IonLabel, IonTabBar, IonTabButton, IonTabs } from "@ionic/angu
 import { LatschiPansch } from "@interfaces";
 
 @Component({
-  selector: 'lp-air-hockey',
-  templateUrl: './air-hockey.page.html',
-  styleUrls: ['./air-hockey.page.scss'],
-  standalone: true,
-  imports: [
-    IonTabs,
-    IonTabBar,
-    IonTabButton,
-    IonIcon,
-    IonLabel
-  ],
+    selector: 'lp-air-hockey',
+    templateUrl: './air-hockey.page.html',
+    styleUrls: ['./air-hockey.page.scss'],
+    imports: [
+        IonTabs,
+        IonTabBar,
+        IonTabButton,
+        IonIcon,
+        IonLabel
+    ]
 })
 export class AirHockeyPage extends BaseDisciplineComponent {
   route = "/air-hockey/air-hockey-result";

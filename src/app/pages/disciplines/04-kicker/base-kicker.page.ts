@@ -6,8 +6,9 @@ import { KickerService } from "./kicker.service";
 import { AuthService, LatschiPanschService } from "@services";
 
 @Component({
-  template: "",
-  selector: "lp-base-kicker"
+    template: "",
+    selector: "lp-base-kicker",
+    standalone: false
 })
 export abstract class BaseKickerPage {
   public testMode = environment.testMode;

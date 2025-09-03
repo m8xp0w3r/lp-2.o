@@ -7,21 +7,20 @@ import { LatschiPansch, Player } from "@interfaces";
 import { IonContent, IonItem, IonLabel, IonList, IonNote } from "@ionic/angular/standalone";
 
 @Component({
-  selector: 'lp-billiard-result',
-  templateUrl: './billiard-result.page.html',
-  styleUrls: ['./billiard-result.page.scss'],
-  standalone: true,
-  imports: [
-    HeaderComponent,
-    NgIf,
-    NgFor,
-    AsyncPipe,
-    IonContent,
-    IonList,
-    IonItem,
-    IonLabel,
-    IonNote,
-  ],
+    selector: 'lp-billiard-result',
+    templateUrl: './billiard-result.page.html',
+    styleUrls: ['./billiard-result.page.scss'],
+    imports: [
+        HeaderComponent,
+        NgIf,
+        NgFor,
+        AsyncPipe,
+        IonContent,
+        IonList,
+        IonItem,
+        IonLabel,
+        IonNote,
+    ]
 })
 export class BilliardResultPage {
   private latschiPanschService: LatschiPanschService = inject(LatschiPanschService);

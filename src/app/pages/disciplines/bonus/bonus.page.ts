@@ -4,17 +4,16 @@ import { IonIcon, IonLabel, IonTabBar, IonTabButton, IonTabs } from "@ionic/angu
 import { LatschiPansch } from "@interfaces";
 
 @Component({
-  selector: 'lp-bonus',
-  templateUrl: './bonus.page.html',
-  styleUrls: ['./bonus.page.scss'],
-  standalone: true,
-  imports: [
-    IonTabs,
-    IonTabBar,
-    IonTabButton,
-    IonIcon,
-    IonLabel
-  ],
+    selector: 'lp-bonus',
+    templateUrl: './bonus.page.html',
+    styleUrls: ['./bonus.page.scss'],
+    imports: [
+        IonTabs,
+        IonTabBar,
+        IonTabButton,
+        IonIcon,
+        IonLabel
+    ]
 })
 export class BonusPage extends BaseDisciplineComponent {
   route = "/bonus/bonus-results";

@@ -7,21 +7,20 @@ import { LatschiPansch, Player } from "@interfaces";
 import { IonContent, IonItem, IonLabel, IonList, IonNote } from "@ionic/angular/standalone";
 
 @Component({
-  selector: 'lp-bonus-results',
-  templateUrl: './bonus-results.page.html',
-  styleUrls: ['./bonus-results.page.scss'],
-  standalone: true,
-  imports: [
-    HeaderComponent,
-    NgIf,
-    NgFor,
-    AsyncPipe,
-    IonContent,
-    IonList,
-    IonItem,
-    IonLabel,
-    IonNote
-  ],
+    selector: 'lp-bonus-results',
+    templateUrl: './bonus-results.page.html',
+    styleUrls: ['./bonus-results.page.scss'],
+    imports: [
+        HeaderComponent,
+        NgIf,
+        NgFor,
+        AsyncPipe,
+        IonContent,
+        IonList,
+        IonItem,
+        IonLabel,
+        IonNote
+    ]
 })
 export class BonusResultsPage {
   private latschiPanschService: LatschiPanschService = inject(LatschiPanschService);

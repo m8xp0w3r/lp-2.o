@@ -7,7 +7,8 @@ import { ViewDidLeave } from "@ionic/angular/standalone";
 
 
 @Component({
-  template: ""
+    template: "",
+    standalone: false
 })
 export abstract class BaseDisciplineComponent implements ViewDidLeave {
   protected latschiPanschService: LatschiPanschService = inject(LatschiPanschService);

@@ -5,11 +5,10 @@ import { IonIcon, IonLabel, IonTabBar, IonTabButton, IonTabs } from "@ionic/angu
 import { LatschiPansch } from "@interfaces";
 
 @Component({
-  selector: 'lp-dart',
-  templateUrl: './dart.page.html',
-  styleUrls: ['./dart.page.scss'],
-  standalone: true,
-  imports: [IonTabs, IonTabBar, IonTabButton, IonIcon, IonLabel],
+    selector: 'lp-dart',
+    templateUrl: './dart.page.html',
+    styleUrls: ['./dart.page.scss'],
+    imports: [IonTabs, IonTabBar, IonTabButton, IonIcon, IonLabel]
 })
 export class DartPage extends BaseDisciplineComponent implements OnInit {
   route = "/dart/dart-result";

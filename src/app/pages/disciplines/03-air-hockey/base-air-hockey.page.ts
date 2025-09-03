@@ -5,8 +5,9 @@ import { Router } from "@angular/router";
 import { AuthService, LatschiPanschService } from "@services";
 
 @Component({
-  template: "",
-  selector: "lp-base-hockey"
+    template: "",
+    selector: "lp-base-hockey",
+    standalone: false
 })
 export abstract class BaseAirHockeyPage {
   protected airHockeyService: AirHockeyService = inject(AirHockeyService);

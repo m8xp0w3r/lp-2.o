@@ -9,12 +9,11 @@ import { IonContent, IonImg } from "@ionic/angular/standalone";
     selector: 'lp-home',
     templateUrl: './home.page.html',
     styleUrls: ['./home.page.scss'],
-    standalone: true,
     imports: [
-      HeaderComponent,
-      IonContent,
-      IonImg
-    ],
+        HeaderComponent,
+        IonContent,
+        IonImg
+    ]
 })
 export class HomePage implements OnInit {
     private latschiPanschService: LatschiPanschService = inject(LatschiPanschService);

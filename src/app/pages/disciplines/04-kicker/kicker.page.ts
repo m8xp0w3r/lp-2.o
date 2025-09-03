@@ -5,17 +5,16 @@ import { LatschiPansch } from "@interfaces";
 import { IonIcon, IonLabel, IonTabBar, IonTabButton, IonTabs } from "@ionic/angular/standalone";
 
 @Component({
-  selector: 'lp-kicker',
-  templateUrl: './kicker.page.html',
-  styleUrls: ['./kicker.page.scss'],
-  standalone: true,
-  imports: [
-    IonTabs,
-    IonTabBar,
-    IonTabButton,
-    IonIcon,
-    IonLabel
-  ],
+    selector: 'lp-kicker',
+    templateUrl: './kicker.page.html',
+    styleUrls: ['./kicker.page.scss'],
+    imports: [
+        IonTabs,
+        IonTabBar,
+        IonTabButton,
+        IonIcon,
+        IonLabel
+    ]
 })
 export class KickerPage extends BaseDisciplineComponent implements OnInit {
   route = "/kicker/kicker-result";

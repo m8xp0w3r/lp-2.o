@@ -17,11 +17,10 @@ import { combineLatest, map, Observable } from "rxjs";
 import { LatschiPansch, Player } from "@interfaces";
 
 @Component({
-  selector: 'lp-bowling-results',
-  templateUrl: './bowling-results.page.html',
-  styleUrls: ['./bowling-results.page.scss'],
-  standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, HeaderComponent, IonList, IonItem, IonLabel, IonNote]
+    selector: 'lp-bowling-results',
+    templateUrl: './bowling-results.page.html',
+    styleUrls: ['./bowling-results.page.scss'],
+    imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, HeaderComponent, IonList, IonItem, IonLabel, IonNote]
 })
 export class BowlingResultsPage {
 

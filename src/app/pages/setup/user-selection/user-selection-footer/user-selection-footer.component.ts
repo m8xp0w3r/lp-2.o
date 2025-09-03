@@ -6,19 +6,18 @@ import { LatschiPansch, PossiblePlayer } from "@interfaces";
 import { IonButton, IonButtons, IonFooter, IonTitle, IonToolbar } from "@ionic/angular/standalone";
 
 @Component({
-  selector: 'lp-user-selection-footer',
-  templateUrl: './user-selection-footer.component.html',
-  styleUrls: ['./user-selection-footer.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    NgIf,
-    IonFooter,
-    IonToolbar,
-    IonTitle,
-    IonButtons,
-    IonButton
-  ]
+    selector: 'lp-user-selection-footer',
+    templateUrl: './user-selection-footer.component.html',
+    styleUrls: ['./user-selection-footer.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        NgIf,
+        IonFooter,
+        IonToolbar,
+        IonTitle,
+        IonButtons,
+        IonButton
+    ]
 })
 export class UserSelectionFooterComponent {
   private latschiPanschService: LatschiPanschService = inject(LatschiPanschService);

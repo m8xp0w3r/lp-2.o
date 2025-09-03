@@ -19,26 +19,25 @@ import { Game } from "@interfaces";
 import { PanschKey } from "@types";
 
 @Component({
-  selector: 'lp-air-hockey-vf',
-  templateUrl: './air-hockey-vf.page.html',
-  styleUrls: ['./air-hockey-vf.page.scss'],
-  standalone: true,
-  imports: [
-    NgIf,
-    NgFor,
-    GameCardComponent,
-    PanschWaitingComponent,
-    AsyncPipe,
-    IonToolbar,
-    IonHeader,
-    IonButtons,
-    IonMenuButton,
-    IonTitle,
-    IonButton,
-    IonIcon,
-    IonContent,
-    IonList,
-  ],
+    selector: 'lp-air-hockey-vf',
+    templateUrl: './air-hockey-vf.page.html',
+    styleUrls: ['./air-hockey-vf.page.scss'],
+    imports: [
+        NgIf,
+        NgFor,
+        GameCardComponent,
+        PanschWaitingComponent,
+        AsyncPipe,
+        IonToolbar,
+        IonHeader,
+        IonButtons,
+        IonMenuButton,
+        IonTitle,
+        IonButton,
+        IonIcon,
+        IonContent,
+        IonList,
+    ]
 })
 export class AirHockeyVfPage extends BaseAirHockeyPage {
   public airHockeyVfGames$: Observable<Game[]> = this.airHockeyService.airHockeyVfGames$;

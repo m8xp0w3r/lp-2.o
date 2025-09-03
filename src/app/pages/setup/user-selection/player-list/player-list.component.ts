@@ -15,12 +15,10 @@ import {
 } from "@ionic/angular/standalone";
 
 @Component({
-  selector: 'lp-player-list',
-  templateUrl: './player-list.component.html',
-  styleUrls: ['./player-list.component.scss'],
-  //changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [NgFor, IonList, IonListHeader, IonItemSliding, IonItem, IonCheckbox, IonItemOptions, IonItemOption]
+    selector: 'lp-player-list',
+    templateUrl: './player-list.component.html',
+    styleUrls: ['./player-list.component.scss'],
+    imports: [NgFor, IonList, IonListHeader, IonItemSliding, IonItem, IonCheckbox, IonItemOptions, IonItemOption]
 })
 export class PlayerListComponent {
   private alertController: AlertController = inject(AlertController);

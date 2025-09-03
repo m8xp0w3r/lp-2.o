@@ -7,21 +7,20 @@ import { LatschiPansch, Player } from "@interfaces";
 import { IonContent, IonItem, IonLabel, IonList, IonNote } from "@ionic/angular/standalone";
 
 @Component({
-  selector: 'lp-dart-result',
-  templateUrl: './dart-result.page.html',
-  styleUrls: ['./dart-result.page.scss'],
-  standalone: true,
-  imports: [
-    HeaderComponent,
-    NgIf,
-    NgFor,
-    AsyncPipe,
-    IonContent,
-    IonList,
-    IonItem,
-    IonLabel,
-    IonNote,
-  ],
+    selector: 'lp-dart-result',
+    templateUrl: './dart-result.page.html',
+    styleUrls: ['./dart-result.page.scss'],
+    imports: [
+        HeaderComponent,
+        NgIf,
+        NgFor,
+        AsyncPipe,
+        IonContent,
+        IonList,
+        IonItem,
+        IonLabel,
+        IonNote,
+    ]
 })
 export class DartResultPage {
   private latschiPanschService: LatschiPanschService = inject(LatschiPanschService);

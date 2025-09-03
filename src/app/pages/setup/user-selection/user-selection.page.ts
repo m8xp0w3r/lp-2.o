@@ -14,11 +14,10 @@ import {
 
 
 @Component({
-  selector: 'lp-user-selection',
-  templateUrl: './user-selection.page.html',
-  styleUrls: ['./user-selection.page.scss'],
-  standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, HeaderComponent, AddPlayerInputComponent, PlayerListComponent, UserSelectionFooterComponent]
+    selector: 'lp-user-selection',
+    templateUrl: './user-selection.page.html',
+    styleUrls: ['./user-selection.page.scss'],
+    imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, HeaderComponent, AddPlayerInputComponent, PlayerListComponent, UserSelectionFooterComponent]
 })
 export class UserSelectionPage implements ViewWillEnter, ViewDidLeave {
   private latschiPanschService: LatschiPanschService = inject(LatschiPanschService);

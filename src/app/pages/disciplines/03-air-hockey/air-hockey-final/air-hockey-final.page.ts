@@ -19,26 +19,25 @@ import {
 
 
 @Component({
-  selector: 'lp-air-hockey-final',
-  templateUrl: './air-hockey-final.page.html',
-  styleUrls: ['./air-hockey-final.page.scss'],
-  standalone: true,
-  imports: [
-    NgIf,
-    NgFor,
-    GameCardComponent,
-    PanschWaitingComponent,
-    AsyncPipe,
-    IonToolbar,
-    IonHeader,
-    IonButtons,
-    IonMenuButton,
-    IonTitle,
-    IonButton,
-    IonIcon,
-    IonContent,
-    IonList,
-  ],
+    selector: 'lp-air-hockey-final',
+    templateUrl: './air-hockey-final.page.html',
+    styleUrls: ['./air-hockey-final.page.scss'],
+    imports: [
+        NgIf,
+        NgFor,
+        GameCardComponent,
+        PanschWaitingComponent,
+        AsyncPipe,
+        IonToolbar,
+        IonHeader,
+        IonButtons,
+        IonMenuButton,
+        IonTitle,
+        IonButton,
+        IonIcon,
+        IonContent,
+        IonList,
+    ]
 })
 export class AirHockeyFinalPage extends BaseAirHockeyPage {
   public airHockeyFinalGames$: Observable<Game[]> = this.airHockeyService.airHockeyFinalGames$;

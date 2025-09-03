@@ -8,8 +8,9 @@ import { DartGame, DartPlayer, LatschiPansch } from "@interfaces";
 import { firstValueFrom } from "rxjs";
 
 @Component({
-  template: ``,
-  selector: "lp-base-dart"
+    template: ``,
+    selector: "lp-base-dart",
+    standalone: false
 })
 export abstract class BaseDartPage {
   public testMode = environment.testMode;

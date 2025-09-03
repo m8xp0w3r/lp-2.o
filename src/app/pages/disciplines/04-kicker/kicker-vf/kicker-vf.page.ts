@@ -18,26 +18,25 @@ import { Game } from "@interfaces";
 import { PanschKey } from "@types";
 
 @Component({
-  selector: 'lp-kicker-vf',
-  templateUrl: './kicker-vf.page.html',
-  styleUrls: ['./kicker-vf.page.scss'],
-  standalone: true,
-  imports: [
-    NgIf,
-    NgFor,
-    GameCardComponent,
-    PanschWaitingComponent,
-    AsyncPipe,
-    IonHeader,
-    IonToolbar,
-    IonButtons,
-    IonMenuButton,
-    IonTitle,
-    IonButton,
-    IonIcon,
-    IonContent,
-    IonList
-  ],
+    selector: 'lp-kicker-vf',
+    templateUrl: './kicker-vf.page.html',
+    styleUrls: ['./kicker-vf.page.scss'],
+    imports: [
+        NgIf,
+        NgFor,
+        GameCardComponent,
+        PanschWaitingComponent,
+        AsyncPipe,
+        IonHeader,
+        IonToolbar,
+        IonButtons,
+        IonMenuButton,
+        IonTitle,
+        IonButton,
+        IonIcon,
+        IonContent,
+        IonList
+    ]
 })
 export class KickerVfPage extends BaseKickerPage {
   public kickerVfGames$: Observable<Game[]> = this.kickerService.kickerVfGames$;

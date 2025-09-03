@@ -21,26 +21,25 @@ import { BilliardService } from "@pages/disciplines/02-billiard/billiard.service
 
 
 @Component({
-  selector: 'lp-billiard-input',
-  templateUrl: './billiard-input.page.html',
-  styleUrls: ['./billiard-input.page.scss'],
-  standalone: true,
-  imports: [
-    NgIf,
-    NgFor,
-    GameCardComponent,
-    PanschWaitingComponent,
-    AsyncPipe,
-    IonHeader,
-    IonButtons,
-    IonMenuButton,
-    IonToolbar,
-    IonTitle,
-    IonButton,
-    IonIcon,
-    IonContent,
-    IonList,
-  ],
+    selector: 'lp-billiard-input',
+    templateUrl: './billiard-input.page.html',
+    styleUrls: ['./billiard-input.page.scss'],
+    imports: [
+        NgIf,
+        NgFor,
+        GameCardComponent,
+        PanschWaitingComponent,
+        AsyncPipe,
+        IonHeader,
+        IonButtons,
+        IonMenuButton,
+        IonToolbar,
+        IonTitle,
+        IonButton,
+        IonIcon,
+        IonContent,
+        IonList,
+    ]
 })
 export class BilliardInputPage {
   public testMode = environment.testMode;

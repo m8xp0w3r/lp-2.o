@@ -19,27 +19,26 @@ import {
 
 
 @Component({
-  selector: 'lp-dart-final',
-  templateUrl: './dart-final.page.html',
-  styleUrls: ['./dart-final.page.scss'],
-  standalone: true,
-  imports: [
-    HeaderComponent,
-    NgIf,
-    NgFor,
-    PanschWaitingComponent,
-    AsyncPipe,
-    DartPlayerPipe,
-    IonContent,
-    IonList,
-    IonListHeader,
-    IonLabel,
-    IonItem,
-    IonNote,
-    IonFooter,
-    IonButton,
-    IonIcon
-  ],
+    selector: 'lp-dart-final',
+    templateUrl: './dart-final.page.html',
+    styleUrls: ['./dart-final.page.scss'],
+    imports: [
+        HeaderComponent,
+        NgIf,
+        NgFor,
+        PanschWaitingComponent,
+        AsyncPipe,
+        DartPlayerPipe,
+        IonContent,
+        IonList,
+        IonListHeader,
+        IonLabel,
+        IonItem,
+        IonNote,
+        IonFooter,
+        IonButton,
+        IonIcon
+    ]
 })
 export class DartFinalPage extends BaseDartPage {
   public finalGame$: Observable<DartGame | undefined> = this.dartService.dartFinalGame$;

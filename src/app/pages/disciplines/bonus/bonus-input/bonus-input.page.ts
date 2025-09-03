@@ -27,30 +27,29 @@ import {
 } from "@ionic/angular/standalone";
 
 @Component({
-  selector: 'lp-bonus-input',
-  templateUrl: './bonus-input.page.html',
-  styleUrls: ['./bonus-input.page.scss'],
-  standalone: true,
-  imports: [
-    NgIf,
-    FormsModule,
-    NgFor,
-    AsyncPipe,
-    IonHeader,
-    IonToolbar,
-    IonButtons,
-    IonMenuButton,
-    IonTitle,
-    IonButton,
-    IonIcon,
-    IonContent,
-    IonList,
-    IonItem,
-    IonSelect,
-    IonSelectOption,
-    IonLabel,
-    IonNote,
-  ],
+    selector: 'lp-bonus-input',
+    templateUrl: './bonus-input.page.html',
+    styleUrls: ['./bonus-input.page.scss'],
+    imports: [
+        NgIf,
+        FormsModule,
+        NgFor,
+        AsyncPipe,
+        IonHeader,
+        IonToolbar,
+        IonButtons,
+        IonMenuButton,
+        IonTitle,
+        IonButton,
+        IonIcon,
+        IonContent,
+        IonList,
+        IonItem,
+        IonSelect,
+        IonSelectOption,
+        IonLabel,
+        IonNote,
+    ]
 })
 export class BonusInputPage implements OnInit {
   public readonly BonusSortingOrder = BonusSortingOrder;

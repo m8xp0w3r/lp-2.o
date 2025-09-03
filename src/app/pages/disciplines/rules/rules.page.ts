@@ -13,21 +13,20 @@ import {
 } from "@ionic/angular/standalone";
 
 @Component({
-  selector: 'lp-rules',
-  templateUrl: './rules.page.html',
-  styleUrls: ['./rules.page.scss'],
-  standalone: true,
-  imports: [
-    HeaderComponent,
-    NgFor,
-    AsyncPipe,
-    IonContent,
-    IonCard,
-    IonCardHeader,
-    IonCardTitle,
-    IonCardSubtitle,
-    IonCardContent
-  ],
+    selector: 'lp-rules',
+    templateUrl: './rules.page.html',
+    styleUrls: ['./rules.page.scss'],
+    imports: [
+        HeaderComponent,
+        NgFor,
+        AsyncPipe,
+        IonContent,
+        IonCard,
+        IonCardHeader,
+        IonCardTitle,
+        IonCardSubtitle,
+        IonCardContent
+    ]
 })
 export class RulesPage {
   private rulesService: RulesService = inject(RulesService);

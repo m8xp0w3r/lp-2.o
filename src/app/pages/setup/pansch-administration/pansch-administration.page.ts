@@ -21,26 +21,25 @@ import {
 import { Timestamp } from "@angular/fire/firestore";
 
 @Component({
-  selector: 'lp-pansch-administration',
-  templateUrl: './pansch-administration.page.html',
-  styleUrls: ['./pansch-administration.page.scss'],
-  standalone: true,
-  imports: [
-    HeaderComponent,
-    NgIf,
-    AsyncPipe,
-    DatePipe,
-    IonContent,
-    IonList,
-    IonListHeader,
-    IonLabel,
-    IonItem,
-    IonCheckbox,
-    IonToggle,
-    IonNote,
-    IonModal,
-    IonDatetime,
-  ],
+    selector: 'lp-pansch-administration',
+    templateUrl: './pansch-administration.page.html',
+    styleUrls: ['./pansch-administration.page.scss'],
+    imports: [
+        HeaderComponent,
+        NgIf,
+        AsyncPipe,
+        DatePipe,
+        IonContent,
+        IonList,
+        IonListHeader,
+        IonLabel,
+        IonItem,
+        IonCheckbox,
+        IonToggle,
+        IonNote,
+        IonModal,
+        IonDatetime,
+    ]
 })
 export class PanschAdministrationPage {
   private latschiPanschService: LatschiPanschService = inject(LatschiPanschService);

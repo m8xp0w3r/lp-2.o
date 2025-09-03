@@ -16,15 +16,15 @@ import { IonButton, IonContent, IonIcon, IonImg, IonItem, IonLabel, IonList, Ion
 
 
 @Component({
-  selector: 'lp-pansch-selection',
-  templateUrl: './pansch-selection.page.html',
-  styleUrls: ['./pansch-selection.page.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    HeaderComponent,
-    NgIf, NgFor,
-    AsyncPipe, DatePipe, PanschCountdownComponent, IonContent, IonButton, IonIcon, IonList, IonItem, IonLabel, IonNote, IonImg]
+    selector: 'lp-pansch-selection',
+    templateUrl: './pansch-selection.page.html',
+    styleUrls: ['./pansch-selection.page.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        HeaderComponent,
+        NgIf, NgFor,
+        AsyncPipe, DatePipe, PanschCountdownComponent, IonContent, IonButton, IonIcon, IonList, IonItem, IonLabel, IonNote, IonImg
+    ]
 })
 export class PanschSelectionPage {
   public devMode = environment.localDevMode;

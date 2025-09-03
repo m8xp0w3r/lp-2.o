@@ -5,15 +5,14 @@ import { SingleTeamItemComponent } from "./single-team-item/single-team-item.com
 import { NgIf } from "@angular/common";
 
 @Component({
-  selector: 'lp-team',
-  templateUrl: './team.component.html',
-  styleUrls: ['./team.component.scss'],
-  standalone: true,
-  imports: [
-    DoubleTeamItemComponent,
-    SingleTeamItemComponent,
-    NgIf
-  ]
+    selector: 'lp-team',
+    templateUrl: './team.component.html',
+    styleUrls: ['./team.component.scss'],
+    imports: [
+        DoubleTeamItemComponent,
+        SingleTeamItemComponent,
+        NgIf
+    ]
 })
 export class TeamComponent extends BaseTeamItemComponent {
 

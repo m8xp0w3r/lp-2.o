@@ -4,20 +4,19 @@ import { FormsModule } from '@angular/forms';
 import { IonButton, IonCol, IonGrid, IonIcon, IonInput, IonRow } from "@ionic/angular/standalone";
 
 @Component({
-  selector: 'lp-add-player-input',
-  templateUrl: './add-player-input.component.html',
-  styleUrls: ['./add-player-input.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    FormsModule,
-    IonGrid,
-    IonRow,
-    IonCol,
-    IonInput,
-    IonButton,
-    IonIcon
-  ]
+    selector: 'lp-add-player-input',
+    templateUrl: './add-player-input.component.html',
+    styleUrls: ['./add-player-input.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        FormsModule,
+        IonGrid,
+        IonRow,
+        IonCol,
+        IonInput,
+        IonButton,
+        IonIcon
+    ]
 })
 export class AddPlayerInputComponent {
   public newPlayer = "";

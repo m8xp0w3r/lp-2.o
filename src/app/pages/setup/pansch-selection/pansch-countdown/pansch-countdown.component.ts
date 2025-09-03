@@ -3,11 +3,10 @@ import { interval, Subject, takeUntil } from "rxjs";
 import { NgIf } from '@angular/common';
 
 @Component({
-  selector: 'lp-pansch-countdown',
-  templateUrl: './pansch-countdown.component.html',
-  styleUrls: ['./pansch-countdown.component.scss'],
-  standalone: true,
-  imports: [NgIf],
+    selector: 'lp-pansch-countdown',
+    templateUrl: './pansch-countdown.component.html',
+    styleUrls: ['./pansch-countdown.component.scss'],
+    imports: [NgIf]
 })
 export class PanschCountdownComponent implements OnInit, OnDestroy {
   public remainingDays: WritableSignal<number | undefined> = signal(undefined);

@@ -15,21 +15,20 @@ import {
 } from "@ionic/angular/standalone";
 
 @Component({
-  selector: 'lp-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss'],
-  standalone: true,
-  imports: [
-    AsyncPipe,
-    NgIf,
-    IonHeader,
-    IonToolbar,
-    IonButtons,
-    IonMenuButton,
-    IonTitle,
-    IonButton,
-    IonIcon
-  ]
+    selector: 'lp-header',
+    templateUrl: './header.component.html',
+    styleUrls: ['./header.component.scss'],
+    imports: [
+        AsyncPipe,
+        NgIf,
+        IonHeader,
+        IonToolbar,
+        IonButtons,
+        IonMenuButton,
+        IonTitle,
+        IonButton,
+        IonIcon
+    ]
 })
 export class HeaderComponent {
   @Input() title = "";

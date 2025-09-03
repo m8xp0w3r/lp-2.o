@@ -19,26 +19,25 @@ import {
 
 
 @Component({
-  selector: 'lp-air-hockey-af',
-  templateUrl: './air-hockey-af.page.html',
-  styleUrls: ['./air-hockey-af.page.scss'],
-  standalone: true,
-  imports: [
-    NgIf,
-    NgFor,
-    GameCardComponent,
-    PanschWaitingComponent,
-    AsyncPipe,
-    IonToolbar,
-    IonHeader,
-    IonButtons,
-    IonMenuButton,
-    IonTitle,
-    IonButton,
-    IonIcon,
-    IonContent,
-    IonList,
-  ],
+    selector: 'lp-air-hockey-af',
+    templateUrl: './air-hockey-af.page.html',
+    styleUrls: ['./air-hockey-af.page.scss'],
+    imports: [
+        NgIf,
+        NgFor,
+        GameCardComponent,
+        PanschWaitingComponent,
+        AsyncPipe,
+        IonToolbar,
+        IonHeader,
+        IonButtons,
+        IonMenuButton,
+        IonTitle,
+        IonButton,
+        IonIcon,
+        IonContent,
+        IonList,
+    ]
 })
 export class AirHockeyAfPage extends BaseAirHockeyPage {
   public airHockeyAfGames$: Observable<Game[]> = this.airHockeyService.airHockeyAfGames$;

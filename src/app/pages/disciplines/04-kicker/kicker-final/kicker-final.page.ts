@@ -20,26 +20,25 @@ import {
 
 
 @Component({
-  selector: 'lp-kicker-final',
-  templateUrl: './kicker-final.page.html',
-  styleUrls: ['./kicker-final.page.scss'],
-  standalone: true,
-  imports: [
-    NgIf,
-    NgFor,
-    GameCardComponent,
-    PanschWaitingComponent,
-    AsyncPipe,
-    IonHeader,
-    IonToolbar,
-    IonButtons,
-    IonMenuButton,
-    IonTitle,
-    IonButton,
-    IonIcon,
-    IonContent,
-    IonList
-  ],
+    selector: 'lp-kicker-final',
+    templateUrl: './kicker-final.page.html',
+    styleUrls: ['./kicker-final.page.scss'],
+    imports: [
+        NgIf,
+        NgFor,
+        GameCardComponent,
+        PanschWaitingComponent,
+        AsyncPipe,
+        IonHeader,
+        IonToolbar,
+        IonButtons,
+        IonMenuButton,
+        IonTitle,
+        IonButton,
+        IonIcon,
+        IonContent,
+        IonList
+    ]
 })
 export class KickerFinalPage extends BaseKickerPage {
   public kickerFinalGames$: Observable<Game[]> = this.kickerService.kickerFinalGames$;

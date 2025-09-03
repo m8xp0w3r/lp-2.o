@@ -9,19 +9,18 @@ import { TeamComponent } from "./team/team.component";
 import { NgIf } from "@angular/common";
 
 @Component({
-  selector: 'lp-game-card',
-  templateUrl: './game-card.component.html',
-  styleUrls: ['./game-card.component.scss'],
-  standalone: true,
-  imports: [
-    IonCard,
-    IonCardHeader,
-    IonGrid,
-    IonRow,
-    TeamComponent,
-    IonCol,
-    NgIf
-  ]
+    selector: 'lp-game-card',
+    templateUrl: './game-card.component.html',
+    styleUrls: ['./game-card.component.scss'],
+    imports: [
+        IonCard,
+        IonCardHeader,
+        IonGrid,
+        IonRow,
+        TeamComponent,
+        IonCol,
+        NgIf
+    ]
 })
 export class GameCardComponent {
   @Input() game: Game | undefined;
